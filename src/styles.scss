@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.matchWinner{
+  font-weight: bold;
+}
+
+.pavolJayTeam{
+  color:rgb(10,151,176);
+}
+
+.playersTeam{
+  font-weight: normal !important;
+}
+
+
+.kotlikTeam{
+    color: rgb(140,186,81);
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+
+
+
+
+
+//icon up and down animation
+.iconAnimation{
+  cursor: pointer;
+}
+
+.iconAnimation:hover {
+animation: MoveUpDown 0.2s linear !important;
+animation-iteration-count: 1 !important;
+position: relative !important;
+cursor: pointer;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 4px;
+  }
+}
+
+
+.appBackground{
+  background-color: rgba($color: aqua, $alpha: 0.1);
+}

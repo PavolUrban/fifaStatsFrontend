@@ -1,0 +1,91 @@
+<div class="mr-1 mt-5 row" >
+
+  <div class="col-sm-4">
+
+    <mat-card >
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text"
+               placeholder="Pick first team"
+               aria-label="Number"
+               matInput
+               [formControl]="myControlFirstTeam"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptionsFirstTeam | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text"
+               placeholder="Pick second team"
+               aria-label="Number"
+               matInput
+               [formControl]="myControlSecondTeam"
+               [matAutocomplete]="auto">
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptionsSecondTeam | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+
+    <button  mat-raised-button color="primary" (click)="getH2HStats()">Get H2H</button>
+    </mat-card>
+    </div>
+
+  <div class="col-sm-4" *ngIf="dataLoaded">
+  <app-goalscorers *ngIf="!!goalscorers"
+  [source]="goalscorers"
+  [logos2]="logos"
+  paginatorDefaultItems="10"
+  >
+  </app-goalscorers>
+</div>
+
+
+<mat-card class="col-sm-4" *ngIf="dataLoaded">
+  <mat-card-header>
+    <mat-card-title>H2H Stats</mat-card-title>
+    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-tab-group (selectedTabChange)="tabChanged($event)">
+    <mat-tab class="test" label="H2H Teams">
+
+    </mat-tab>
+    <mat-tab class="test" label="H2H Players">
+
+    </mat-tab>
+  </mat-tab-group>
+
+  <app-pie-chart-stats *ngIf="!!currentBilanceUsed"
+    [series]="currentBilanceUsed"
+    >
+    </app-pie-chart-stats>
+ </mat-card>
+
+
+
+
+<!-- <mat-card-content> -->
+
+</div>
+
+<app-custom-matches class="mt-5" *ngIf="!!allMatches"
+  [dataSourceNew]="allMatches"
+  [matCardTitle]="'History'"
+  [matCardSubtitle]="'All matches'"
+  [initPageSize]="20"
+>
+</app-custom-matches>
+
+
+

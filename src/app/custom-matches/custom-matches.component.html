@@ -1,0 +1,102 @@
+<mat-card class="col-sm-12">
+  <mat-card-header>
+    <mat-card-title *ngIf="matCardTitle">{{matCardTitle}}</mat-card-title>
+    <mat-card-subtitle *ngIf="matCardSubtitle">{{matCardSubtitle}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="table-hover" matSort>
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="season">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Season </th>
+        <td mat-cell *matCellDef="let element"> {{element.season}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="competition">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comp </th>
+        <td mat-cell *matCellDef="let element"> {{element.competition}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phase">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phase </th>
+        <td mat-cell *matCellDef="let element"> {{element.competitionPhase}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="hometeam">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+        <td mat-cell *matCellDef="let element"  [ngClass]="{'matchWinner': element.winner=='H'}" >
+        <!-- , 'second': true, 'third': false -->
+          <span>{{element.hometeam}}</span>
+          <br>
+          <small class="playersTeam"><i>played by <span [ngClass]="{'matchWinner': element.winner=='H', 'pavolJayTeam': element.playerH=='Pavol Jay', 'kotlikTeam': element.playerH=='Kotlik'}">{{element.playerH}}</span></i></small>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'matchWinner': true}">
+         {{element.scorehome}} : {{element.scoreaway}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="awayteam">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'matchWinner': element.winner=='A'}">
+          <span >{{element.awayteam}}</span>
+          <br>
+          <small class="playersTeam"><i>played by <span [ngClass]="{'matchWinner': element.winner=='A', 'pavolJayTeam': element.playerA=='Pavol Jay', 'kotlikTeam': element.playerA=='Kotlik'}">{{element.playerA}}</span></i></small>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="winnerBadge">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let element" [ngSwitch]="element.winner">
+          <ng-container *ngIf="!!matchWinner">
+            <span *ngSwitchCase="matchWinner" class="badge badge-success">
+             W
+            </span>
+          <span *ngSwitchCase="'D'" class="badge badge-warning">
+            D
+          </span>
+
+          <span *ngSwitchDefault class="badge badge-danger">
+            L
+          </span>
+        </ng-container>
+
+        </td>
+      </ng-container>
+
+
+
+
+      <ng-container matColumnDef="matchDetail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <mat-icon class="iconAnimation" (click)="openMatchDetail(element, i)">search</mat-icon>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="initPageSize"></mat-paginator>
+
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,17 @@
+<h1>{{playerInfo.name}}</h1>
+
+<img  [src]="imgSrc" alt=""  class="playerFoto mr-1">
+
+<table  class="table table-sm mt-3 table-hover">
+  <tbody>
+    <tr *ngFor="let item of playerTeams | keyvalue" >
+      <th>{{item.key}}</th>
+      <td>{{item.value}}</td>
+    </tr>
+    <tr >
+      <th>Total</th>
+      <td >{{playerInfo.totalGoalsCount}}</td>
+    </tr>
+
+  </tbody>
+</table>

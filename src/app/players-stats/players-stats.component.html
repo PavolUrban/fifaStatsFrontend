@@ -1,0 +1,102 @@
+<table  class="table table-sm mt-3 table-hover">
+  <tbody>
+    <tr>
+      <th>Matches played</th>
+      <td>
+        {{numberOfMatches}}
+       </td>
+    </tr>
+    <tr>
+      <th>Number of goals</th>
+      <td>
+        {{goalsTotal}}
+       </td>
+    </tr>
+    <tr>
+      <th>Avg goals per match</th>
+      <td>
+        {{goalsTotal/numberOfMatches || 0 | number:'1.1-2'}}
+       </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="row d-flex justify-content-center">
+
+
+
+<mat-card class="col-sm-5 mt-3 ml-3" *ngFor="let player of playersStats | keyvalue">
+  <mat-card-header>
+    <mat-card-title>{{player.key}}</mat-card-title>
+    <mat-card-subtitle>Champions league</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+
+    <div class="row">
+      <div class="col-sm-7">
+    <table  class="table table-sm mt-3 table-hover">
+      <tbody>
+        <tr>
+          <th>Wins</th>
+          <td>
+            <span class="badge badge-success">
+              {{player.value.wins}} ({{(player.value.wins /numberOfMatches * 100 ) || 0 | number:'1.1-1'}}%)
+            </span>
+           </td>
+        </tr>
+        <tr>
+          <th>Draws</th>
+          <td>
+            <span class="badge badge-warning">
+              {{player.value.draws}} ({{(player.value.draws /numberOfMatches * 100 ) || 0 | number:'1.1-1'}}%)
+            </span>
+           </td>
+        </tr>
+        <tr>
+          <th>Losses</th>
+          <td>
+            <span class="badge badge-danger">
+              {{player.value.losses}} ({{(player.value.losses /numberOfMatches * 100 ) || 0 | number:'1.1-1'}}%)
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th>Goals scored</th>
+          <td>{{player.value.goalsScored}} ({{player.value.goalsScored /numberOfMatches || 0 | number:'1.1-1'}})</td>
+        </tr>
+        <tr>
+          <th>Goals Conceded</th>
+          <td>{{player.value.goalsConceded}} ({{player.value.goalsConceded /numberOfMatches || 0 | number:'1.1-1'}})</td>
+        </tr>
+        <tr>
+          <th>Goals Diff</th>
+          <td>
+            <span class="badge" [ngClass]="{'badge-success': player.value.goalsScored > player.value.goalsConceded,
+                                            'badge-warning': player.value.goalsScored == player.value.goalsConceded,
+                                            'badge-danger': player.value.goalsScored < player.value.goalsConceded
+                                          }">
+                {{player.value.goalsScored - player.value.goalsConceded}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-5">
+    <img src='assets/img/{{player.key}}.jpg' alt=""  class="playerFoto ml-3">
+  </div>
+  </div>
+    <app-pie-chart-stats *ngIf="player.value.totalBilance?.length>0"
+      [series]="player.value.totalBilance"
+      >
+      </app-pie-chart-stats>
+
+      <!-- <img  src='assets/img/{{player.key}}.jpg' alt=""  class="playerFoto mr-1"> -->
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Display all</button>
+  </mat-card-actions>
+</mat-card>
+</div>

@@ -1,0 +1,132 @@
+<div class="row ml-3">
+
+
+
+  <mat-card class="col-sm-12 ml-3 mt-3">
+    <mat-card-header>
+      <mat-card-title>All time teamstats</mat-card-title>
+      <mat-card-subtitle>Champions league</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-slide-toggle [(ngModel)]="displayPercentage">Display percentage</mat-slide-toggle><br>
+      <!-- <label id="example-radio-group-label">Pick your favorite season</label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="favoriteSeason">
+        <mat-radio-button class="example-radio-button" *ngFor="let view of views" [value]="view">
+          {{view}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div>Your favorite season is: {{favoriteSeason}}</div> -->
+
+
+
+ <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+<table mat-table [dataSource]="dataSource" matSort class="table-hover">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="index">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="teamname">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <img *ngIf="element.fm" [src]="'data:image/gif;base64,'+element.fm.pic" alt="" class="iconSize mr-1">
+      {{element.teamname}}
+    </td>
+  </ng-container>
+
+
+
+
+  <ng-container matColumnDef="country">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      {{element.country}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="wins">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> W </th>
+    <td  mat-cell *matCellDef="let element; let i = index">
+      <!-- <span *ngIf="favoriteSeason=='Classic'"> -->
+        {{element.wins}}
+        <span *ngIf="displayPercentage" [ngClass]="{'badge badge-success': (element.wins/element.matches)>0.50}">
+          ({{element.wins/element.matches*100 || 0 | number:'1.1-1'}}%)
+        </span>
+      <!-- </span> -->
+      <!-- <span *ngIf="favoriteSeason=='Percentage'">
+         {{element.wins/element.matches*100 || 0 | number:'1.1-1'}}
+      </span> -->
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="draws">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> D </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      {{element.draws}} <span *ngIf="displayPercentage">({{element.draws/element.matches*100 || 0 | number:'1.1-1'}}%)</span></td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="losses">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> L </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      {{element.losses}}
+      <span *ngIf="displayPercentage"  [ngClass]="{'badge badge-danger': (element.losses/element.matches)>0.50}">
+        ({{element.losses/element.matches*100 || 0 | number:'1.1-1'}}%)
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="matches">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> M </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      {{element.matches}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="goalsScored">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> GS </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+       {{element.goalsScored}} <span *ngIf="displayPercentage">({{element.goalsScored/element.matches || 0 | number:'1.1-1'}})</span></td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="goalsConceded">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> GC </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+       {{element.goalsConceded}}
+       <span *ngIf="displayPercentage">
+         ({{element.goalsConceded/element.matches || 0 | number:'1.1-1'}})</span></td>
+  </ng-container>
+
+  <ng-container matColumnDef="goalDiff">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> GD </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{element.goalDiff}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" class="table-row"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="15"></mat-paginator>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Display all</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

@@ -1,0 +1,46 @@
+
+<h2 mat-dialog-title>Title</h2>
+
+<mat-dialog-content class="displayBlock">
+
+  <mat-form-field class="displayBlock">
+      <input matInput
+              placeholder="Team name"
+              [(ngModel)]="team.teamName">
+  </mat-form-field>
+
+  <mat-form-field class="displayBlock">
+    <input  matInput
+            placeholder="First year in Champions League"
+            [(ngModel)]="team.firstSeasonCL">
+  </mat-form-field>
+
+  <mat-form-field class="displayBlock">
+    <input  matInput
+            placeholder="First year in European League"
+            [(ngModel)]="team.firstSeasonEL">
+  </mat-form-field>
+
+
+  <mat-form-field class="displayBlock">
+    <input matInput
+           placeholder="Country"
+           [(ngModel)]="team.country">
+  </mat-form-field>
+
+
+  <form [formGroup] = "uploadForm" > <!-- (ngSubmit)="onSubmit()" -->
+    <div>
+      <input type="file" name="profile" (change)="onFileSelect($event)" />
+    </div>
+    <!-- <div>
+      <button type="submit">Upload</button>
+    </div> -->
+  </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>

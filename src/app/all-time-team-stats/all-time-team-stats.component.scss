@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.table-row {
+  height: 30px !important;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.badge{
+  font-size: 100% !important;
+}
+
+.iconSize{
+  max-height: 25px;
+}

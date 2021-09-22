@@ -1,0 +1,16 @@
+<mat-card-content>
+<table  class="table table-sm mt-3 table-hover">
+  <tbody>
+    <tr>
+      <th>#</th>
+      <th> Name</th>
+      <th> Goals</th>
+    </tr>
+    <tr *ngFor="let recipient of topGS;let i = index;">
+      <td>  {{i+1}}. </td>
+      <td> {{recipient.key.includes('.') ? recipient.key.replace('.',' ') : recipient.key}} </td>
+      <td> {{recipient.value}} </td>
+    </tr>
+  </tbody>
+</table>
+</mat-card-content>

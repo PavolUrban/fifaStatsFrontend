@@ -1,0 +1,121 @@
+<h1>{{seasonName}}</h1>
+
+
+
+<div class="row">
+  <app-season-stats
+  [pavolJayWins]="pavolJayWinCount"
+  [kotlikWins]="kotlikWinCount"
+  [draws]="drawsCount"
+  [goals]="goalsCount"
+  [matches]="matchesCount"
+  [competition]="competition"
+  [winnerTeam]="winnerTeam"
+  [winnerPlayer]="winnerPlayer"
+  ></app-season-stats>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-3">
+  <app-goalscorers
+          [source]="topGoalscorersGroupStage"
+          title = "Best goalscorers"
+          subtitle = "Group stage"
+      >
+      </app-goalscorers>
+    </div>
+
+    <div class="col-sm-3 ml-5">
+      <app-goalscorers
+      [source]="topGoalscorersPlayOffs"
+      title="Best goalscorers"
+      subtitle="Play/offs"
+  >
+  </app-goalscorers>
+</div>
+
+
+<div class="col-sm-3 ml-5">
+  <app-goalscorers
+  [source]="topGoalscorersTotal"
+  title="Best goalscorers"
+  subtitle="Total"
+>
+</app-goalscorers>
+</div>
+</div>
+
+<div class="row " *ngFor="let group of allGroups | keyvalue">
+
+  <mat-card class="ml-5 mt-3" >
+    <mat-card-header>
+      <mat-card-title>{{group.key}}</mat-card-title>
+      <mat-card-subtitle>Champions league</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="col-sm-6">
+      <table  class="table table-sm mt-3 table-hover">
+        <tbody>
+          <tr>
+            <th>#</th>
+            <th>Team</th>
+            <th></th>
+            <th>M</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th class="text-center">S</th>
+            <th class="text-center">GD</th>
+            <th class="text-center">P</th>
+          </tr>
+          <tr  (click)="goToTeamView(team.teamname)" *ngFor="let team of allGroups[group.key]; let i=index;"
+            [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': i==2, 'outOfCompetition': i==3}"
+          >
+            <td>{{i+1}}.</td>
+            <td> <img *ngIf="team['logo']" [src]="'data:image/gif;base64,'+team['logo']['pic']" alt="" class="iconSize mr-1"> {{team.teamname}}</td>
+            <td>
+              <span class="badge badge-success" *ngIf="i == 0 || i ==1">Q</span>
+              <span class="badge badge-warning" *ngIf="i==2">EL</span>
+              <span class="badge badge-danger" *ngIf="i==3">NQ</span>
+            </td>
+            <td>{{team.matches}}</td>
+            <td>{{team.wins}}</td>
+            <td>{{team.draws}}</td>
+            <td>{{team.losses}}</td>
+            <td class="text-center">{{team.goalsScored}} : {{team.goalsConceded}}</td>
+            <td class="text-center">{{team.goalsScored - team.goalsConceded}}</td>
+            <td class="text-center">{{team.points}}</td>
+             </tr>
+        </tbody>
+      </table>
+      <span class="badge badge-success"> {{playersStats[group.key]["Pavol Jay"] }}</span>
+      -
+      <span class="badge badge-warning"> {{playersStats[group.key]["Draws"] }}</span>
+      -
+      <span class="badge badge-danger"> {{playersStats[group.key]["Kotlik"] }}</span>
+    </div>
+
+    <div class="col-sm-5 ml-3">
+      <app-goalscorers
+          [source]="goalscorers[group.key]"
+          [logos]="group.value"
+      >
+      </app-goalscorers>
+    </div>
+
+    </mat-card-content>
+
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="displayCurrentGroupMatches(group.key)">Display all</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
+
+<app-play-off
+[season] = "seasonName"
+[competition]="competition"
+[playOff]="playOffs"
+></app-play-off>

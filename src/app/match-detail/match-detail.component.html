@@ -1,0 +1,54 @@
+
+    <!-- <mat-card-title>{{match.hometeam}} {{match.scorehome}} : {{match.scoreaway}} {{match.awayteam}} </mat-card-title>
+    <mat-card-subtitle>{{match.season}} | {{match.competition}} | {{match.competitionPhase}}</mat-card-subtitle> -->
+
+
+
+
+
+
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-5 d-flex justify-content-center"  (click)="goToTeamView(match.hometeam)">
+        <img *ngIf="homeTeamLogo" [src]="'data:image/gif;base64,'+homeTeamLogo['pic']" alt="" class="iconSize">
+      </div>
+      <div class="col-sm-2 d-flex justify-content-center align-items-center">
+        <strong class="result">  {{match.scorehome}} : {{match.scoreaway}}</strong>
+      </div>
+      <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.awayteam)">
+        <img *ngIf="awayTeamLogo" [src]="'data:image/gif;base64,'+awayTeamLogo['pic']" alt="" class="iconSize mr-1" >
+      </div>
+    </div>
+
+
+    <div class="row d-flex justify-content-center mt-3 mb-5">
+      <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.hometeam)">
+      <strong> {{match.hometeam}}</strong>
+      </div>
+      <div class="col-sm-2 d-flex justify-content-center"></div>
+
+      <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.awayteam)">
+        <strong> {{match.awayteam}}</strong>
+      </div>
+
+    </div>
+
+
+        <table  class="table table-sm mt-3 table-hover">
+      <tbody>
+        <tr>
+          <td>{{match.hometeam}} managed by</td>
+          <th>{{match.playerH}}</th>
+        </tr>
+        <tr>
+          <td>{{match.awayteam}} managed by</td>
+          <th>{{match.playerA}}</th>
+        </tr>
+        <tr>
+          <th>Goals</th>
+          <td>{{goalscorersHome.toString()}} - {{goalscorersAway.toString()}}</td>
+        </tr>
+        <tr>
+
+      </tbody>
+    </table>

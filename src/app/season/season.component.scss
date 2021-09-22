@@ -1,0 +1,45 @@
+.qualifiedCL{
+  background-color:rgba($color: #5cb85c, $alpha: 0.5);
+}
+
+.qualifiedCL:hover{
+  background-color:rgba($color: #5cb85c, $alpha: 1.0);
+}
+
+.qualifiedEL{
+  background-color:rgba($color: #f0ad4e, $alpha: 0.5);
+}
+
+.qualifiedEL:hover{
+  background-color:rgba($color: #f0ad4e, $alpha: 1.0);
+}
+
+.outOfCompetition{
+  background-color:rgba($color: #d9534f, $alpha: 0.5);
+}
+
+
+.outOfCompetition:hover{
+  background-color:rgba($color: #d9534f, $alpha: 1.0);
+}
+
+.iconSize{
+  max-height: 30px;
+}
+
+.mat-card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display:inline-block;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  width: 100%;
+  flex-direction: row;
+}
+
+ .mat-card-content {
+  display: flex !important;
+  margin-bottom: 16px;
+  flex-direction: row;
+}
+

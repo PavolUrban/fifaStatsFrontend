@@ -1,0 +1,59 @@
+
+
+<div *ngIf="winnerTeam">
+
+  <img src='assets/img/{{winnerPlayer}}.jpg' alt=""  class="playerFoto ml-3">
+
+</div>
+<div> Winner is {{winnerTeam}} managed by {{winnerPlayer}}</div>
+<img [src]="imgSrc" class="trophy">
+
+<table  class="table table-sm mt-3 table-hover">
+  <tbody *ngIf="matches && goals">
+    <tr>
+    <th> </th>
+    <th> Total</th>
+    <th> Group stage</th>
+    <th> Play/offs</th>
+  </tr>
+  <tr>
+    <th> Matches</th>
+    <td>{{matches[0] + matches[1]}}</td>
+    <td>{{matches[0]}} </td>
+    <td>{{matches[1]}}</td>
+  </tr>
+  <tr>
+    <th> Goals</th>
+    <td> {{goals[0]+goals[1]}} ({{(((goals[0]+goals[1])/(matches[0]+matches[1]))) || 0 | number:'1.1-1' }})</td>
+    <td> {{goals[0]}} ({{((goals[0]/matches[0])) || 0 | number:'1.1-1' }})</td>
+    <td> {{goals[1]}} ({{((goals[1]/matches[1])) || 0 | number:'1.1-1' }})</td>
+  </tr>
+  <tr>
+    <th> Yellow cards</th>
+    <td> x</td>
+    <td> y </td>
+    <td> z</td>
+  </tr>
+  <tr>
+    <th> Red cards</th>
+    <td> x</td>
+    <td> y </td>
+    <td> z</td>
+  </tr>
+  <tr>
+    <th> Pavol Jay</th>
+    <td> x</td>
+    <td>
+      <span class="badge badge-success mr-1"> {{pavolJayWins}} </span>-
+      <span class="badge badge-warning mr-1">{{draws}} </span>-
+      <span class="badge badge-danger mr-1"> {{kotlikWins}} </span>
+    <td> z</td>
+  </tr>
+  <tr>
+    <th> Kotlik</th>
+    <td> x</td>
+    <td> y </td>
+    <td> {{pavolJayWins}}</td>
+  </tr>
+  </tbody>
+</table>

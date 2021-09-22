@@ -1,0 +1,15 @@
+
+<!-- <h2 mat-dialog-title>GROUP XY matches</h2> -->
+
+<mat-dialog-content class="displayBlock">
+</mat-dialog-content>
+
+<app-custom-matches *ngIf="!!customMatches"
+  [dataSourceNew]="customMatches"
+>
+</app-custom-matches>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" matDialogClose>Close</button>
+    <button class="mat-raised-button mat-primary">Save</button>
+</mat-dialog-actions>

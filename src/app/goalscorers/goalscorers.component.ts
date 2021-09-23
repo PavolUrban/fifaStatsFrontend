@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { PlayerTeamsDialogComponent } from '../player-teams-dialog/player-teams-dialog.component';
 
 @Component({
@@ -24,6 +27,8 @@ export class GoalscorersComponent implements OnInit, OnChanges{
 
   displayedColumns: string[] = ['index','name','goals'];
   dataSource ;
+
+  pageEvent: PageEvent;
 
   constructor(private dialog: MatDialog) { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -61,8 +66,4 @@ export class GoalscorersComponent implements OnInit, OnChanges{
    this.dialog.open(PlayerTeamsDialogComponent, dialogConfig);
   }
 
-
-  public handlePage(e: any) {
-    this.currentPage = e.pageIndex;
-  }
 }

@@ -27,7 +27,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
 import {  ReactiveFormsModule } from '@angular/forms';
-import {MatDialogModule, MatButtonToggleModule, MatSelectModule, MatToolbarModule, MatAutocompleteModule} from "@angular/material";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatSelectModule } from "@angular/material/select";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import {MatIconModule} from '@angular/material/icon';
 
 import { TestComponent } from './test/test.component';

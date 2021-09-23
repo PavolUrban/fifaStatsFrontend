@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralService } from '../services/general.service';
 import { Subscription } from 'rxjs';
 import { MatchesService } from '../services/matches.service';
-import { MatDialogConfig, MatDialog } from '@angular/material';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-matches-dialog.component';
 
 @Component({

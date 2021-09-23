@@ -2,7 +2,11 @@ import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular
 import { ActivatedRoute } from '@angular/router';
 import { Teams } from '../teams';
 import { TeamsService } from '../services/teams.service';
-import { MatPaginator, MatSort, MatTableDataSource, MatDialogConfig, MatDialog, MatTabChangeEvent } from '@angular/material';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Observable } from 'rxjs';
 import { Matches } from '../matches';
 import { MatchDetailComponent } from '../match-detail/match-detail.component';

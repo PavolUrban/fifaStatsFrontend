@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FinalMatchComponent } from './final-match.component';
 
@@ -6,7 +6,7 @@ describe('FinalMatchComponent', () => {
   let component: FinalMatchComponent;
   let fixture: ComponentFixture<FinalMatchComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FinalMatchComponent ]
     })

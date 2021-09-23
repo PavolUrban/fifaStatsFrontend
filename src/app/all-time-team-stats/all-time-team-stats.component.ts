@@ -9,8 +9,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 })
 export class AllTimeTeamStatsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator : MatPaginator;
-  @ViewChild(MatSort) sort : MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort : MatSort;
 
   displayedColumns: string[] = ['index','teamname','country','matches','wins','draws','losses','goalsScored','goalsConceded','goalDiff'];
   dataSource = new MatTableDataSource();

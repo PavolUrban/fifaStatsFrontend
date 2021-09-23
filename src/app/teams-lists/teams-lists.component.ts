@@ -15,8 +15,8 @@ import { Subscription } from 'rxjs';
 })
 export class TeamsListsComponent implements OnInit, OnDestroy {
 
-  @ViewChild(MatPaginator) paginator : MatPaginator;
-  @ViewChild(MatSort) sort : MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort : MatSort;
 
   subscription: Subscription = new Subscription();
   displayedColumns: string[] = ['index', 'teamName','country','firstSeasonEL', 'firstSeasonCL','actions'];

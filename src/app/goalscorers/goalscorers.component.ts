@@ -9,8 +9,8 @@ import { PlayerTeamsDialogComponent } from '../player-teams-dialog/player-teams-
 })
 export class GoalscorersComponent implements OnInit, OnChanges{
 
-  @ViewChild(MatPaginator) paginator : MatPaginator;
-  @ViewChild(MatSort) sort : MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort : MatSort;
 
   @Input() paginatorDefaultItems : number = 5;
   @Input() source;

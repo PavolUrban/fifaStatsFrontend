@@ -54,3 +54,26 @@ cursor: pointer;
 .appBackground{
   background-color: rgba($color: aqua, $alpha: 0.1);
 }
+
+.pl-15 {
+  padding-left: 15px;
+}
+
+.pr-15 {
+  padding-right: 15px;
+}
+
+.row {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+
+.pageTitleFormat{
+  text-align: center;
+  font-size: 6.3rem;
+  width: 100%;
+  border: 3px solid #c3c3c3;
+  border-radius: 25px;
+  background-color: #c3c3c3;
+}

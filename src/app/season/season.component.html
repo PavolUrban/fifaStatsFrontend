@@ -1,8 +1,7 @@
-<h1>{{seasonName}}</h1>
-
-
-
 <div class="row">
+  <h1 class="pageTitleFormat">{{seasonName}}</h1>
+</div>
+
   <app-season-stats
   [pavolJayWins]="pavolJayWinCount"
   [kotlikWins]="kotlikWinCount"
@@ -12,12 +11,15 @@
   [competition]="competition"
   [winnerTeam]="winnerTeam"
   [winnerPlayer]="winnerPlayer"
+  [winnerLogo] = "winnerLogo"
   ></app-season-stats>
-</div>
 
 
 <div class="row">
-  <div class="col-sm-3">
+  <h1 class="headerFormat pl-15">Goalscorers</h1>
+</div>
+<div class="row">
+  <div class="col-sm-4">
   <app-goalscorers
           [source]="topGoalscorersGroupStage"
           title = "Best goalscorers"
@@ -26,7 +28,7 @@
       </app-goalscorers>
     </div>
 
-    <div class="col-sm-3 ml-5">
+    <div class="col-sm-4">
       <app-goalscorers
       [source]="topGoalscorersPlayOffs"
       title="Best goalscorers"
@@ -36,7 +38,8 @@
 </div>
 
 
-<div class="col-sm-3 ml-5">
+
+<div class="col-sm-4">
   <app-goalscorers
   [source]="topGoalscorersTotal"
   title="Best goalscorers"
@@ -46,9 +49,13 @@
 </div>
 </div>
 
-<div class="row " *ngFor="let group of allGroups | keyvalue">
+<div class="row">
+  <h1 class="groupStageHeaderFormat pl-15">Group stage</h1>
+</div>
 
-  <mat-card class="ml-5 mt-3" >
+<div class="row pl-15 pr-15" *ngFor="let group of allGroups | keyvalue">
+
+  <mat-card class="col-sm-12 mt-3" >
     <mat-card-header>
       <mat-card-title>{{group.key}}</mat-card-title>
       <mat-card-subtitle>Champions league</mat-card-subtitle>
@@ -73,7 +80,7 @@
             [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': i==2, 'outOfCompetition': i==3}"
           >
             <td>{{i+1}}.</td>
-            <td> <img *ngIf="team['logo']" [src]="'data:image/gif;base64,'+team['logo']['pic']" alt="" class="iconSize mr-1"> {{team.teamname}}</td>
+            <td matTooltip="Managed by" matTooltipPosition="before"> <img *ngIf="team['logo']" [src]="'data:image/gif;base64,'+team['logo']['pic']" alt="" class="iconSize mr-1"> {{team.teamname}}</td>
             <td>
               <span class="badge badge-success" *ngIf="i == 0 || i ==1">Q</span>
               <span class="badge badge-warning" *ngIf="i==2">EL</span>

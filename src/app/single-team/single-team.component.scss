@@ -26,3 +26,20 @@ table {
   white-space: nowrap;
   position: relative;
 }
+
+.pageTitleFormat{
+  text-align: center;
+  font-size: 4.3rem;
+  width: 100%;
+  border-radius: 25px;
+}
+
+//todo rename
+.trophy{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 40%;
+  max-width: 130px;
+}

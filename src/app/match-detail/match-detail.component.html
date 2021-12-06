@@ -8,7 +8,7 @@
 
 
 
-    <div class="row d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
       <div class="col-sm-5 d-flex justify-content-center"  (click)="goToTeamView(match.hometeam)">
         <img *ngIf="homeTeamLogo" [src]="'data:image/gif;base64,'+homeTeamLogo['pic']" alt="" class="iconSize">
       </div>
@@ -21,7 +21,7 @@
     </div>
 
 
-    <div class="row d-flex justify-content-center mt-3 mb-5">
+    <div class="d-flex justify-content-center mt-3 mb-5">
       <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.hometeam)">
       <strong> {{match.hometeam}}</strong>
       </div>

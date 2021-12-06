@@ -29,8 +29,8 @@
 
   <!-- Position Column -->
   <ng-container matColumnDef="index">
-    <th mat-header-cell *matHeaderCellDef> # </th>
-    <td mat-cell *matCellDef="let element; let i = index"> {{(i+1) + (currentPage * paginatorDefaultItems)}} </td>
+    <th mat-header-cell *matHeaderCellDef> # tati</th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{dataSource.filteredData.indexOf(element) + 1}} </td>
   </ng-container>
 
 

@@ -1,4 +1,4 @@
-<div style="padding: 20px;">
+<div style="padding: 20px; background-color: rgba(211,211,211,0.5)">
 
 
   <!-- color="primary" -->
@@ -8,6 +8,7 @@
     <!-- routerLink = "matches" -->
   <button mat-button  [matMenuTriggerFor]="matches">Matches</button>
   <mat-menu #matches="matMenu">
+    <button mat-menu-item routerLink="createMatch">Create match</button>
     <button mat-menu-item routerLink="h2h">H2H</button>
     <button mat-menu-item routerLink="matches">All matches</button>
   </mat-menu>

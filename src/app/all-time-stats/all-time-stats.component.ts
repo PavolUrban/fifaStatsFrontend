@@ -11,12 +11,21 @@ export class AllTimeStatsComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
   goalscorers;
+
+  trophyRoom;
+  winnersList;
   constructor(private generalService: GeneralService) { }
 
   ngOnInit() {
     this.subscription =  this.generalService.getTopGoalScorers().subscribe(data=>{
       this.goalscorers = data;
     })
+
+
+    this.generalService.getTrophyRoom().subscribe(data=>{
+      this.trophyRoom = data;
+    });
+
   }
 
   ngOnDestroy()

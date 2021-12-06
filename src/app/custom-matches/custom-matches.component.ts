@@ -51,7 +51,7 @@ export class CustomMatchesComponent implements OnInit {
   {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.minWidth = '600px';
+    dialogConfig.minWidth = '750px';
     dialogConfig.minHeight = '600px';
     dialogConfig.data = {
       match: match
@@ -60,6 +60,10 @@ export class CustomMatchesComponent implements OnInit {
     this.dialog.open(MatchDetailComponent, dialogConfig);
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   // displayBilance;
 

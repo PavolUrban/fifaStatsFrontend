@@ -31,6 +31,7 @@ export class SeasonComponent implements OnInit, OnDestroy {
 
   winnerPlayer;
   winnerTeam;
+  winnerLogo;
   topGoalscorersGroupStage;
   topGoalscorersPlayOffs;
   topGoalscorersTotal;
@@ -45,7 +46,11 @@ export class SeasonComponent implements OnInit, OnDestroy {
       this.seasonName = params['seasonname'];
       this.competition = params['competition'];
 
+      console.log('teraz sa meni competition');
+      console.log(this.competition);
+
       this.subscription = this.generalService.getGroupStage(this.seasonName,this.competition).subscribe(data=>{
+        console.log('recieved dataaa for competition ' + this.competition);
         console.log(data);
         this.allGroups = data["Tables"];
         this.matchesCount = data["MatchesCount"];
@@ -53,6 +58,7 @@ export class SeasonComponent implements OnInit, OnDestroy {
         this.playersStats = data["StatsByGroups"];
         this.playOffs = data["PlayOffs"];
         this.winnerPlayer =data["CLWinnerPlayer"];
+        this.winnerLogo = data['WinnerTeamLogo']?.pic;
 
         if(data["Final"] == null)
          this.winnerTeam = "unknown";

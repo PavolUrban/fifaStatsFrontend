@@ -11,6 +11,7 @@ import { SeasonComponent } from './season/season.component';
 import { PlayersStatsComponent } from './players-stats/players-stats.component';
 import { AllTimeStatsComponent } from './all-time-stats/all-time-stats.component';
 import { H2HComponent } from './h2-h/h2-h.component';
+import { CreateMatchComponent } from './create-match/create-match.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'findbyage', component: SearchCustomersComponent },
     { path: 'matches', component: MatchesComponent},
     { path: 'h2h', component: H2HComponent},
+    { path: 'createMatch', component: CreateMatchComponent},
     { path: 'teams', component: TeamsListsComponent},
     { path: 'fileTest', component: TestComponent},
     { path: 'teaminfo/:teamName', component: SingleTeamComponent},

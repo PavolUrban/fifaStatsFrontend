@@ -27,6 +27,7 @@ export class GeneralService {
   }
 
 
+  // separate global stats
   getTopGoalScorers()
   {
     return this.http.get("http://localhost:8080/globalStats/getAllTimeGoalScorers");
@@ -35,5 +36,13 @@ export class GeneralService {
   getTeamStats()
   {
     return this.http.get("http://localhost:8080/globalStats/getTopTeamStats");
+  }
+
+  getWinnersList(competition: string){
+    return this.http.get("http://localhost:8080/globalStats/winnersList"+"/"+competition);
+  }
+
+  getTrophyRoom(){
+    return this.http.get("http://localhost:8080/globalStats/trophyRoom");
   }
 }

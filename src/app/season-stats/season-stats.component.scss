@@ -1,10 +1,42 @@
+// todo rename trophy
 .trophy{
-  max-width: 100px !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 40%;
+  max-width: 130px;
 }
 
-.playerFoto{
-  max-width: 280px !important;
-  max-height: 210px !important;
+.circlePhoto {
   border-radius: 50%;
 }
 
+//todo rename
+.center {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+
+
+.customTable {
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+  border-radius: 4px;
+  background-color: white;
+}
+
+th:first-of-type {
+  padding-left: 24px;
+}
+
+.winningTeam {
+  max-height: 80px;
+  vertical-align: middle;
+}
+
+.winnerPlayer {
+  max-height: 80px;
+  margin-left: 15px;
+  border-radius: 50%;
+}

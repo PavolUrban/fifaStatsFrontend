@@ -10,6 +10,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Observable } from 'rxjs';
 import { Matches } from '../matches';
 import { MatchDetailComponent } from '../match-detail/match-detail.component';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 
 @Component({
@@ -94,59 +95,65 @@ fulldataCopy ;
 
       this.teamsService.getSingleTeamStats(this.team.teamName).subscribe(data =>
         {
-
+          console.log("data");
+          console.log(data);
           this.fulldataCopy = data;
-
+          console.log('fulldata copy');
+          console.log(this.fulldataCopy);
 
 
           this.teamMatches = data["matches"];
           console.log("I am sending this");
           console.log(this.teamMatches);
+
           let matchStats = data["matchesStats"];
-            this.team.winsCL = matchStats["CL"]["Wins"];
-            this.team.drawsCL = matchStats["CL"]["Draws"];
-            this.team.lossesCL = matchStats["CL"]["Losses"];
+          this.team.winsCL = matchStats["CL"]["Wins"];
+          console.log("posledne");
+          console.log(this.team.winsCL);
+          console.log(matchStats["CL"]["Wins"]);
+          this.team.drawsCL = matchStats["CL"]["Draws"];
+          this.team.lossesCL = matchStats["CL"]["Losses"];
 
-            this.team.winsEL = matchStats["EL"]["Wins"];
-            this.team.drawsEL = matchStats["EL"]["Draws"];
-            this.team.lossesEL = matchStats["EL"]["Losses"];
+          this.team.winsEL = matchStats["EL"]["Wins"];
+          this.team.drawsEL = matchStats["EL"]["Draws"];
+          this.team.lossesEL = matchStats["EL"]["Losses"];
 
-            this.team.winsTotal = this.team.winsCL + this.team.winsEL;
-            this.team.drawsTotal = this.team.drawsCL + this.team.drawsEL;
-            this.team.lossesTotal = this.team.lossesCL + this.team.lossesEL;
+          this.team.winsTotal = this.team.winsCL + this.team.winsEL;
+          this.team.drawsTotal = this.team.drawsCL + this.team.drawsEL;
+          this.team.lossesTotal = this.team.lossesCL + this.team.lossesEL;
 
-            this.team.matchesEL = this.team.winsEL+this.team.drawsEL + this.team.lossesEL;
-            this.team.matchesCL = this.team.winsCL+this.team.drawsCL + this.team.lossesCL;
-            this.team.matchesTotal = this.team.matchesEL + this.team.matchesCL;
+          this.team.matchesEL = this.team.winsEL+this.team.drawsEL + this.team.lossesEL;
+          this.team.matchesCL = this.team.winsCL+this.team.drawsCL + this.team.lossesCL;
+          this.team.matchesTotal = this.team.matchesEL + this.team.matchesCL;
 
-            // this.totalBilance.push(this.team.winsTotal);
-            // this.totalBilance.push(this.team.lossesTotal);
-            // this.totalBilance.push(this.team.drawsTotal);
-            this.totalBilance= [this.team.winsTotal, this.team.drawsTotal, this.team.lossesTotal];
+          // this.totalBilance.push(this.team.winsTotal);
+          // this.totalBilance.push(this.team.lossesTotal);
+          // this.totalBilance.push(this.team.drawsTotal);
+          this.totalBilance= [this.team.winsTotal, this.team.drawsTotal, this.team.lossesTotal];
 
-            this.team.goalsConcededEL = matchStats["EL"]["GoalsConceded"];
-            this.team.goalsScoredEL = matchStats["EL"]["GoalsScored"];
+          this.team.goalsConcededEL = matchStats["EL"]["GoalsConceded"];
+          this.team.goalsScoredEL = matchStats["EL"]["GoalsScored"];
 
-            this.team.goalsConcededCL = matchStats["CL"]["GoalsConceded"];
-            this.team.goalsScoredCL = matchStats["CL"]["GoalsScored"];
+          this.team.goalsConcededCL = matchStats["CL"]["GoalsConceded"];
+          this.team.goalsScoredCL = matchStats["CL"]["GoalsScored"];
 
-            this.team.goalsConcededTotal = this.team.goalsConcededCL + this.team.goalsConcededEL;
-            this.team.goalsScoredTotal =  this.team.goalsScoredCL + this.team.goalsScoredEL;
+          this.team.goalsConcededTotal = this.team.goalsConcededCL + this.team.goalsConcededEL;
+          this.team.goalsScoredTotal =  this.team.goalsScoredCL + this.team.goalsScoredEL;
 
-            this.team.goalDiffTotal = this.team.goalsScoredTotal  - this.team.goalsConcededTotal;
-            this.team.goalDiffCL = this.team.goalsScoredCL - this.team.goalsConcededCL;
-            this.team.goalDiffEL = this.team.goalsScoredEL - this.team.goalsConcededEL;
+          this.team.goalDiffTotal = this.team.goalsScoredTotal  - this.team.goalsConcededTotal;
+          this.team.goalDiffCL = this.team.goalsScoredCL - this.team.goalsConcededCL;
+          this.team.goalDiffEL = this.team.goalsScoredEL - this.team.goalsConcededEL;
 
 
-            this.team.seasonsCL = matchStats["CL"]["Seasons"];
-            this.team.seasonsEL = matchStats["EL"]["Seasons"];
-            this.team.seasonsTotal = this.team.seasonsCL + this.team.seasonsEL;
-            //this.topGoalscorers = this.getSortedKeys(data["goalScorers"]["CL"]);
+          this.team.seasonsCL = matchStats["CL"]["Seasons"];
+          this.team.seasonsEL = matchStats["EL"]["Seasons"];
+          this.team.seasonsTotal = this.team.seasonsCL + this.team.seasonsEL;
+          //this.topGoalscorers = this.getSortedKeys(data["goalScorers"]["CL"]);
 
-            this.sortAndSlice("Total");
+          this.sortAndSlice("Total");
 
-          if(data['fm'])
-            this.ImgUrl = 'data:image/gif;base64,'+data['fm']['pic'];
+        if(data['fm'])
+          this.ImgUrl = 'data:image/gif;base64,'+data['fm']['pic'];
 
         });
     });

@@ -1,8 +1,8 @@
-<div class="row ml-3">
 
 
 
-  <mat-card class="col-sm-12 ml-3 mt-3">
+
+  <mat-card>
     <mat-card-header>
       <mat-card-title>All time teamstats</mat-card-title>
       <mat-card-subtitle>Champions league</mat-card-subtitle>
@@ -51,7 +51,7 @@
 
 
   <ng-container matColumnDef="country">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
     <td mat-cell *matCellDef="let element; let i = index">
       {{element.country}}
     </td>
@@ -129,4 +129,3 @@
     </mat-card-actions>
   </mat-card>
 
-</div>

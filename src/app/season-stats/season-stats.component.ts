@@ -13,17 +13,28 @@ export class SeasonStatsComponent implements OnInit, OnChanges {
   @Input() matches;
   @Input() goals;
   @Input() competition;
-  @Input() winnerTeam ;
+  @Input() winnerTeam: string ;
   @Input() winnerPlayer ;
+  @Input() winnerLogo ;
   imgSrc;
+
+  winnerUnknown = true;
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
-   console.log(this.pavolJayWins + "changed");
+    if(this.winnerTeam){
+      if(this.winnerTeam.localeCompare('unknown') === 0){
+        this.winnerUnknown = true;
+      } else {
+        this.winnerUnknown = false;
+      }
+  }
+ 
+  
   }
 
   ngOnInit() {
-    console.log("winners "+ this.winnerPlayer + this.winnerTeam);
     this.imgSrc = "./assets/img/" + this.competition + "Trophy.png";
+    console.log(this.competition + ' this competition');
 
   }
 

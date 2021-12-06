@@ -31,4 +31,9 @@ export class MatchesService {
     return this.http.get(`${this.baseUrl}/getH2HStats/${firstTeam}/${secondTeam}`);
   }
 
+  getDataToCreateMatch(competition: string)
+  {
+    return this.http.get(`${this.baseUrl}dataToCreateMatch/${competition}`);
+  }
+
 }

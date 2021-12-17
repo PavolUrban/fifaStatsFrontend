@@ -36,7 +36,6 @@ export class TeamsListsComponent implements OnInit, OnDestroy {
   {
    this.subscription =  this.teamsService.getTeamsList().subscribe(data =>
     {
-      console.log(data);
       this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -50,8 +49,6 @@ export class TeamsListsComponent implements OnInit, OnDestroy {
 
 
   openDialog(indexOfTeam) {
-    console.log();
-    console.log(indexOfTeam);
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

@@ -1,0 +1,11 @@
+<mat-tab-group (selectedTabChange)="tabChanged($event)" style="width: 100%;">
+    <mat-tab label="Total">
+        <app-players-cards *ngIf="showView.get('Total')" [data]="currentlyDisplayed" [displayedColumns]="['index', 'name','cardsTotal', 'yellowCards','redCards']"></app-players-cards>
+    </mat-tab>
+    <mat-tab label="CL">
+        <app-players-cards *ngIf="showView.get('CL')"  [data]="currentlyDisplayed" [displayedColumns]="['index', 'name','cardsTotal', 'yellowCards','redCards']"></app-players-cards>
+    </mat-tab>
+    <mat-tab label="EL">
+        <app-players-cards  *ngIf="showView.get('EL')"  [data]="currentlyDisplayed" [displayedColumns]="['index', 'name','cardsTotal', 'yellowCards','redCards']"></app-players-cards>
+    </mat-tab>
+</mat-tab-group>

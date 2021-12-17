@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,8 +16,10 @@ export class WinnersListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
   @ViewChild(MatSort, { static: true }) sort : MatSort;
 
+  @ViewChild('tabGroup') tabGroup;
 
-  displayedColumns: string[] = ['season','player','teamname'];
+
+  displayedColumns: string[] = ['season','player','teamname','runnerUp'];
   // clw.setPlayerName(pc.whoIsWinnerOfMatch(match, "Pavol Jay", "Kotlik"));
   // clw.setSeason(match.getSeason());
   // clw.setTeamName(match.getWinner());
@@ -47,19 +49,28 @@ export class WinnersListComponent implements OnInit {
   }
 
   tabChanged (tabChangeEvent: MatTabChangeEvent): void {
-    
-    let competitionName: string;
+    let competitionName = this.getCompetitionName();
 
-    if(tabChangeEvent.tab.textLabel === 'Champions league'){
-      competitionName = "CL";
-    } else {
-      competitionName = "EL";
-    }
-      
     this.generalService.getWinnersList(competitionName).subscribe(data=>{
       this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data))); //JSON.parse(JSON.stringify(data['matches'].slice(0, 6)))
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  goToSeasonView(season: string){
+    this.router.navigate(['/season/'+season+"/"+this.getCompetitionName()]);
+  }
+
+
+  getCompetitionName(): string {
+    let competitionName;
+    if(this.tabGroup.selectedIndex === 0){
+      competitionName = "CL";
+    } else {
+      competitionName = "EL";
+    }
+    
+    return competitionName;
   }
 }

@@ -1,10 +1,9 @@
 <div class="mr-1 mt-5 row" >
 
   <div class="col-sm-4">
-
     <mat-card >
     <form class="example-form">
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" id="formfield1">
         <input type="text"
                placeholder="Pick first team"
                aria-label="Number"
@@ -17,10 +16,8 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    </form>
 
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" id="formfield2">
         <input type="text"
                placeholder="Pick second team"
                aria-label="Number"
@@ -36,7 +33,6 @@
       </mat-form-field>
     </form>
 
-
     <button  mat-raised-button color="primary" (click)="getH2HStats()">Get H2H</button>
     </mat-card>
     </div>
@@ -45,7 +41,6 @@
   <app-goalscorers *ngIf="!!goalscorers"
   [source]="goalscorers"
   [logos2]="logos"
-  paginatorDefaultItems="10"
   >
   </app-goalscorers>
 </div>

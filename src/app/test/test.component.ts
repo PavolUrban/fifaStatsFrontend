@@ -75,6 +75,7 @@ export class TestComponent implements OnInit {
     //Gets called when the user clicks on retieve image button to get the image from back end
     getImage() {
 
+        //TODO urban - remove this component
     //Make a call to Sprinf Boot to get the Image Bytes.
     this.httpClient.get('http://localhost:8080/api/file/24')
       .subscribe(

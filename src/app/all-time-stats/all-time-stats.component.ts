@@ -10,26 +10,25 @@ import { Subscription } from 'rxjs';
 export class AllTimeStatsComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
+  subscriptionCards: Subscription = new Subscription();
   goalscorers;
 
   trophyRoom;
   winnersList;
+  playersCardsStatisticsPerCompetition = null;
   constructor(private generalService: GeneralService) { }
 
   ngOnInit() {
-    this.subscription =  this.generalService.getTopGoalScorers().subscribe(data=>{
-      this.goalscorers = data;
-    })
-
-
-    this.generalService.getTrophyRoom().subscribe(data=>{
+    this.subscription = this.generalService.getTrophyRoom().subscribe(data=>{
       this.trophyRoom = data;
     });
 
+    this.subscriptionCards = this.generalService.getAllCards().subscribe(data=>{
+      this.playersCardsStatisticsPerCompetition = data;
+    })
   }
 
-  ngOnDestroy()
-  {
+  ngOnDestroy(){
     this.subscription.unsubscribe();
   }
 

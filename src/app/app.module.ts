@@ -34,7 +34,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { TestComponent } from './test/test.component';
 import { NewTeamDialogComponent } from './new-team-dialog/new-team-dialog.component';
@@ -58,6 +58,16 @@ import { H2HComponent } from './h2-h/h2-h.component';
 import { CreateMatchComponent } from './create-match/create-match.component';
 import { WinnersListComponent } from './winners-list/winners-list.component';
 import { TrophyRoomComponent } from './trophy-room/trophy-room.component';
+import { ColumnChartComponent } from './column-chart/column-chart.component';
+import { NewGoalscorersComponent } from './new-goalscorers/new-goalscorers.component';
+import { GoalsByTeamsCountPipe } from './pipes/goals-by-teams-count.pipe';
+import { PlayersCardsWrapperComponent } from './players-cards-wrapper/players-cards-wrapper.component';
+import { PlayersCardsComponent } from './players-cards/players-cards.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -90,7 +100,15 @@ import { TrophyRoomComponent } from './trophy-room/trophy-room.component';
     H2HComponent,
     CreateMatchComponent,
     WinnersListComponent,
-    TrophyRoomComponent
+    TrophyRoomComponent,
+    ColumnChartComponent,
+    NewGoalscorersComponent,
+    GoalsByTeamsCountPipe,
+    PlayersCardsWrapperComponent,
+    PlayersCardsComponent,
+    SnackBarComponent,
+    GenerateGroupStageComponent,
+    CreateMatchWrapperComponent
   ],
   imports: [
     BrowserModule,
@@ -110,14 +128,17 @@ import { TrophyRoomComponent } from './trophy-room/trophy-room.component';
     MatCardModule,
     MatMenuModule,
     MatSortModule,
+    MatSnackBarModule,
     MatTooltipModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatExpansionModule,
+    DragDropModule,
     MatTabsModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
     MatToolbarModule,
 
@@ -125,6 +146,7 @@ import { TrophyRoomComponent } from './trophy-room/trophy-room.component';
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
+    CreateMatchComponent,
     NewTeamDialogComponent,
     MatchDetailComponent,
     PlayerTeamsDialogComponent,

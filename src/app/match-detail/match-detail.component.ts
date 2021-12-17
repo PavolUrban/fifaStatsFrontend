@@ -24,31 +24,26 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
 
   constructor(private dialogRef: MatDialogRef<MatchDetailComponent>, @Inject(MAT_DIALOG_DATA) data, private fileService: FileService,
               private router: Router) {
-    console.log(data);
     this.match = data['match'];
-
-
     this.getHomeAway(this.match.goalscorers,this.goalscorersHome, this.goalscorersAway);
-    console.log("After formating");
-    console.log(this.goalscorersHome);
-    console.log(this.goalscorersAway);
-
+    this.getHomeAway(this.match.yellowcards, this.yellowCardsHome, this.yellowCardsAway);
+    this.getHomeAway(this.match.redcards, this.redCardsHome, this.redCardsAway);
   }
 
   getHomeAway(fullRecord: string, arrayToFillHome, arrayToFillAway)
   {
-    let recordHomeAway = fullRecord.split('-');
-    let recordHome = recordHomeAway[0];
-    let recordAway = recordHomeAway[1];
-    this.makeProperRecordForSingleTeam(recordHome, arrayToFillHome);
-    this.makeProperRecordForSingleTeam(recordAway, arrayToFillAway);
+    if(fullRecord !== null) {
+      let recordHomeAway = fullRecord.split('-');
+      let recordHome = recordHomeAway[0];
+      let recordAway = recordHomeAway[1];
+      this.makeProperRecordForSingleTeam(recordHome, arrayToFillHome);
+      this.makeProperRecordForSingleTeam(recordAway, arrayToFillAway);
+    }
   }
 
   makeProperRecordForSingleTeam(teamRecord: string, arrayToFill)
   {
-    console.log("Idem na to , takto vyera array");
     arrayToFill;
-    console.log(arrayToFill);
     if(teamRecord.includes(";")) // team has multiple players in current section
     {
       let playerNames = teamRecord.split(";");
@@ -68,7 +63,6 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   this.subscription =  this.fileService.getMatchLogos(this.match.hometeam, this.match.awayteam).subscribe(data=>{
-    console.log(data);
     this.homeTeamLogo = data[this.match.hometeam];
     this.awayTeamLogo = data[this.match.awayteam];
   });

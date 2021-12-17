@@ -11,7 +11,8 @@ import { SeasonComponent } from './season/season.component';
 import { PlayersStatsComponent } from './players-stats/players-stats.component';
 import { AllTimeStatsComponent } from './all-time-stats/all-time-stats.component';
 import { H2HComponent } from './h2-h/h2-h.component';
-import { CreateMatchComponent } from './create-match/create-match.component';
+import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
+import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
@@ -20,13 +21,14 @@ const routes: Routes = [
     { path: 'findbyage', component: SearchCustomersComponent },
     { path: 'matches', component: MatchesComponent},
     { path: 'h2h', component: H2HComponent},
-    { path: 'createMatch', component: CreateMatchComponent},
+    { path: 'createMatch', component: CreateMatchWrapperComponent},
     { path: 'teams', component: TeamsListsComponent},
     { path: 'fileTest', component: TestComponent},
     { path: 'teaminfo/:teamName', component: SingleTeamComponent},
     { path: 'season/:seasonname/:competition', component: SeasonComponent},
     { path: 'players', component: PlayersStatsComponent},
-    { path: 'allTimeStats',component: AllTimeStatsComponent}
+    { path: 'allTimeStats',component: AllTimeStatsComponent},
+    { path: 'generateGroupStage', component: GenerateGroupStageComponent}
 
 ];
 

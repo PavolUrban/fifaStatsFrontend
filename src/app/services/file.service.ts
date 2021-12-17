@@ -6,33 +6,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileService {
-
-  constructor(private httpClient : HttpClient) { }
-
-  getImage(): Observable<any> {
-
-    return this.httpClient.get('http://localhost:8080/api/file/15', { responseType: 'blob' });
-  }
-
-  getImage2(){
-
-    return this.httpClient.get('http://localhost:8080/api/file/15');
-  }
-
-  getImages(): Observable<any> {
-
-    return this.httpClient.get('http://localhost:8080/api/file/all');
-  }
-
+  
   private baseUrl = 'http://localhost:8080/api/file/upload/';
-  save(teamname, formData){
-    return this.httpClient.post<any>(this.baseUrl+ teamname, formData);
+
+  constructor(private httpClient: HttpClient) { }
+
+  // 1 x UploadFileController
+  save(teamname: string, formData) {
+    return this.httpClient.post<any>(this.baseUrl + teamname, formData);
   }
 
-  getMatchLogos(firstTeam: string, secondTeam: string)
-  {
-    return this.httpClient.get("http://localhost:8080/api/matchlogos/"+firstTeam+"/"+secondTeam);
+  // 3 x DownloadFileController
+  getMatchLogos(firstTeam: string, secondTeam: string) {
+    return this.httpClient.get("http://localhost:8080/api/matchlogos/" + firstTeam + "/" + secondTeam);
+  }
 
+  getAllLogos() {
+    return this.httpClient.get("http://localhost:8080/api/getAllLogos");
+  }
+
+  getSingleTeamLogo(teamname: string) {
+    return this.httpClient.get("http://localhost:8080/api/getSingleTeamLogo/" + teamname);
   }
 
 }

@@ -40,11 +40,6 @@ export class GoalscorersComponent implements OnInit, OnChanges{
   }
 
   ngOnInit() {
-    // console.log("Taketo loga prisli");
-    // console.log(this.logos2);
-
-    console.log("toto su strelci");
-    console.log(this.source);
     this.dataSource = new MatTableDataSource(this.source);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

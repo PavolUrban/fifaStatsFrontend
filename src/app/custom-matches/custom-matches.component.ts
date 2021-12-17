@@ -7,6 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatchDetailComponent } from '../match-detail/match-detail.component';
 import { Teams } from '../teams';
+import { Router } from '@angular/router';
+import { CreateMatchComponent } from '../create-match/create-match.component';
 
 @Component({
   selector: 'app-custom-matches',
@@ -15,12 +17,12 @@ import { Teams } from '../teams';
 })
 export class CustomMatchesComponent implements OnInit {
 
-  @Input() matchWinner: string = null;
+  @Input() currentTeam: string = null;
   @Input() dataSourceNew;
   @Input() matCardSubtitle: string;
   @Input() matCardTitle: string;
   @Input() initPageSize: number = 5;
-
+  @Input() logos;
 
   @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
   @ViewChild(MatSort, { static: true }) sort : MatSort;
@@ -31,18 +33,10 @@ export class CustomMatchesComponent implements OnInit {
   displayedColumns: string[] = ['index','season','competition','phase', 'hometeam','score', 'awayteam','winnerBadge', 'matchDetail'];
   dataSource = new MatTableDataSource();
 
-
-
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.dataSourceNew); //JSON.parse(JSON.stringify(data['matches'].slice(0, 6)))
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.dataSource = new MatTableDataSource(this.dataSourceNew); //JSON.parse(JSON.stringify(data['matches'].slice(0, 6)))
+    this.dataSource = new MatTableDataSource(this.dataSourceNew);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -65,7 +59,28 @@ export class CustomMatchesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // displayBilance;
+  //todo move this function to some service - it is duplicate
+  goToTeamView(teamname){
+    this.router.navigate(['/teaminfo/'+teamname]) .then(() => {
+      window.location.reload();
+    });
+  }
 
-  // displayChart()
+  goToSeasonView(season, competition){
+    this.router.navigate(['/season/'+season+"/"+competition]);
+  }
+
+  editMatch(match){
+    
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.minWidth = '750px';
+    dialogConfig.minHeight = '600px';
+    dialogConfig.data = {
+      match: match
+    };
+
+    this.dialog.open(CreateMatchComponent, dialogConfig);
+
+  }
 }

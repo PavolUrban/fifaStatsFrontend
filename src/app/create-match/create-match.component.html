@@ -1,18 +1,224 @@
-<p>create-match works!</p>
 
-<form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Number</mat-label>
-      <input type="text"
-             placeholder="Pick one"
-             aria-label="Number"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+
+ <mat-spinner style="margin-top: 30%;margin-left: 44%;margin-right: 44%;" *ngIf="!allDataPrepared"></mat-spinner>
+
+<div class="row">
+
+  <div class="col-sm-12">
+   
+<!-- allDataPrepared -->
+    <mat-card *ngIf="allDataPrepared">
+
+      <mat-card-header>
+        <mat-card-title>{{cardTitle}}</mat-card-title>
+      </mat-card-header>
+
+      <!-- LOGO -->
+      <div class="d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div *ngIf="!homeLogoSrc" class="logoPlaceholder"></div>
+          <img *ngIf="homeLogoSrc" [src]="'data:image/gif;base64,'+ homeLogoSrc" alt="" class="iconSize">
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center align-items-center"></div>
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div *ngIf="!awayLogoSrc" class="logoPlaceholder"></div>
+          <img *ngIf="awayLogoSrc" [src]="'data:image/gif;base64,'+awayLogoSrc" alt="" class="iconSize mr-1">
+        </div>
+      </div>
+
+      <!-- Home, Score, Away -->
+      <div class="d-flex justify-content-center mt-3">
+        
+        <div class="col-sm-4 d-flex justify-content-center">
+          <strong>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Home team</mat-label>
+              <input type="text" required placeholder="Home team" aria-label="Home team" matInput [formControl]="homeTeamControl"
+                [matAutocomplete]="auto">
+                <mat-error>Home team is required.</mat-error>
+              <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete"
+                (optionSelected)="getTeamLogo($event,'home')">
+                <mat-option *ngFor="let homeTeam of filteredOptionsHomeTeam | async" [value]="homeTeam">
+                  {{homeTeam}}
+                </mat-option>
+              </mat-autocomplete>
+              <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="resetTeamControlAndLogo('home')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </strong>
+        </div>
+
+        <div class="col-sm-4 d-flex justify-content-center">
+          <strong class="result">
+            <mat-form-field class="score" matTooltip="Score home" appearance="fill">
+              <mat-label></mat-label>
+              <input matInput type="number" min="0" [(ngModel)]="scoreHome">
+              <mat-error >
+                Lowest possible score is 0
+              </mat-error>
+            </mat-form-field>
+            :
+            <mat-form-field class="score" matTooltip="Score away" appearance="fill">
+              <mat-label></mat-label>
+              <input matInput type="number" min="0" name="scoreAway" ngDefaultControl [(ngModel)]="scoreAway">
+              <mat-error >
+                Lowest possible score is 0
+              </mat-error>
+            </mat-form-field>
+          </strong>
+        </div>
+
+        <div class="col-sm-4 d-flex justify-content-center">
+          <strong>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Away team</mat-label>
+              <input type="text" required placeholder="Away team" aria-label="Away team" matInput [formControl]="awayTeamControl"
+                [matAutocomplete]="autoAway">
+              <mat-error>Away team is required.</mat-error>
+              <mat-autocomplete #autoAway="matAutocomplete" (optionSelected)="getTeamLogo($event,'away')">
+                <mat-option *ngFor="let awayteam of filteredOptionsAwayTeam | async" [value]="awayteam">
+                  {{awayteam}}
+                </mat-option>
+              </mat-autocomplete>
+              <button *ngIf="awayTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="resetTeamControlAndLogo('away')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </strong>
+        </div>
+
+      </div>
+
+      <!-- Managed by -->
+      <div class="d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <strong>managed by</strong>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+          <strong>managed by</strong>
+        </div>
+      </div>
+
+      <!-- Home player, away player -->
+      <div class="d-flex justify-content-center mt-3 mb-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Player home</mat-label>
+            <mat-select required [formControl]="homePlayersControl" (selectionChange)="playerChanged($event,'homePlayer')">
+              <mat-option *ngFor="let homeplayer of playersHome" [value]="homeplayer">{{homeplayer}}</mat-option>
+            </mat-select>
+            <mat-error>Home player is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Player away</mat-label>
+            <mat-select required [formControl]="awayPlayersControl" (selectionChange)="playerChanged($event,'awayPlayer')">
+              <mat-option *ngFor="let awayplayer of playersAway" [value]="awayplayer">{{awayplayer}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+ 
+
+
+
+  
+      <!-- stats -->
+      <table class="table table-sm mt-3 table-hover">
+        <tbody>
+          <tr>
+            <th>Season</th>
+            <td class="slideSize"></td>
+            <td class="matchStats">
+              <mat-form-field class="fullWidth" appearance="fill">
+                <mat-label>Season</mat-label>
+                <!-- [(ngModel)]="selectedCompetition"  (selectionChange)="resetCompetitionPhase()" -->
+                <mat-select required [(ngModel)]="selectedSeason" (selectionChange)="updateLocalStorage(localStorageKeySeason, selectedSeason)">
+                  <mat-option *ngFor="let season of seasonsList" [value]="season">{{season}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <th>Competition</th>
+            <td class="slideSize"></td>
+            <td class="matchStats">
+              <mat-form-field class="fullWidth" appearance="fill">
+                <mat-label>Competition</mat-label>
+                <mat-select required [(ngModel)]="selectedCompetition"  (selectionChange)="resetCompetitionPhaseAndUpdateLocalStorage(localStorageKeyCompetition)">
+                  <mat-option *ngFor="let competition of competitionsList" [value]="competition">{{competition}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <th>Competition phase</th>
+            <td class="slideSize"></td>
+            <td class="matchStats">
+              <mat-form-field class="fullWidth" appearance="fill">
+                <mat-label>Competition phase</mat-label>
+                <mat-select required [(ngModel)]="competitionPhase" (selectionChange)="updateLocalStorage(localStorageKeyCompetitionPhase, competitionPhase)">
+                  <mat-option *ngFor="let competitionPhase of competitionsPhases.get(selectedCompetition)" [value]="competitionPhase">{{competitionPhase}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <th>Goals</th>
+            <td class="slideSize">
+              <mat-slide-toggle color="primary" [(ngModel)]="goalscorersEnabled" (change)="resetProperRecordValue($event,'goalscorers')"></mat-slide-toggle>
+            </td>
+            <td class="matchStats">
+              <mat-form-field ngClass="fullWidth" class="example-full-width"
+                appearance="fill">
+                <mat-label>Goalscorers</mat-label>
+
+                <textarea [required]="goalscorersEnabled" minlength="3" [ngClass]="{'cursor-disabled': !goalscorersEnabled}" [disabled]="!goalscorersEnabled" matInput placeholder="Please enter goalscorers" [(ngModel)]="goalscorersRecord"></textarea>
+                <mat-error>If goalscorers are enabled, you have to provide them.</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <th>Yellow cards</th>
+            <td class="slideSize">
+              <mat-slide-toggle [(ngModel)]="yellowCardsEnabled" color="primary"  (change)="resetProperRecordValue($event,'yellowcards')"></mat-slide-toggle>
+            </td>
+            <td class="matchStats">
+              <mat-form-field ngClass="fullWidth" class="example-full-width"
+                appearance="fill">
+                <mat-label>Yellow cards</mat-label>
+                <textarea [required]="yellowCardsEnabled" [ngClass]="{'cursor-disabled': !yellowCardsEnabled}" [disabled]="!yellowCardsEnabled"  matInput placeholder="Please enter yellow cards" [(ngModel)]="yellowCardsRecord"></textarea>
+                <mat-error>If yellow cards are enabled, you have to provide them.</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <th>Red cards</th>
+            <td class="slideSize">
+              <mat-slide-toggle color="primary" [(ngModel)]="redCardsEnabled"  (change)="resetProperRecordValue($event,'redcards')"></mat-slide-toggle>
+            </td>
+            <td class="matchStats">
+              <mat-form-field ngClass="fullWidth" class="example-full-width" appearance="fill">
+                <mat-label>Red cards</mat-label>
+                <textarea [required]="yellowCardsEnabled" [ngClass]="{'cursor-disabled': !redCardsEnabled}" [disabled]="!redCardsEnabled"  matInput placeholder="Please enter red cards"  [(ngModel)]="redCardsRecord"></textarea>
+                <mat-error>If red cards are enabled, you have to provide them.</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="mt-5" mat-raised-button color="primary" (click)="saveMatch()" aria-label="Show an example snack-bar">
+        Save match
+      </button>
+    </mat-card>
+
+
+  </div>
+
+</div>

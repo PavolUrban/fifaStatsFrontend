@@ -55,6 +55,14 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "development": { 
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -66,8 +74,12 @@
           "configurations": {
             "production": {
               "browserTarget": "fifaStats:build:production"
-            }
-          }
+            },
+            "development": {
+                "browserTarget": "fifaStats:build:development"
+              }
+          },
+          "defaultConfiguration": "development" // add this line
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

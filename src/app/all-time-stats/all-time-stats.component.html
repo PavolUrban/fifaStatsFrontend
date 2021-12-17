@@ -2,13 +2,16 @@
   <h1 class="pageTitleFormat">All time stats</h1>
 </div>
 
+
 <div class="row">
 
   <div class="col-sm-4">
-    <h1 class="groupStageHeaderFormat">Goalscorers</h1>
-    <app-goalscorers *ngIf="goalscorers" [source]="goalscorers" [paginatorDefaultItems]="15"></app-goalscorers>
+    <h1 class="groupStageHeaderFormat">Goalscorers NEW</h1>
+    <mat-card>
+      <app-new-goalscorers></app-new-goalscorers>
+    </mat-card>
   </div>
-  
+
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat">Winners list</h1>
     <app-winners-list></app-winners-list>
@@ -17,7 +20,7 @@
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat">Trophy room</h1>
 
-    <mat-card>
+    <mat-card *ngIf="!!trophyRoom"> 
     <mat-tab-group animationDuration="0ms">
       <mat-tab label="{{trophyRoom[0].playerName}}">
         <app-trophy-room [data]="trophyRoom[0]"></app-trophy-room>
@@ -29,6 +32,16 @@
     </mat-card>
   </div>
 
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-sm-6">
+    <h1 class="groupStageHeaderFormat">Cards</h1>
+    <mat-card>
+      <app-players-cards-wrapper *ngIf="playersCardsStatisticsPerCompetition" [completePlayerStats]="playersCardsStatisticsPerCompetition"></app-players-cards-wrapper>
+    </mat-card>
+  </div>
 </div>
 
 <div class="row mt-5">

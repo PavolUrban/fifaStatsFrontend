@@ -34,8 +34,6 @@ export class SeasonStatsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.imgSrc = "./assets/img/" + this.competition + "Trophy.png";
-    console.log(this.competition + ' this competition');
-
   }
 
 }

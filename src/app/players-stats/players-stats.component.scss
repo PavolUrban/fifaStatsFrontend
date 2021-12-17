@@ -8,3 +8,15 @@
   max-height: 210px !important;
   border-radius: 50%;
 }
+
+.customTable {
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+  max-width: 100%;
+  border-radius: 4px;
+  padding: 16px;
+  background-color: white;
+}
+
+.minHeight140{
+  min-height: 140px !important;
+}

@@ -16,24 +16,19 @@ export class MatchesService {
   }
 
   createMatch(match: Object): Observable<Object> {
-    console.log("i am gonna save match");
-    console.log(match);
     return this.http.post(`${this.baseUrl}` + `newmatch/create`, match);
   }
 
-  getCustomMatches(competition: string, season: string, competitionPhase: string)
-  {
+  getCustomMatches(competition: string, season: string, competitionPhase: string){
     return this.http.get(`${this.baseUrl}getCustomGroupMatches/${competition}/${season}/${competitionPhase}`);
   }
 
-  getH2HStatistics(firstTeam: string, secondTeam: string)
-  {
+  getH2HStatistics(firstTeam: string, secondTeam: string) {
     return this.http.get(`${this.baseUrl}/getH2HStats/${firstTeam}/${secondTeam}`);
   }
 
-  getDataToCreateMatch(competition: string)
-  {
-    return this.http.get(`${this.baseUrl}dataToCreateMatch/${competition}`);
+  getDataToCreateMatch(){
+    return this.http.get(`${this.baseUrl}getDataToCreateMatch/`);
   }
 
 }

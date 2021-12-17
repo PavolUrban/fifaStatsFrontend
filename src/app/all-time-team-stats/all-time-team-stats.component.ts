@@ -24,7 +24,6 @@ export class AllTimeTeamStatsComponent implements OnInit {
   ngOnInit() {
     this.generalService.getTeamStats().subscribe(data=>
     {
-      console.log(data);
       this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

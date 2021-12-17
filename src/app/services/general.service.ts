@@ -11,38 +11,40 @@ export class GeneralService {
   constructor(private http: HttpClient) { }
 
   getSeasonsList() {
-    console.log("called "+this.baseUrl+"getSeasonsList");
-    return this.http.get(`${this.baseUrl}` + "getSeasonsList/CL");// todo dynamically
+    // todo dynamically
+    return this.http.get(`${this.baseUrl}` + "getSeasonsList/CL");
   }
 
-  //http://localhost:8080/completeSeasons/getAllPhases/FIFA20/CL
-  getGroupStage(seasonname, competition)
-  {
-    return this.http.get("http://localhost:8080/completeSeasons/getAllPhases/"+seasonname+"/"+competition); //todo remove and make it dynamic
+  getGroupStage(seasonname: string, competition: string) {
+    return this.http.get("http://localhost:8080/completeSeasons/getAllPhases/"+seasonname+"/"+competition);
   }
 
-  getPlayOff(seasonname, competition)
-  {
+  getPlayOff(seasonname: string, competition: string) {
     return this.http.get("http://localhost:8080/completeSeasons/getAllPlayOff/"+seasonname+"/"+competition);
   }
 
-
-  // separate global stats
-  getTopGoalScorers()
-  {
-    return this.http.get("http://localhost:8080/globalStats/getAllTimeGoalScorers");
+  getAllTopGoalScorers(){
+    return this.http.get("http://localhost:8080/globalStats/getAllGoalScorers");
   }
 
-  getTeamStats()
-  {
+  // todo zjednotit servicy, teraz je v tom chaos
+  getTopGoalScorersForTeam(teamName: string) {
+    return this.http.get("http://localhost:8080/globalStats/getSingleTeamGoalScorers/"+teamName);
+  }
+
+  getTeamStats(){
     return this.http.get("http://localhost:8080/globalStats/getTopTeamStats");
   }
 
-  getWinnersList(competition: string){
+  getWinnersList(competition: string) {
     return this.http.get("http://localhost:8080/globalStats/winnersList"+"/"+competition);
   }
 
-  getTrophyRoom(){
+  getTrophyRoom() {
     return this.http.get("http://localhost:8080/globalStats/trophyRoom");
+  }
+
+  getAllCards() {
+    return this.http.get("http://localhost:8080/globalStats/getAllCards");
   }
 }

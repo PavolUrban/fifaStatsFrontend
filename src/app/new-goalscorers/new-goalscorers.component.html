@@ -1,0 +1,13 @@
+<mat-tab-group (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Total">
+        <app-team-top-goalscorers *ngIf="showView.get('Total')" [data]="currentlyDisplayed" [defaultPageSize]="defaultPageSize" [allLogos]="allLogos"></app-team-top-goalscorers>
+    </mat-tab>
+    <mat-tab class="test" label="CL">
+        <app-team-top-goalscorers *ngIf="showView.get('CL')" [data]="currentlyDisplayed" [defaultPageSize]="defaultPageSize"  [allLogos]="allLogos"></app-team-top-goalscorers>
+    </mat-tab>
+    <mat-tab label="EL">
+        <app-team-top-goalscorers *ngIf="showView.get('EL')" [data]="currentlyDisplayed" [defaultPageSize]="defaultPageSize"  [allLogos]="allLogos"></app-team-top-goalscorers>
+    </mat-tab>
+</mat-tab-group>
+
+

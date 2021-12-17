@@ -1,0 +1,51 @@
+
+   <div class="row">
+
+   <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Home team</mat-label>
+        <input type="text" placeholder="Home team" aria-label="Home team" matInput [formControl]="homeTeamControl" [matAutocomplete]="auto" (keyup.enter)="addTeamToPool()">
+        <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete">
+          <mat-option *ngFor="let homeTeam of filteredOptionsHomeTeam | async;let i=index" id="{{i}}" [value]="homeTeam" (click)="addTeamToPool()">
+            {{homeTeam}}
+          </mat-option>
+        </mat-autocomplete>
+        <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="deleteTeam()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- <button mat-raised-button color="primary" (click)="addTeamToPool()" aria-label="Show an example snack-bar">
+       Add team
+      </button> -->
+    </div>
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <h1 class="groupStageHeaderFormat">All teams pool</h1>
+        <div cdkDropList id="{{allTeamsForGroupStageObject.id}}" [cdkDropListData]="allTeamsForGroupStageObject.items"
+        [cdkDropListConnectedTo]="connectedTo" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let singleGroupTeam of allTeamsForGroupStageObject.items;let i=index" cdkDrag>
+            {{i+1}}.
+           
+
+             <span class="ml-2 teamAndCountry"> 
+                <img  [src]="'data:image/gif;base64,'+singleGroupTeam.src" alt="" class="iconSize"><b>{{singleGroupTeam.teamName}}</b> <small>({{singleGroupTeam.country}})</small></span>
+            <mat-icon matTooltip="Delete" class="cursor-pointer" (click)="removeTeam(singleGroupTeam)">delete</mat-icon></div>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3" *ngFor="let group of groupsPool">
+        <h1 class="groupStageHeaderFormat">Group {{group.id}}</h1>
+          <div cdkDropList id="{{group.id}}" [cdkDropListData]="group.items"
+          [cdkDropListConnectedTo]="connectedTo" class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let singleGroupTeam of group.items" cdkDrag>
+            <span class="ml-2 teamAndCountry"> 
+              <img  [src]="'data:image/gif;base64,'+singleGroupTeam.src" alt="" class="iconSize"><b>{{singleGroupTeam.teamName}}</b> <small>({{singleGroupTeam.country}})</small></span>
+          <mat-icon matTooltip="Delete" class="cursor-pointer" (click)="removeTeam(singleGroupTeam)">delete</mat-icon></div>
+        </div>
+    </div>
+</div> 
+

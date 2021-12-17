@@ -35,22 +35,25 @@ export class SeasonComponent implements OnInit, OnDestroy {
   topGoalscorersGroupStage;
   topGoalscorersPlayOffs;
   topGoalscorersTotal;
+
+  competitionName;
   constructor(private activatedRoute: ActivatedRoute, private generalService: GeneralService,private router: Router,
               private matchesService: MatchesService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log("teraz init sezony");
-
     this.activatedRoute.params.subscribe(params => {
 
       this.seasonName = params['seasonname'];
       this.competition = params['competition'];
 
-      console.log('teraz sa meni competition');
-      console.log(this.competition);
-
+      if(this.competition === 'CL'){
+        this.competitionName = 'Champions league';
+      } else {
+        this.competitionName = 'European league';
+      }
+  
       this.subscription = this.generalService.getGroupStage(this.seasonName,this.competition).subscribe(data=>{
-        console.log('recieved dataaa for competition ' + this.competition);
+        console.log("season dataa");
         console.log(data);
         this.allGroups = data["Tables"];
         this.matchesCount = data["MatchesCount"];
@@ -99,9 +102,7 @@ export class SeasonComponent implements OnInit, OnDestroy {
     this.drawsCount = draws;
   }
 
-  ngOnDestroy()
-  {
-    console.log("teraz destroy sezony");
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 

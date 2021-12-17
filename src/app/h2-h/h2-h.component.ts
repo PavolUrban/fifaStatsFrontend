@@ -33,8 +33,6 @@ export class H2HComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.teamsService.getTeamNames().subscribe(data=>
       {
-        console.log('H2H data');
-        console.log(JSON.stringify(data));
         this.options = data as string[];
 
         this.filteredOptionsFirstTeam = this.myControlFirstTeam.valueChanges
@@ -65,15 +63,10 @@ logos;
 allMatches;
   getH2HStats()
   {
-    console.log('get h2h stats')
-    console.log(this.myControlFirstTeam.value);
 
     this.subscription = this.matchesService.getH2HStatistics(this.myControlFirstTeam.value, this.myControlSecondTeam.value).subscribe(data =>
       {
-        // console.log('get h2h stats values real' );
-        // console.log(JSON.stringify(data['matches']));
-        console.log('and back');
-        // console.log(console.log(JSON.parse(JSON.stringify(data))));
+
         this.subtitle = this.myControlFirstTeam.value + " vs " + this.myControlSecondTeam.value;
         // this.allMatches = [];
         this.allMatches = data["matches"];

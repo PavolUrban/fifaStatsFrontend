@@ -1,55 +1,67 @@
 
-
-<div>
-<button mat-raised-button color="primary" (click)="openDialog(null)">Add new team</button>
+<div class="row">
+  <h1 class="pageTitleFormat mt-3 mb-3">All teams view</h1>
 </div>
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-</mat-form-field>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="index">
-    <th mat-header-cell *matHeaderCellDef> # </th>
-    <td mat-cell *matCellDef="let element; let i = index"> {{i+1}}
-    </td>
-  </ng-container>
+<div class="row">
+  <div class="col-sm-8">
+    <h1 class="groupStageHeaderFormat">Teams list</h1>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="teamName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tím </th>
-    <td mat-cell *matCellDef="let element"> <img *ngIf="element['fm']" [src]="'data:image/gif;base64,'+element['fm']['pic']" alt="" class="iconSize mr-1"> {{element.teamName}}</td>
-  </ng-container>
+    <mat-card>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+    </mat-form-field>
+    
+    <button class="mt-2 ml-2" style="float: right;" mat-raised-button color="primary" (click)=" reloadData(true)">Calculate overview stats</button>
+    <button class="mt-2" style="float: right;" mat-raised-button color="primary" (click)="openDialog(null)">Add new team</button>
+    
 
-  <ng-container matColumnDef="country">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
-    <td mat-cell *matCellDef="let element"> {{element.country}} </td>
-  </ng-container>
+    <table mat-table [dataSource]="dataSource"  matSort>
 
-  <ng-container matColumnDef="firstSeasonCL">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> First CL </th>
-    <td mat-cell *matCellDef="let element"> {{element.firstSeasonCL}} </td>
-  </ng-container>
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index">  {{dataSource.filteredData.indexOf(element) + 1}}
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="teamName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tím </th>
+        <td mat-cell *matCellDef="let element"> <img *ngIf="element['fm']"
+            [src]="'data:image/gif;base64,'+element['fm']['pic']" alt="" class="iconSize mr-1"> {{element.teamName}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
+        <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="firstSeasonCL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First CL </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstSeasonCL}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="firstSeasonEL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First EL </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstSeasonEL}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <mat-icon class="iconAnimation" (click)="displaySingleTeamComponent(element.teamName)">search</mat-icon>
+          <mat-icon class="iconAnimation" (click)="openDialog(i)">edit</mat-icon>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="higlightRow"></tr>
+    </table>
+    
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="15"></mat-paginator>
 
-  <ng-container matColumnDef="firstSeasonEL">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> First EL </th>
-    <td mat-cell *matCellDef="let element"> {{element.firstSeasonEL}} </td>
-  </ng-container>
+  </mat-card>
+  </div>
+</div>
 
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let element; let i = index;">
-      <mat-icon class="iconAnimation" (click)="displaySingleTeamComponent(element.teamName)">search</mat-icon>
-      <mat-icon class="iconAnimation" (click)="openDialog(i)">edit</mat-icon>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="higlightRow"></tr>
-</table>
-
-<mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="15"></mat-paginator>

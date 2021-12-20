@@ -1,8 +1,15 @@
+<div class="row">
+  <h1 class="pageTitleFormat mt-3 mb-3">All matches view</h1>
+</div>
 
-<app-custom-matches *ngIf="!!allMatches"
-  [dataSourceNew]="allMatches"
-  [matCardTitle]="'History'"
-  [matCardSubtitle]="'All matches'"
-  [initPageSize]="20"
->
-</app-custom-matches>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="groupStageHeaderFormat">Matches list</h1>
+    <mat-card>
+    <app-custom-matches *ngIf="!!allMatches" [dataSourceNew]="allMatches" [matCardTitle]="'History'"
+      [matCardSubtitle]="'All matches'" [initPageSize]="20">
+    </app-custom-matches>
+  </mat-card>
+  </div>
+</div>

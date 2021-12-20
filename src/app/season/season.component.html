@@ -56,7 +56,8 @@
 
 
 
-<div class="row" *ngFor="let group of allGroups | keyvalue">
+<div class="row" >
+  <div class="col-sm-6" *ngFor="let group of allGroups | keyvalue">
   <h1 class="groupStageHeaderFormat pl-15">{{group.key}}</h1>
   <mat-card>
     
@@ -78,15 +79,19 @@
               <th class="text-center">GD</th>
               <th class="text-center">P</th>
             </tr>
-            <tr  (click)="goToTeamView(team.teamname)" *ngFor="let team of allGroups[group.key]; let i=index;"
-              [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': i==2, 'outOfCompetition': i==3}"
+            <tr  *ngFor="let team of allGroups[group.key]; let i=index;"
+              [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': (i==2 && competition==='CL'), 'outOfCompetition': i==3 || (i==2 && competition==='EL')}"
             >
               <td>{{i+1}}.</td>
-              <td matTooltip="Managed by" matTooltipPosition="before"> <img *ngIf="team['logo']" [src]="'data:image/gif;base64,'+team['logo']['pic']" alt="" class="iconSize mr-1"> {{team.teamname}}</td>
+              <td> 
+                <img *ngIf="team['logo']" [src]="'data:image/gif;base64,'+team['logo']['pic']" alt="" class="iconSize mr-1 cursor-pointer" (click)="goToTeamView(team.teamname)"> 
+                <span class="cursor-pointer" (click)="goToTeamView(team.teamname)">{{team.teamname}}</span>
+                <small> {{team.ownedByPlayer}}</small>
+              </td>
               <td>
                 <span class="badge badge-success" *ngIf="i == 0 || i ==1">Q</span>
-                <span class="badge badge-warning" *ngIf="i==2">EL</span>
-                <span class="badge badge-danger" *ngIf="i==3">NQ</span>
+                <span class="badge badge-warning" *ngIf="i==2 && competition==='CL'">EL</span>
+                <span class="badge badge-danger" *ngIf="i==3 || (i==2 && competition==='EL')">NQ</span>
               </td>
               <td>{{team.matches}}</td>
               <td>{{team.wins}}</td>
@@ -115,10 +120,10 @@
 
 
     <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="displayCurrentGroupMatches(group.key)">Display all</button>
+      <button mat-raised-button color="primary" (click)="displayCurrentGroupMatches(group.key)">Display matches</button>
     </mat-card-actions>
   </mat-card>
-
+</div>
 </div>
 
 <app-play-off

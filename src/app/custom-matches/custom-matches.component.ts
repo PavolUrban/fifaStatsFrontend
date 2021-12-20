@@ -10,6 +10,8 @@ import { Teams } from '../teams';
 import { Router } from '@angular/router';
 import { CreateMatchComponent } from '../create-match/create-match.component';
 import { MatchesService } from '../services/matches.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-custom-matches',
@@ -53,7 +55,7 @@ export class CustomMatchesComponent implements OnInit {
 
   dataPrepared = false;
 
-  constructor(private dialog: MatDialog, private router: Router, private matchesService: MatchesService) { }
+  constructor(private dialog: MatDialog, private router: Router, private matchesService: MatchesService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.matchesService.getCompetitionPhasesAndSeasonList().subscribe(data=>{
@@ -105,7 +107,19 @@ export class CustomMatchesComponent implements OnInit {
       match: match
     };
 
-    this.dialog.open(CreateMatchComponent, dialogConfig);
+
+    const dialogRef =  this.dialog.open(CreateMatchComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(data =>{
+      console.log("teraz zatvaram");
+      let teamUpdated = data;
+      if(teamUpdated == true){
+        this.testSomethign();
+        this._snackBar.openFromComponent(SnackBarComponent, {
+          duration: 3000,
+        });
+      }
+    });
+
 
   }
 
@@ -116,7 +130,7 @@ export class CustomMatchesComponent implements OnInit {
     console.log(this.currentTeam);
     this.matchesService.getMatchesWithCustomFilters(this.selectedSeason, this.selectedCompetition, this.selectedCompetitionPhase, this.currentTeam).subscribe(data=>{
       this.setNewDataSource(data);
-    })
+    });
   }
 
 

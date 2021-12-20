@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { TeamsService } from '../services/teams.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewTeamDialogComponent } from '../new-team-dialog/new-team-dialog.component';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,18 +23,19 @@ export class TeamsListsComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource();
 
   constructor(private teamsService : TeamsService, private dialog: MatDialog, private router: Router) { }
+
+  ngOnInit() {
+    this.reloadData(false);
+  }
+
   ngOnDestroy(): void {
-   this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
+ 
 
-  ngOnInit()
+  reloadData(recalculate: boolean)
   {
-    this.reloadData();
-  }
-
-  reloadData()
-  {
-   this.subscription =  this.teamsService.getTeamsList().subscribe(data =>
+   this.subscription =  this.teamsService.getTeamsList(recalculate).subscribe(data =>
     {
       this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
       this.dataSource.sort = this.sort;
@@ -54,41 +55,26 @@ export class TeamsListsComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    if(indexOfTeam != null)
-    {
+    if(indexOfTeam != null) {
       dialogConfig.data = {
         team: this.dataSource.filteredData[indexOfTeam]
       };
     }
 
-  let teamWasCreated = false;
+    let teamWasCreated = false;
 
-  const dialogRef = this.dialog.open(NewTeamDialogComponent, dialogConfig);
-
-  dialogRef.afterClosed().subscribe(data =>{
-    teamWasCreated = data;
-    if(teamWasCreated == true)
-    {
-        this.reloadData();
-    }
-
-  } );
+    const dialogRef = this.dialog.open(NewTeamDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(data =>{
+      teamWasCreated = data;
+      if(teamWasCreated == true){
+          this.reloadData(false);
+      }
+    });
 
   }
 
-  displaySingleTeamComponent(teamname)
-  {
-
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: {
-    //     "teamname": teamname
-    //      // "team": JSON.stringify(team)
-    //   }
-    // };
-
+  displaySingleTeamComponent(teamname: string): void {
     this.router.navigate(['/teaminfo/'+teamname]);
-
-      // this.router.navigate(['/teaminfo/'+team.teamName], navigationExtras);
   }
 
 }

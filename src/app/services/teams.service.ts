@@ -17,8 +17,8 @@ export class TeamsService {
     return this.http.get(`${this.baseUrl}` + "getAllTeamNames");
   }
 
-  getTeamsList() {
-    return this.http.get(`${this.baseUrl}` + "getAllTeamsWithLogo");
+  getTeamsList(recalculate: boolean) {
+    return this.http.get(`${this.baseUrl}getAllTeamsWithLogo/ ${recalculate}`);
   }
 
   getSingleTeamStats(teamName: string)

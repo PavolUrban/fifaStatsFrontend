@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, Observable, startWith, Subscription } from 'rxjs';
@@ -64,8 +64,8 @@ export class CreateMatchComponent implements OnInit {
     private fileService: FileService, 
     private teamsService: TeamsService,
     private matchesService: MatchesService, 
-    private _snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) dialogData) 
+    private dialogRef: MatDialogRef<CreateMatchComponent>,
+    @Inject(MAT_DIALOG_DATA) dialogData)
   {
     this.dialogData = dialogData;
   }
@@ -148,12 +148,11 @@ export class CreateMatchComponent implements OnInit {
     if(this.dialogData){
       this.match.id = this.id;
       this.matchesService.updateMatch(this.match).subscribe();
+      this.dialogRef.close(true);
     } else {
       this.matchesService.createMatch(this.match).subscribe();
+      this.dialogRef.close(false);
 
-      this._snackBar.openFromComponent(SnackBarComponent, {
-        duration: 3000,
-      });
     }
     
 

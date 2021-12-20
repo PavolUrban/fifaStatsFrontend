@@ -9,6 +9,7 @@ import { MatchDetailComponent } from '../match-detail/match-detail.component';
 import { Teams } from '../teams';
 import { Router } from '@angular/router';
 import { CreateMatchComponent } from '../create-match/create-match.component';
+import { MatchesService } from '../services/matches.service';
 
 @Component({
   selector: 'app-custom-matches',
@@ -18,7 +19,7 @@ import { CreateMatchComponent } from '../create-match/create-match.component';
 export class CustomMatchesComponent implements OnInit {
 
   @Input() currentTeam: string = null;
-  @Input() dataSourceNew;
+  @Input() dataSourceNew = [];
   @Input() matCardSubtitle: string;
   @Input() matCardTitle: string;
   @Input() initPageSize: number = 5;
@@ -32,13 +33,37 @@ export class CustomMatchesComponent implements OnInit {
   matches: Observable<Matches[]>;
   displayedColumns: string[] = ['index','season','competition','phase', 'hometeam','score', 'awayteam','winnerBadge', 'matchDetail'];
   dataSource = new MatTableDataSource();
+  
+  private allCompetitionsLabel = 'All competitions';
+  private allPhasesLabel = 'All phases';
+  private championsLeagueLabel = 'CL';
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  competitionsPhases = new Map([["CL", []], ["EL",[]], [this.allCompetitionsLabel, []]]);
+ 
+
+  competitionsList = [this.allCompetitionsLabel, this.championsLeagueLabel, 'EL'];
+  
+  selectedCompetition = this.allCompetitionsLabel;
+ 
+  selectedCompetitionPhase = this.allPhasesLabel;
+
+
+  seasonsList = []
+  selectedSeason = 'All seasons';
+
+  dataPrepared = false;
+
+  constructor(private dialog: MatDialog, private router: Router, private matchesService: MatchesService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.dataSourceNew);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.matchesService.getCompetitionPhasesAndSeasonList().subscribe(data=>{
+      this.setNewDataSource(this.dataSourceNew);
+      this.competitionsPhases.set('CL', data['competitionsPhasesCL']);
+      this.competitionsPhases.set('EL', data['competitionsPhasesEL']);
+      this.competitionsPhases.set(this.allCompetitionsLabel, data['defaultCompetitionPhases']);
+      this.seasonsList = data['seasonsList'];
+      this.dataPrepared = true;
+    });
   }
 
   openMatchDetail(match)
@@ -82,5 +107,23 @@ export class CustomMatchesComponent implements OnInit {
 
     this.dialog.open(CreateMatchComponent, dialogConfig);
 
+  }
+
+  testSomethign(){
+
+    console.log("call backend");
+    console.log("toto je current team");
+    console.log(this.currentTeam);
+    this.matchesService.getMatchesWithCustomFilters(this.selectedSeason, this.selectedCompetition, this.selectedCompetitionPhase, this.currentTeam).subscribe(data=>{
+      this.setNewDataSource(data);
+    })
+  }
+
+
+
+  setNewDataSource(dataSource){
+    this.dataSource = new MatTableDataSource(dataSource);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }

@@ -57,6 +57,8 @@ export class CreateMatchComponent implements OnInit {
   localStorageKeyCompetition = 'lastSelectedCompetition';
   localStorageKeyCompetitionPhase = 'lastSelectedCompetitionPhase';
   localStorageKeySeason = 'lastSelectedSeason';
+
+  id: number;
   
   constructor(
     private fileService: FileService, 
@@ -144,7 +146,8 @@ export class CreateMatchComponent implements OnInit {
     
 
     if(this.dialogData){
-      alert('TODO - tu sa musi robit post');
+      this.match.id = this.id;
+      this.matchesService.updateMatch(this.match).subscribe();
     } else {
       this.matchesService.createMatch(this.match).subscribe();
 
@@ -183,6 +186,7 @@ export class CreateMatchComponent implements OnInit {
     this.goalscorersEnabled = matchToUpdate.goalscorers === null || matchToUpdate.goalscorers === 'null'  ? false: true;
     this.yellowCardsEnabled = matchToUpdate.yellowcards === null || matchToUpdate.yellowcards === 'null'  ? false: true;
     this.redCardsEnabled = matchToUpdate.redcards === null || matchToUpdate.redcards === 'null'  ? false: true;
+    this.id = matchToUpdate.id;
     
     if (this.goalscorersEnabled) {
       this.goalscorersRecord = matchToUpdate.goalscorers;

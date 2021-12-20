@@ -18,6 +18,10 @@ export class MatchesService {
   createMatch(match: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}` + `newmatch/create`, match);
   }
+  
+  updateMatch(match: Object): Observable<Object> {
+    return this.http.put(`${this.baseUrl}` + `/update/existingMatch`, match);
+  }
 
   getCustomMatches(competition: string, season: string, competitionPhase: string){
     return this.http.get(`${this.baseUrl}getCustomGroupMatches/${competition}/${season}/${competitionPhase}`);
@@ -30,5 +34,15 @@ export class MatchesService {
   getDataToCreateMatch(){
     return this.http.get(`${this.baseUrl}getDataToCreateMatch/`);
   }
+
+  // todo maybe move this to global?
+  getCompetitionPhasesAndSeasonList(){
+    return this.http.get(`${this.baseUrl}getCompetitionPhasesAndSeasonsList/`);    
+  }
+
+  getMatchesWithCustomFilters(season: string, competition: string, competitionPhase: string, teamName: string){
+    return this.http.get(`${this.baseUrl}/getFilteredMatches/${season}/${competition}/${competitionPhase}/${teamName}`);
+  }
+    //getFilteredMatches/{season}/{competition}/{competitionPhase}/{teamName}  }
 
 }

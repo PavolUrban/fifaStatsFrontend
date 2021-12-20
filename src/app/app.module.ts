@@ -3,10 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CreateCustomerComponent } from './create-customer/create-customer.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-import { CustomersListComponent } from './customers-list/customers-list.component';
-import { SearchCustomersComponent } from './search-customers/search-customers.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatchesComponent } from './matches/matches.component';
@@ -36,7 +32,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { TestComponent } from './test/test.component';
 import { NewTeamDialogComponent } from './new-team-dialog/new-team-dialog.component';
 import { SingleTeamComponent } from './single-team/single-team.component';
 import { MatCardModule } from '@angular/material/card';
@@ -74,13 +69,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
-    CreateCustomerComponent,
-    CustomerDetailsComponent,
-    CustomersListComponent,
-    SearchCustomersComponent,
     MatchesComponent,
     TeamsListsComponent,
-    TestComponent,
     NewTeamDialogComponent,
     SingleTeamComponent,
     MatchDetailComponent,

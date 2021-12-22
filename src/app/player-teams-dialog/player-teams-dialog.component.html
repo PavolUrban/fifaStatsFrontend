@@ -1,17 +1,60 @@
-<h1>{{playerInfo.name}}</h1>
+<div class="row">
+  <div class="col-sm-12">
 
-<img  [src]="imgSrc" alt=""  class="playerFoto mr-1">
+    <h1 class="groupStageHeaderFormat">{{playerName.replaceAll('.',' ')}}</h1>
 
-<table  class="table table-sm mt-3 table-hover">
-  <tbody>
-    <tr *ngFor="let item of playerTeams | keyvalue" >
-      <th>{{item.key}}</th>
-      <td>{{item.value}}</td>
-    </tr>
-    <tr >
-      <th>Total</th>
-      <td >{{playerInfo.totalGoalsCount}}</td>
-    </tr>
+    <mat-card>
+    <img [src]="imgSrc" alt="" class="playerFoto mr-1">
 
-  </tbody>
-</table>
+
+    <mat-tab-group>
+      
+      <mat-tab label="Season by season">
+        <table class="table table-sm mt-3 table-hover">
+          <tbody>
+            <tr>
+              <th>Season</th>
+              <th>Team</th>
+              <th class="textToRight">Goals</th>
+              <th class="textToRight"><span class="badge badge-warning" matTooltip="Yellow cards">Y</span></th>
+              <th class="textToRight"><span class="badge badge-danger" matTooltip="Red cards">R</span></th>
+            </tr>
+            <tr *ngFor="let season of statsPerSeason">
+              <td [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
+              <td class="cursor-pointer" (click)=goToTeamView(season.teamname)> 
+                <img [src]="'data:image/gif;base64,'+season.logoUrl" alt="" class="iconSize"> 
+                <span
+                  class="ml-1" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.teamname}}
+                </span>
+              </td>
+              <td class="textToRight" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.goalsCount}}</td>
+              <td class="textToRight" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.yellowCardsCount}}</td>
+              <td class="textToRight" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.redCardsCount}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </mat-tab>
+
+      <mat-tab label="Goals by teams count" *ngIf="!!playerInfo">
+        <table class="table table-sm mt-3 table-hover">
+          <tbody>
+            <tr *ngFor="let item of playerTeams | keyvalue">
+              <th>{{item.key}}</th>
+              <td>{{item.value}}</td>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <td>{{playerInfo.totalGoalsCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+
+    </mat-tab-group>
+
+
+
+  </mat-card>
+  </div>
+</div>

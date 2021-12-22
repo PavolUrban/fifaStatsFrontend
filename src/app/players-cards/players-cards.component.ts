@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { filter } from 'rxjs';
+import { PlayerTeamsDialogComponent } from '../player-teams-dialog/player-teams-dialog.component';
 
 @Component({
   selector: 'app-players-cards',
@@ -18,10 +20,10 @@ export class PlayersCardsComponent implements OnInit {
   @Input() displayedColumns: string[];
   dataSource;  
 
+  
 
 
-
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
@@ -39,4 +41,14 @@ export class PlayersCardsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
+  openPlayersDetail(name: string) {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.data = {
+      name: name
+    };
+
+   this.dialog.open(PlayerTeamsDialogComponent, dialogConfig);
+  }
 }

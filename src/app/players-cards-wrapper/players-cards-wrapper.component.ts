@@ -17,6 +17,8 @@ export class PlayersCardsWrapperComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("cards");
+    console.log(this.completePlayerStats);
     this.currentlyDisplayed = this.completePlayerStats['Total'];
     this.setProperView('Total');
   }

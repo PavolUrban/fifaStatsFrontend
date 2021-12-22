@@ -62,7 +62,7 @@ export class TeamTopGoalscorersComponent implements OnInit {
   openPlayersDetail(player) {
 
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
+    dialogConfig.autoFocus = false;
     dialogConfig.data = {
       player: player
     };

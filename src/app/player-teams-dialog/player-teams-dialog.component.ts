@@ -36,8 +36,7 @@ export class PlayerTeamsDialogComponent implements OnInit {
 
 
 
-    //todo remove replaceAll once players will be stored in separate tabl
-    fifaPlayerService.getAllPlayerStats(this.playerName.replaceAll(' ','.')).subscribe(data=>{
+    fifaPlayerService.getAllPlayerStats(this.playerName).subscribe(data=>{
       this.statsPerSeason = data['playerStatsPerSeason'];
       console.log("toto su stats pre playera");
       console.log(this.statsPerSeason);

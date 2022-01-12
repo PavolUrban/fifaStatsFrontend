@@ -35,6 +35,7 @@ export class SeasonComponent implements OnInit, OnDestroy {
   topGoalscorersGroupStage;
   topGoalscorersPlayOffs;
   topGoalscorersTotal;
+  allLogos;
 
   competitionName;
   constructor(private activatedRoute: ActivatedRoute, private generalService: GeneralService,private router: Router,
@@ -69,7 +70,8 @@ export class SeasonComponent implements OnInit, OnDestroy {
           this.winnerTeam= data["Final"]["winner"];
 
         this.calculatePlayerWinsInTotal(this.playersStats);
-
+        
+        this.allLogos = data["Logos"];
         this.goalscorers = data["Goalscorers"];
         this.topGoalscorersGroupStage = data["TotalGoalscorersGroupStage"];
         this.topGoalscorersPlayOffs = data["TotalGoalscorersPlayOffs"];

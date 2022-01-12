@@ -19,36 +19,21 @@
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Group stage</h1>
     <mat-card>
-      <app-team-top-goalscorers *ngIf="topGoalscorersGroupStage" 
-        [data]="topGoalscorersGroupStage" 
-        [goalscorersContainLogosItself]="true"
-        [onlyOnePossibleTeamLogo]="true" 
-        [defaultPageSize]="5">
-      </app-team-top-goalscorers>
+      <app-goalscorers-the-newest-one *ngIf="topGoalscorersGroupStage" [data]="topGoalscorersGroupStage" [logos]="allLogos" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
 
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Play/off</h1>
     <mat-card>
-      <app-team-top-goalscorers *ngIf="topGoalscorersPlayOffs" 
-        [data]="topGoalscorersPlayOffs" 
-        [goalscorersContainLogosItself]="true"
-        [onlyOnePossibleTeamLogo]="true" 
-        [defaultPageSize]="5">
-      </app-team-top-goalscorers>
+      <app-goalscorers-the-newest-one *ngIf="topGoalscorersPlayOffs" [data]="topGoalscorersPlayOffs" [logos]="allLogos" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
 
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Total</h1>
     <mat-card>
-      <app-team-top-goalscorers *ngIf="topGoalscorersTotal" 
-        [data]="topGoalscorersTotal" 
-        [goalscorersContainLogosItself]="true"
-        [onlyOnePossibleTeamLogo]="true" 
-        [defaultPageSize]="5">
-      </app-team-top-goalscorers>
+      <app-goalscorers-the-newest-one *ngIf="topGoalscorersTotal" [data]="topGoalscorersTotal" [logos]="allLogos" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
 
@@ -112,7 +97,8 @@
 
     <div class="col-sm-5">
       <mat-card>
-        <app-team-top-goalscorers [data]="goalscorers[group.key]" [allLogos]="group.value" [onlyOnePossibleTeamLogo]="true" [defaultPageSize]="5"></app-team-top-goalscorers>
+        <app-goalscorers-the-newest-one [data]="goalscorers[group.key]" [logos]="group.value" [singleGroupStageLogos]="true" [pageSize]="5"></app-goalscorers-the-newest-one>
+        <!-- <app-team-top-goalscorers [data]="goalscorers[group.key]" [allLogos]="group.value" [onlyOnePossibleTeamLogo]="true" [defaultPageSize]="5"></app-team-top-goalscorers> -->
       </mat-card>
     </div>
 

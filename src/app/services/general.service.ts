@@ -44,7 +44,28 @@ export class GeneralService {
     return this.http.get("http://localhost:8080/globalStats/trophyRoom");
   }
 
-  getAllCards() {
-    return this.http.get("http://localhost:8080/globalStats/getAllCards");
+  //todo these 3 functions should be soon removed
+  insertGoalscorersToNewTable(data){
+    console.log("calling insertnewg");
+    console.log(data);
+    return this.http.post("http://localhost:8080/globalStats/insertGoalscorers", data);
+  }
+
+  insertPlayersWithCardsToNewTable(data){
+    console.log("posielam data");
+    console.log(data);
+    return this.http.post("http://localhost:8080/globalStats/insertPlayersWithCards", data); 
+  }
+
+
+
+  // this will be moved to separate service - goalscorers service
+  getGoalscorersTheNewestToRelocate(competition: string, teamname: string){
+    return this.http.get("http://localhost:8080/goalscorers/getAllGoalScorers/" + competition+"/"+teamname);
+  }
+
+  //this will be moved to separate service - cards service
+  getCardsTheNewestToRelocate(competition: string, teamname: string){
+    return this.http.get("http://localhost:8080/cards/getAllCards/" + competition+"/"+teamname);
   }
 }

@@ -4,6 +4,7 @@ import { Matches } from '../matches';
 import { FileService } from '../services/file.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatchesService } from '../services/matches.service';
 
 @Component({
   selector: 'app-match-detail',
@@ -23,8 +24,14 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
 
 
   constructor(private dialogRef: MatDialogRef<MatchDetailComponent>, @Inject(MAT_DIALOG_DATA) data, private fileService: FileService,
-              private router: Router) {
+              private router: Router, private matchesService: MatchesService) {
     this.match = data['match'];
+    console.log("detail");
+    console.log(this.match);
+
+    this.matchesService.getMatchDetailsNew(this.match.id, this.match.hometeam, this.match.awayteam).subscribe(data=>{
+      console.log(data);
+    })
     this.getHomeAway(this.match.goalscorers,this.goalscorersHome, this.goalscorersAway);
     this.getHomeAway(this.match.yellowcards, this.yellowCardsHome, this.yellowCardsAway);
     this.getHomeAway(this.match.redcards, this.redCardsHome, this.redCardsAway);

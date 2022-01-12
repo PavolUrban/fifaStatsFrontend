@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: 'app-players-cards-wrapper',
@@ -9,32 +10,33 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 export class PlayersCardsWrapperComponent implements OnInit {
 
-  @Input() completePlayerStats;
+  // @Input() completePlayerStats;
+  @Input() teamName = null;
   currentlyDisplayed;
 
   showView = new Map([["Total", false], ["CL", false], ["EL", false]]);
 
-  constructor() { }
+  constructor(private generalService: GeneralService) { }
 
   ngOnInit(): void {
-    console.log("cards");
-    console.log(this.completePlayerStats);
-    this.currentlyDisplayed = this.completePlayerStats['Total'];
-    this.setProperView('Total');
+    this.getCardsPerCompetition('Total');
   }
-
   
   tabChanged(event: MatTabChangeEvent): void {
     if (event.index === 0){
-      this.currentlyDisplayed = this.completePlayerStats['Total'];
-      this.setProperView('Total');
+      this.getCardsPerCompetition('Total');
     } else if (event.index === 1) {
-      this.currentlyDisplayed = this.completePlayerStats['CL'];
-      this.setProperView('CL');
+      this.getCardsPerCompetition('CL');
     } else {
-      this.currentlyDisplayed = this.completePlayerStats['EL'];
-      this.setProperView('EL');
+      this.getCardsPerCompetition('EL');
     }
+  }
+
+  getCardsPerCompetition(competition: string){
+    this.generalService.getCardsTheNewestToRelocate(competition, this.teamName).subscribe(data=>{
+      this.currentlyDisplayed = data;
+      this.setProperView(competition);
+    });
   }
 
   setProperView(competition: string){

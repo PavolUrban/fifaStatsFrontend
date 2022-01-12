@@ -29,7 +29,6 @@ export class SingleTeamComponent implements OnInit {
   unknownTimeConcededGoals: number;
   oponentsLogos;
 
-  playersCardsStatisticsPerCompetition;
 
   constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService) { }
 
@@ -47,7 +46,6 @@ export class SingleTeamComponent implements OnInit {
         this.trophyRoomData['titlesCountEL'] = data['finalMatches']['EL']['Won'].length;
 
         this.oponentsLogos = data['oponentsLogos'];
-        this.playersCardsStatisticsPerCompetition = data['playersCardsStatisticsPerCompetition'];
 
         if (this.trophyRoomData['titlesCountCL'] + this.trophyRoomData['titlesCountEL'] === 0) {
           this.teamWithoutTrophy = true;

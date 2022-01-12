@@ -2,12 +2,12 @@
   <h1 class="pageTitleFormat">All time stats</h1>
 </div>
 
-
 <div class="row">
 
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat">Goalscorers NEW</h1>
     <mat-card>
+      <!-- Todo this can be soon removed + its component -->
       <app-new-goalscorers></app-new-goalscorers>
     </mat-card>
   </div>
@@ -34,12 +34,18 @@
 
 </div>
 
-
 <div class="row mt-3">
   <div class="col-sm-6">
     <h1 class="groupStageHeaderFormat">Cards</h1>
     <mat-card>
-      <app-players-cards-wrapper *ngIf="playersCardsStatisticsPerCompetition" [completePlayerStats]="playersCardsStatisticsPerCompetition"></app-players-cards-wrapper>
+      <app-players-cards-wrapper></app-players-cards-wrapper>
+    </mat-card>
+  </div>
+
+  <div class="col-sm-4">
+    <h1 class="groupStageHeaderFormat">Goals newest</h1>
+    <mat-card>
+      <app-goalscorers-wrapper [displayNumberOfTeamsPlayerScored]="true" [pageSize]="15"></app-goalscorers-wrapper>
     </mat-card>
   </div>
 </div>

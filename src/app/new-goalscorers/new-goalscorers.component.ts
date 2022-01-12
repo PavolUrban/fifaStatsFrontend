@@ -32,6 +32,7 @@ export class NewGoalscorersComponent implements OnInit {
     } else {
       this.subscription = this.generalService.getAllTopGoalScorers().subscribe(data=>{
         this.allTeamGoalScorers = data;
+       // TODO remove soon this.generalService.insertGoalscorersToNewTable(data['Total']).subscribe();
         this.fileService.getAllLogos().subscribe(data=>{
           this.allLogos = data;
           this.prepareData();

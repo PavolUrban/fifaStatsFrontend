@@ -19,6 +19,7 @@ export class MatchesService {
     return this.http.post(`${this.baseUrl}` + `newmatch/create`, match);
   }
   
+  
   updateMatch(match: Object): Observable<Object> {
     return this.http.put(`${this.baseUrl}` + `/update/existingMatch`, match);
   }
@@ -45,4 +46,14 @@ export class MatchesService {
   }
     //getFilteredMatches/{season}/{competition}/{competitionPhase}/{teamName}  }
 
+  getMatchDetailsNew(matchId: number, hometeam: string, awayteam: string){
+    return this.http.get(`${this.baseUrl}/getMatchDetails/${matchId}/${hometeam}/${awayteam}`);
+  }
+
+
+ //todo toto pojde soon prec
+    insertAllRecordsToNewTable(){
+      return this.http.get("http://localhost:8080/matches/prepareAllRecords/existingMatches");
+    }
+  
 }

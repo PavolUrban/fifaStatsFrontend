@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  th.mat-header-cell {
+      font-weight: bold;
+  }
+
+  .table-row {
+    height: 30px !important;
+  }
+
+
+  .iconSize{
+    max-height: 20px;
+  }
+
+.searchField {
+    height: 58px;
+    font-size: 15px;
+    width: 115px;
+}
+
+.textToRight{
+    text-align: right;
+  }
+
+  .th-right{
+    text-align: right;
+  }
+  

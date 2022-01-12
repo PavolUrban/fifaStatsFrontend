@@ -63,6 +63,8 @@ import { GenerateGroupStageComponent } from './generate-group-stage/generate-gro
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GoalscorersWrapperComponent } from './goalscorers-wrapper/goalscorers-wrapper.component';
+import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/goalscorers-the-newest-one.component';
 
 
 
@@ -98,7 +100,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     PlayersCardsComponent,
     SnackBarComponent,
     GenerateGroupStageComponent,
-    CreateMatchWrapperComponent
+    CreateMatchWrapperComponent,
+    GoalscorersWrapperComponent,
+    GoalscorersTheNewestOneComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,10 @@ export class MatchesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    //todo coment this out
+  // this.matchesService.insertAllRecordsToNewTable().subscribe();
+
     this.subscription = this.matchesService.getMatchesList().subscribe(data =>
       {
         this.allMatches = data;

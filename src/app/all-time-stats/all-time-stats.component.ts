@@ -15,17 +15,12 @@ export class AllTimeStatsComponent implements OnInit {
 
   trophyRoom;
   winnersList;
-  playersCardsStatisticsPerCompetition = null;
   constructor(private generalService: GeneralService) { }
 
   ngOnInit() {
     this.subscription = this.generalService.getTrophyRoom().subscribe(data=>{
       this.trophyRoom = data;
     });
-
-    this.subscriptionCards = this.generalService.getAllCards().subscribe(data=>{
-      this.playersCardsStatisticsPerCompetition = data;
-    })
   }
 
   ngOnDestroy(){

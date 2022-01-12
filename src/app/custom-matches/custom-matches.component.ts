@@ -124,12 +124,9 @@ export class CustomMatchesComponent implements OnInit {
   }
 
   testSomethign(){
-
-    console.log("call backend");
-    console.log("toto je current team");
-    console.log(this.currentTeam);
     this.matchesService.getMatchesWithCustomFilters(this.selectedSeason, this.selectedCompetition, this.selectedCompetitionPhase, this.currentTeam).subscribe(data=>{
       this.setNewDataSource(data);
+      console.log(data);
     });
   }
 

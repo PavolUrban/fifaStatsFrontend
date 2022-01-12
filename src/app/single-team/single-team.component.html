@@ -217,7 +217,7 @@
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat">Goalscorers</h1>
     <mat-card>
-      <app-new-goalscorers [teamName]="team.teamName" [defaultPageSize]="5"></app-new-goalscorers>
+      <app-goalscorers-wrapper [teamName]="team.teamName" [pageSize]="5"></app-goalscorers-wrapper>
     </mat-card>
   </div>
 
@@ -228,7 +228,7 @@
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat">Cards</h1>
       <mat-card>
-        <app-players-cards-wrapper *ngIf="playersCardsStatisticsPerCompetition" [completePlayerStats]="playersCardsStatisticsPerCompetition"></app-players-cards-wrapper>
+        <app-players-cards-wrapper [teamName]="team.teamName"></app-players-cards-wrapper>
       </mat-card>
   </div>
 </div>

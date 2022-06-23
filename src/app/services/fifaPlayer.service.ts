@@ -13,10 +13,4 @@ export class FifaPlayerService {
   getAllPlayerStats(playerName: string) {
     return this.http.get(`${this.baseUrl}/getStats/${playerName}`);
   }
-
-  generateFifaPlayerImproved(){
-    return this.http.get(`${this.baseUrl}/generateImprovedFifaPlayers/insert`);
-    
-  }
-
 }

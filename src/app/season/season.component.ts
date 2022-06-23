@@ -10,7 +10,6 @@ import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-match
   selector: 'app-season',
   templateUrl: './season.component.html',
   styleUrls: ['./season.component.scss'],
-  // encapsulation: ViewEncapsulation.None
 })
 export class SeasonComponent implements OnInit, OnDestroy {
 
@@ -51,7 +50,7 @@ export class SeasonComponent implements OnInit, OnDestroy {
         this.competitionName = 'European league';
       }
   
-      this.subscription = this.generalService.getGroupStage(this.seasonName,this.competition).subscribe(data=>{
+      this.subscription = this.generalService.getSeason(this.seasonName,this.competition).subscribe(data=>{
         console.log("season dataa");
         console.log(data);
         this.allGroups = data["Tables"];

@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
 import { Teams } from '../teams';
 import { TeamsService } from '../services/teams.service';
 
@@ -17,18 +16,13 @@ export class NewTeamDialogComponent implements OnInit {
   team : Teams = new Teams();
   uploadForm: FormGroup;
 
-
   constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<NewTeamDialogComponent>,
-              private teamsService : TeamsService, @Inject(MAT_DIALOG_DATA) data)
-  {
-
-    if(data)
-    {
+              private teamsService : TeamsService, @Inject(MAT_DIALOG_DATA) data){
+    if(data){
       this.team =  data.team;
       this.teamNameBeforeUpdate = this.team.teamName;
       this.insertNewRecord = false;
     }
-
   }
 
   ngOnInit() {
@@ -39,29 +33,14 @@ export class NewTeamDialogComponent implements OnInit {
 
   save()
   {
-
-
     this.onSubmit();
-    if(this.insertNewRecord == true)
-    {
-      // this.teamsService.createNewTeam("vymysleny").subscribe(data => console.log(data), error => console.log(error));
-      // this.team = new Teams();
+    if(this.insertNewRecord == true) {
       this.dialogRef.close(true);
     }
-
-    // else
-    // {
-    //   this.teamsService.updateTeam(this.teamNameBeforeUpdate, this.team).subscribe();
-    //   this.team = new Teams();
-    //   this.dialogRef.close();
-
-    // }
-
   }
 
-
   close() {
-      this.dialogRef.close();
+    this.dialogRef.close();
   }
 
 
@@ -75,9 +54,6 @@ onFileSelect(event) {
   onSubmit() {
     const formData = new FormData();
     formData.append('uploadfile', this.uploadForm.get('profile').value);
-
     this.teamsService.createNewTeam(this.team).subscribe( x=> { });
-
   }
-
 }

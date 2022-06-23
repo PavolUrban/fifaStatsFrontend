@@ -29,8 +29,7 @@ export class GoalscorersTheNewestOneComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
-    console.log('goalscorers');
-    console.log(this.data);
+
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     if(this.displayNumberOfTeamsPlayerScored){

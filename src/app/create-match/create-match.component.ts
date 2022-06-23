@@ -16,8 +16,6 @@ export class CreateMatchComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
 
-  homeLogoSrc: string = null;
-  awayLogoSrc: string = null;
   homeTeamControl = new FormControl();
   awayTeamControl = new FormControl();
   teamsList: string[] = [];
@@ -111,13 +109,11 @@ export class CreateMatchComponent implements OnInit {
     }
   }
 
-  resetTeamControlAndLogo(homeOrAwayControl){
+  resetTeamControl(homeOrAwayControl){
     if(homeOrAwayControl === 'home'){
       this.homeTeamControl.setValue('');
-      this.homeLogoSrc = null;
     } else {
       this.awayTeamControl.setValue('');
-      this.awayLogoSrc = null;
     }
   }
 

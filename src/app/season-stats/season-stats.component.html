@@ -73,7 +73,7 @@
         <!-- <div class="center"> </div> -->
 
         <p *ngIf="!winnerUnknown" class="center" style = 'line-height: 20px'>
-          <img [src]="'data:image/gif;base64,'+winnerLogo" class="winningTeam"/>
+          <img src="assets/img/logos/{{winnerTeam}}.jpg"  class="winningTeam"/>
           Winner is <b>{{winnerTeam}}</b> managed by <b>{{winnerPlayer}}</b>
           <img src='assets/img/{{winnerPlayer}}.jpg' alt=""  class="winnerPlayer">
         </p>

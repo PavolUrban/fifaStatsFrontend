@@ -11,7 +11,7 @@
   [competition]="competition"
   [winnerTeam]="winnerTeam"
   [winnerPlayer]="winnerPlayer"
-  [winnerLogo] = "winnerLogo">
+  >
 </app-season-stats>
 
 <div class="row">
@@ -19,21 +19,21 @@
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Group stage</h1>
     <mat-card>
-      <app-goalscorers-the-newest-one *ngIf="topGoalscorersGroupStage" [data]="topGoalscorersGroupStage" [logos]="allLogos" [pageSize]="5"></app-goalscorers-the-newest-one>
+      <app-goalscorers-the-newest-one *ngIf="topGoalscorersGroupStage" [data]="topGoalscorersGroupStage" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
 
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Play/off</h1>
     <mat-card>
-      <app-goalscorers-the-newest-one *ngIf="topGoalscorersPlayOffs" [data]="topGoalscorersPlayOffs" [logos]="allLogos" [pageSize]="5"></app-goalscorers-the-newest-one>
+      <app-goalscorers-the-newest-one *ngIf="topGoalscorersPlayOffs" [data]="topGoalscorersPlayOffs" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
 
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Total</h1>
     <mat-card>
-      <app-goalscorers-the-newest-one *ngIf="topGoalscorersTotal" [data]="topGoalscorersTotal" [logos]="allLogos" [pageSize]="5"></app-goalscorers-the-newest-one>
+      <app-goalscorers-the-newest-one *ngIf="topGoalscorersTotal" [data]="topGoalscorersTotal" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
 
@@ -69,7 +69,7 @@
             >
               <td>{{i+1}}.</td>
               <td> 
-                <img *ngIf="team['logo']" [src]="'data:image/gif;base64,'+team['logo']['pic']" alt="" class="iconSize mr-1 cursor-pointer" (click)="goToTeamView(team.teamname)"> 
+                <img src="assets/img/logos/{{team.teamname}}.jpg" alt="" class="iconSize mr-1 cursor-pointer" (click)="goToTeamView(team.teamname)"> 
                 <span class="cursor-pointer" (click)="goToTeamView(team.teamname)">{{team.teamname}}</span>
                 <small> {{team.ownedByPlayer}}</small>
               </td>
@@ -97,8 +97,7 @@
 
     <div class="col-sm-5">
       <mat-card>
-        <app-goalscorers-the-newest-one [data]="goalscorers[group.key]" [logos]="group.value" [singleGroupStageLogos]="true" [pageSize]="5"></app-goalscorers-the-newest-one>
-        <!-- <app-team-top-goalscorers [data]="goalscorers[group.key]" [allLogos]="group.value" [onlyOnePossibleTeamLogo]="true" [defaultPageSize]="5"></app-team-top-goalscorers> -->
+        <app-goalscorers-the-newest-one [data]="goalscorers[group.key]" [singleGroupStageLogos]="true" [pageSize]="5"></app-goalscorers-the-newest-one>
       </mat-card>
     </div>
 

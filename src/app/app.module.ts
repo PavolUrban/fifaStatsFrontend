@@ -45,7 +45,6 @@ import { AllTimeStatsComponent } from './all-time-stats/all-time-stats.component
 import { AllTimeTeamStatsComponent } from './all-time-team-stats/all-time-team-stats.component';
 import { PlayerTeamsDialogComponent } from './player-teams-dialog/player-teams-dialog.component';
 import { TeamTopGoalscorersComponent } from './team-top-goalscorers/team-top-goalscorers.component';
-import { GoalscorersComponent } from './goalscorers/goalscorers.component';
 import { GroupMatchesDialogComponent } from './group-matches-dialog/group-matches-dialog.component';
 import { CustomMatchesComponent } from './custom-matches/custom-matches.component';
 import { SeasonStatsComponent } from './season-stats/season-stats.component';
@@ -55,7 +54,6 @@ import { CreateMatchComponent } from './create-match/create-match.component';
 import { WinnersListComponent } from './winners-list/winners-list.component';
 import { TrophyRoomComponent } from './trophy-room/trophy-room.component';
 import { ColumnChartComponent } from './column-chart/column-chart.component';
-import { NewGoalscorersComponent } from './new-goalscorers/new-goalscorers.component';
 import { GoalsByTeamsCountPipe } from './pipes/goals-by-teams-count.pipe';
 import { PlayersCardsWrapperComponent } from './players-cards-wrapper/players-cards-wrapper.component';
 import { PlayersCardsComponent } from './players-cards/players-cards.component';
@@ -85,7 +83,6 @@ import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/g
     AllTimeTeamStatsComponent,
     PlayerTeamsDialogComponent,
     TeamTopGoalscorersComponent,
-    GoalscorersComponent,
     GroupMatchesDialogComponent,
     CustomMatchesComponent,
     SeasonStatsComponent,
@@ -95,7 +92,6 @@ import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/g
     WinnersListComponent,
     TrophyRoomComponent,
     ColumnChartComponent,
-    NewGoalscorersComponent,
     GoalsByTeamsCountPipe,
     PlayersCardsWrapperComponent,
     PlayersCardsComponent,

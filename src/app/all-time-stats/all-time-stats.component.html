@@ -5,10 +5,9 @@
 <div class="row">
 
   <div class="col-sm-4">
-    <h1 class="groupStageHeaderFormat">Goalscorers NEW</h1>
+    <h1 class="groupStageHeaderFormat">Goalscorers</h1>
     <mat-card>
-      <!-- Todo this can be soon removed + its component -->
-      <app-new-goalscorers></app-new-goalscorers>
+      <app-goalscorers-wrapper [displayNumberOfTeamsPlayerScored]="true" [pageSize]="15"></app-goalscorers-wrapper>
     </mat-card>
   </div>
 
@@ -45,7 +44,6 @@
   <div class="col-sm-4">
     <h1 class="groupStageHeaderFormat">Goals newest</h1>
     <mat-card>
-      <app-goalscorers-wrapper [displayNumberOfTeamsPlayerScored]="true" [pageSize]="15"></app-goalscorers-wrapper>
     </mat-card>
   </div>
 </div>

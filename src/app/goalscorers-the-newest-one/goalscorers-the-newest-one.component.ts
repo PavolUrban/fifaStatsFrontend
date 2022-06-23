@@ -18,7 +18,6 @@ export class GoalscorersTheNewestOneComponent implements OnInit {
 
   @Input() data;
   @Input() pageSize = 15;
-  @Input() logos;
   @Input() singleGroupStageLogos = false;
   @Input() displayNumberOfTeamsPlayerScored = false;
 
@@ -30,9 +29,10 @@ export class GoalscorersTheNewestOneComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
+    console.log('goalscorers');
+    console.log(this.data);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    console.log(this.logos);
     if(this.displayNumberOfTeamsPlayerScored){
       this.displayedColumns = ['index','name','totalGoalsCount','numberOfTeamsPlayerScoredFor'];
     } else {

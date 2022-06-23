@@ -5,7 +5,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
   templateUrl: './season-stats.component.html',
   styleUrls: ['./season-stats.component.scss']
 })
-export class SeasonStatsComponent implements OnInit, OnChanges {
+export class SeasonStatsComponent implements OnChanges {
 
   @Input() pavolJayWins;
   @Input() draws;
@@ -15,8 +15,6 @@ export class SeasonStatsComponent implements OnInit, OnChanges {
   @Input() competition;
   @Input() winnerTeam: string ;
   @Input() winnerPlayer ;
-  @Input() winnerLogo ;
-  imgSrc;
 
   winnerUnknown = true;
   constructor() { }
@@ -27,13 +25,6 @@ export class SeasonStatsComponent implements OnInit, OnChanges {
       } else {
         this.winnerUnknown = false;
       }
+    } 
   }
- 
-  
-  }
-
-  ngOnInit() {
-    this.imgSrc = "./assets/img/" + this.competition + "Trophy.png";
-  }
-
 }

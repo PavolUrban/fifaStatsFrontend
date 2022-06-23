@@ -29,7 +29,7 @@
     <ng-container matColumnDef="teamname">
       <th mat-header-cell *matHeaderCellDef> Winner </th>
       <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.teamName}} view " *matCellDef="let element" (click)="goToTeamView(element.teamName)">
-        <img *ngIf="element.teamLogo" [src]="'data:image/gif;base64,'+element.teamLogo.pic" alt="" class="iconSize mr-1">
+        <img src="assets/img/logos/{{element.teamName}}.jpg" alt="" class="iconSize mr-1">
         <b>{{element.teamName}}</b> 
         <!-- TODO use this for CL and EL together -->
         <!-- <img *ngIf="element.teamLogoEL" [src]="'data:image/gif;base64,'+element.teamLogoEL.pic" alt="" class="iconSize mr-1"> <span>{{element.teamNameEL}}</span> 
@@ -42,7 +42,7 @@
     <ng-container matColumnDef="runnerUp">
       <th mat-header-cell *matHeaderCellDef> Runner-up </th>
       <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.runnerUp}} view " *matCellDef="let element" (click)="goToTeamView(element.runnerUp)">
-        <img *ngIf="element.runnerUpLogo" [src]="'data:image/gif;base64,'+element.runnerUpLogo.pic" alt="" class="iconSize mr-1">{{element.runnerUp}}
+        <img src="assets/img/logos/{{element.runnerUp}}.jpg" alt="" class="iconSize mr-1">{{element.runnerUp}}
         <!-- <img *ngIf="element.teamLogo" [src]="'data:image/gif;base64,'+element.teamLogo.pic" alt="" class="iconSize mr-1">{{element.teamName}} -->
        
 

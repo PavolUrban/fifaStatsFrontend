@@ -59,7 +59,6 @@ export class H2HComponent implements OnInit {
 bilanceTeams;
 currentBilanceUsed;
 goalscorers;
-logos;
 allMatches;
   getH2HStats()
   {
@@ -74,7 +73,6 @@ allMatches;
         this.bilanceTeams = data["overallStats"];
         this.currentBilanceUsed = this.bilanceTeams;
         this.goalscorers = data["goalscorers"];
-        this.logos = data["logos"];
         this.dataLoaded = true;
       });
 

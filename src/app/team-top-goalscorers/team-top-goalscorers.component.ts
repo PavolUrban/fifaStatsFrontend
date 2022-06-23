@@ -20,7 +20,6 @@ export class TeamTopGoalscorersComponent implements OnInit {
 
   @Input() data;
   @Input() defaultPageSize = 15;
-  @Input() allLogos = null;
 
   @Input() onlyOnePossibleTeamLogo = false;
 
@@ -36,7 +35,7 @@ export class TeamTopGoalscorersComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
-    if (this.allLogos || this.goalscorersContainLogosItself) {
+    if (this.goalscorersContainLogosItself) {
       if (this.onlyOnePossibleTeamLogo){
         this.displayedColumns = ['index','teamLogos','name','totalGoalsCount'];
       } else {

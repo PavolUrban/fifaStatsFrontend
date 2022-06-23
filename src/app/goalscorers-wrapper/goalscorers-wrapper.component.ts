@@ -9,26 +9,25 @@ import { GeneralService } from '../services/general.service';
 })
 export class GoalscorersWrapperComponent implements OnInit {
   @Input() teamName: string = null;
-  @Input() allLogos = null;
   @Input() displayNumberOfTeamsPlayerScored = false;
   @Input() pageSize = 5;
 
   currentlyDisplayed;
-  showView = new Map([["Total", false], ["CL", false], ["EL", false]]);
+  showView = new Map([["CL", false], ["EL", false], ["Total", false]]);
   
   constructor(private generalService: GeneralService) { }
 
   ngOnInit(): void {
-    this.getGoalscorersPerCompetition('Total');
+    this.getGoalscorersPerCompetition('CL');
   }
 
   tabChanged(event: MatTabChangeEvent): void {
     if (event.index === 0){
-      this.getGoalscorersPerCompetition('Total');
-    } else if (event.index === 1) {
       this.getGoalscorersPerCompetition('CL');
-    } else {
+    } else if (event.index === 1) {
       this.getGoalscorersPerCompetition('EL');
+    } else {
+      this.getGoalscorersPerCompetition('Total');
     }
   }
 

@@ -22,7 +22,7 @@
             <tr *ngFor="let season of statsPerSeason">
               <td [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
               <td class="cursor-pointer" (click)=goToTeamView(season.teamname)> 
-                <img [src]="'data:image/gif;base64,'+season.logoUrl" alt="" class="iconSize"> 
+                <img *ngIf="season.teamname" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize"> 
                 <span
                   class="ml-1" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.teamname}}
                 </span>

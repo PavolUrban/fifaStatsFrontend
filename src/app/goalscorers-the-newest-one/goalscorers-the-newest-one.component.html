@@ -14,14 +14,7 @@
   <ng-container matColumnDef="name">
       <th  mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element; let i = index"> 
-        <ng-container *ngIf="logos">       
-          <ng-container *ngFor="let logo of logos | keyvalue">
-            <img *ngIf="(logo.value['teamname'] === element.teamPlayerScoredFor && !singleGroupStageLogos)" matTooltip="{{element.teamPlayerScoredFor}}" [src]="'data:image/gif;base64,'+logo.value['pic']"  alt="" class="iconSize cursor-pointer" (click)="goToTeamView(element.teamPlayerScoredFor)"> 
-            <img *ngIf="(logo.value['teamname'] === element.teamPlayerScoredFor && singleGroupStageLogos)" matTooltip="{{element.teamPlayerScoredFor}}" [src]="'data:image/gif;base64,'+logo.value['logo']['pic']"  alt="" class="iconSize cursor-pointer" (click)="goToTeamView(element.teamPlayerScoredFor)"> 
-            
-          </ng-container>   
-        </ng-container>
-
+        <img src="assets/img/logos/{{element.teamPlayerScoredFor}}.jpg" alt="" matTooltip="{{element.teamPlayerScoredFor}}" class="iconSize cursor-pointer" (click)="goToTeamView(element.teamPlayerScoredFor)">
         {{element.name}}
       </td>
   </ng-container>

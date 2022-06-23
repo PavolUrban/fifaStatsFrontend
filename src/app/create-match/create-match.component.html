@@ -16,13 +16,13 @@
       <!-- LOGO -->
       <div class="d-flex justify-content-center">
         <div class="col-sm-4 d-flex justify-content-center">
-          <div *ngIf="!homeLogoSrc" class="logoPlaceholder"></div>
-          <img *ngIf="homeLogoSrc" [src]="'data:image/gif;base64,'+ homeLogoSrc" alt="" class="iconSize">
+          <div *ngIf="!homeTeamControl.value" class="logoPlaceholder"></div>
+          <img src="assets/img/logos/{{homeTeamControl.value}}.jpg" alt="" class="iconSize">
         </div>
         <div class="col-sm-4 d-flex justify-content-center align-items-center"></div>
         <div class="col-sm-4 d-flex justify-content-center">
-          <div *ngIf="!awayLogoSrc" class="logoPlaceholder"></div>
-          <img *ngIf="awayLogoSrc" [src]="'data:image/gif;base64,'+awayLogoSrc" alt="" class="iconSize mr-1">
+          <div *ngIf="!awayTeamControl.value" class="logoPlaceholder"></div>
+          <img src="assets/img/logos/{{awayTeamControl.value}}.jpg" alt="" class="iconSize mr-1">
         </div>
       </div>
 
@@ -41,7 +41,7 @@
                   {{homeTeam}}
                 </mat-option>
               </mat-autocomplete>
-              <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="resetTeamControlAndLogo('home')">
+              <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="resetTeamControl('home')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
@@ -80,7 +80,7 @@
                   {{awayteam}}
                 </mat-option>
               </mat-autocomplete>
-              <button *ngIf="awayTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="resetTeamControlAndLogo('away')">
+              <button *ngIf="awayTeamControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="resetTeamControl('away')">
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>

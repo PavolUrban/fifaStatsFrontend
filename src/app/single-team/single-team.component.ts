@@ -15,7 +15,6 @@ export class SingleTeamComponent implements OnInit {
 
   team: Teams = new Teams();
   subtitle: string = "All European competitions"
-  ImgUrl = '';
   teamMatches;
   totalBilance = [];
   goalsByMins;
@@ -27,7 +26,6 @@ export class SingleTeamComponent implements OnInit {
   teamWithoutTrophy = false;
   unknownTimeGoals: number;
   unknownTimeConcededGoals: number;
-  oponentsLogos;
 
 
   constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService) { }
@@ -38,7 +36,6 @@ export class SingleTeamComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.team.teamName = params["teamName"];
       this.teamsService.getSingleTeamStats(this.team.teamName).subscribe(data => {
-        console.log(data);
         //todo titles count should be adjusted
         this.championsLeagueFinalMatches = data['finalMatches']['CL'];
         this.europeanLeagueFinalMatches = data['finalMatches']['EL'];
@@ -46,7 +43,6 @@ export class SingleTeamComponent implements OnInit {
         this.trophyRoomData['titlesCountCL'] = data['finalMatches']['CL']['Won'].length;
         this.trophyRoomData['titlesCountEL'] = data['finalMatches']['EL']['Won'].length;
 
-        this.oponentsLogos = data['oponentsLogos'];
 
         if (this.trophyRoomData['titlesCountCL'] + this.trophyRoomData['titlesCountEL'] === 0) {
           this.teamWithoutTrophy = true;
@@ -92,11 +88,6 @@ export class SingleTeamComponent implements OnInit {
         this.team.seasonsCL = matchStats["CL"]["Seasons"];
         this.team.seasonsEL = matchStats["EL"]["Seasons"];
         this.team.seasonsTotal = this.team.seasonsCL + this.team.seasonsEL;
-        this.team.nickname =data['nickname'];
-
-        if (data['fm'])
-          this.ImgUrl = 'data:image/gif;base64,' + data['fm']['pic'];
-
       });
     });
 

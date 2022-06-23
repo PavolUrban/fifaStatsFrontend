@@ -36,8 +36,7 @@
               <input type="text" required placeholder="Home team" aria-label="Home team" matInput [formControl]="homeTeamControl"
                 [matAutocomplete]="auto">
                 <mat-error>Home team is required.</mat-error>
-              <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete"
-                (optionSelected)="getTeamLogo($event,'home')">
+              <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete">
                 <mat-option *ngFor="let homeTeam of filteredOptionsHomeTeam | async" [value]="homeTeam">
                   {{homeTeam}}
                 </mat-option>
@@ -76,7 +75,7 @@
               <input type="text" required placeholder="Away team" aria-label="Away team" matInput [formControl]="awayTeamControl"
                 [matAutocomplete]="autoAway">
               <mat-error>Away team is required.</mat-error>
-              <mat-autocomplete #autoAway="matAutocomplete" (optionSelected)="getTeamLogo($event,'away')">
+              <mat-autocomplete #autoAway="matAutocomplete">
                 <mat-option *ngFor="let awayteam of filteredOptionsAwayTeam | async" [value]="awayteam">
                   {{awayteam}}
                 </mat-option>

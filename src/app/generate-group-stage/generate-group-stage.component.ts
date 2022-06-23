@@ -5,7 +5,6 @@ import { TeamsService } from '../services/teams.service';
 import { FormControl } from '@angular/forms';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FileService } from '../services/file.service';
 
 
 @Component({
@@ -35,7 +34,7 @@ export class GenerateGroupStageComponent implements OnInit {
     items: []
   }
 
-  constructor(private teamsService: TeamsService, private fileService: FileService, private _snackBar: MatSnackBar) { 
+  constructor(private teamsService: TeamsService, private _snackBar: MatSnackBar) { 
 
     // todo - 4 pots - you can add 8 teams to each and groups can be filled from it
     // for(let i=0;i<this.pots.length;i++) {
@@ -124,7 +123,7 @@ export class GenerateGroupStageComponent implements OnInit {
     var index = this.completeTeamList.indexOf(this.homeTeamControl.value);    
     if (index !== -1) {
         this.completeTeamList.splice(index, 1);
-        this.getTeamLogo(this.homeTeamControl.value);
+       // this.getTeamLogo(this.homeTeamControl.value);
      
     }    
 
@@ -148,22 +147,5 @@ export class GenerateGroupStageComponent implements OnInit {
     // }   
   }
 
-
-  getTeamLogo(teamname: string): void {    
-    this.fileService.getSingleTeamLogo(teamname).subscribe(data=>{
-
-      console.log(data);
-      let itemObject = {
-        teamName: this.homeTeamControl.value,
-        src: data['logo']['pic'],
-        country: data['country']
-      }
-
-      // this is workin this.groupsPool[0].items.push(this.homeTeamControl.value);
-      this.allTeamsForGroupStageObject.items.push(itemObject);
-
-      this.homeTeamControl.setValue('');
-    });
-  }
 
 }

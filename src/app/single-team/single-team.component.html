@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <img src="assets/img/logos/{{team.nickname}}.jpg" class="trophy">
+    <img src="assets/img/logos/{{team.teamName}}.jpg" class="trophy">
   </div>
 </div>
 
@@ -176,7 +176,6 @@
       
       <app-custom-matches *ngIf="!!teamMatches"
       [dataSourceNew]="teamMatches"
-      [logos]="oponentsLogos"
       [currentTeam]="team.teamName"
       [matCardTitle]="'Last 5 matches'"
       [matCardSubtitle]="'Most recent'"

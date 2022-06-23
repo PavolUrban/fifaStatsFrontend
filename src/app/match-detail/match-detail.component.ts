@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Matches } from '../matches';
-import { FileService } from '../services/file.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatchesService } from '../services/matches.service';
@@ -11,9 +10,8 @@ import { MatchesService } from '../services/matches.service';
   templateUrl: './match-detail.component.html',
   styleUrls: ['./match-detail.component.scss']
 })
-export class MatchDetailComponent implements OnInit, OnDestroy {
+export class MatchDetailComponent {
 
-  subscription: Subscription = new Subscription();
   match: Matches;
   goalscorersHome = [];
   goalscorersAway = [];
@@ -23,7 +21,7 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
   redCardsAway = [];
 
 
-  constructor(private dialogRef: MatDialogRef<MatchDetailComponent>, @Inject(MAT_DIALOG_DATA) data, private fileService: FileService,
+  constructor(@Inject(MAT_DIALOG_DATA) data,
               private router: Router, private matchesService: MatchesService) {
     this.match = data['match'];
     console.log("detail");
@@ -63,21 +61,6 @@ export class MatchDetailComponent implements OnInit, OnDestroy {
 
     else //team has only one player in this section
       arrayToFill.push(teamRecord);
-  }
-
-  homeTeamLogo;
-  awayTeamLogo;
-
-  ngOnInit() {
-  this.subscription =  this.fileService.getMatchLogos(this.match.hometeam, this.match.awayteam).subscribe(data=>{
-    this.homeTeamLogo = data[this.match.hometeam];
-    this.awayTeamLogo = data[this.match.awayteam];
-  });
-  }
-
-  ngOnDestroy()
-  {
-    this.subscription.unsubscribe();
   }
 
 

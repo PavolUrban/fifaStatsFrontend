@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Subscription } from 'rxjs';
-import { FileService } from '../services/file.service';
 import { GeneralService } from '../services/general.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class NewGoalscorersComponent implements OnInit {
   showView = new Map([["Total", false], ["CL", false], ["EL", false]]);
   allLogos;
   
-  constructor(private generalService: GeneralService, private fileService: FileService) { }
+  constructor(private generalService: GeneralService) { }
 
   ngOnInit(): void {
 
@@ -31,13 +30,7 @@ export class NewGoalscorersComponent implements OnInit {
       });
     } else {
       this.subscription = this.generalService.getAllTopGoalScorers().subscribe(data=>{
-        this.allTeamGoalScorers = data;
-       // TODO remove soon this.generalService.insertGoalscorersToNewTable(data['Total']).subscribe();
-        this.fileService.getAllLogos().subscribe(data=>{
-          this.allLogos = data;
-          this.prepareData();
-        });
-       
+        this.allTeamGoalScorers = data;       
       });
     }
 

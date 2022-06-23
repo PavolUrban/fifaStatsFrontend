@@ -58,9 +58,7 @@
 
 
           <div class="resultContainer">
-            <ng-container *ngFor="let logo of logos | keyvalue">
-              <img *ngIf="logo.value['teamname'] === element.hometeam" [src]="'data:image/gif;base64,'+logo.value['pic']" matTooltip="{{element.hometeam}}" alt="" class="iconSize cursor-pointer" (click)="goToTeamView(element.hometeam)">
-            </ng-container>
+            <img src="assets/img/logos/{{element.hometeam}}.jpg" matTooltip="{{element.hometeam}}" alt="" class="iconSize cursor-pointer" (click)="goToTeamView(element.hometeam)">
             <div class="wrapper">
               <span class="bookTitle">
                 {{element.hometeam}} <br/>
@@ -86,9 +84,7 @@
         <td mat-cell *matCellDef="let element" class="cursor-pointer" [ngClass]="{'matchWinner': (element.winner===currentTeam && element.awayteam===currentTeam)}" (click)=goToTeamView(element.awayteam)>
  
           <div class="resultContainer">
-            <ng-container *ngFor="let logo of logos | keyvalue">
-              <img *ngIf="logo.value['teamname'] === element.awayteam" [src]="'data:image/gif;base64,'+logo.value['pic']" matTooltip="{{element.awayteam}}" alt="" class="iconSize cursor-pointer" (click)="goToTeamView(element.awayteam)">
-            </ng-container>
+            <img src="assets/img/logos/{{element.awayteam}}.jpg" matTooltip="{{element.awayteam}}" alt="" class="iconSize cursor-pointer" (click)="goToTeamView(element.awayteam)">
             <div class="wrapper">
               <span class="bookTitle">
                 {{element.awayteam}} <br/>

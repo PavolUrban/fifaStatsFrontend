@@ -25,7 +25,6 @@ export class CustomMatchesComponent implements OnInit {
   @Input() matCardSubtitle: string;
   @Input() matCardTitle: string;
   @Input() initPageSize: number = 5;
-  @Input() logos;
 
   @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
   @ViewChild(MatSort, { static: true }) sort : MatSort;
@@ -59,6 +58,8 @@ export class CustomMatchesComponent implements OnInit {
 
   ngOnInit() {
     this.matchesService.getCompetitionPhasesAndSeasonList().subscribe(data=>{
+      console.log("datasource new");
+      console.log(this.dataSourceNew);
       this.setNewDataSource(this.dataSourceNew);
       this.competitionsPhases.set('CL', data['competitionsPhasesCL']);
       this.competitionsPhases.set('EL', data['competitionsPhasesEL']);

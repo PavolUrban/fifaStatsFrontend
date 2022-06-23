@@ -4,7 +4,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { Teams } from '../teams';
 import { TeamsService } from '../services/teams.service';
-import { FileService } from '../services/file.service';
 
 @Component({
   selector: 'app-new-team-dialog',
@@ -19,8 +18,8 @@ export class NewTeamDialogComponent implements OnInit {
   uploadForm: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<NewTeamDialogComponent>, private httpClient: HttpClient,
-              private teamsService : TeamsService, @Inject(MAT_DIALOG_DATA) data, private fileService : FileService)
+  constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<NewTeamDialogComponent>,
+              private teamsService : TeamsService, @Inject(MAT_DIALOG_DATA) data)
   {
 
     if(data)
@@ -77,10 +76,7 @@ onFileSelect(event) {
     const formData = new FormData();
     formData.append('uploadfile', this.uploadForm.get('profile').value);
 
-    this.teamsService.createNewTeam(this.team).subscribe( x=>
-      {
-        this.fileService.save(this.team.teamName, formData).subscribe();
-      });
+    this.teamsService.createNewTeam(this.team).subscribe( x=> { });
 
   }
 

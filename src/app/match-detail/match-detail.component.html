@@ -10,13 +10,15 @@
 
     <div class="d-flex justify-content-center">
       <div class="col-sm-5 d-flex justify-content-center"  (click)="goToTeamView(match.hometeam)">
-        <img *ngIf="homeTeamLogo" [src]="'data:image/gif;base64,'+homeTeamLogo['pic']" alt="" class="iconSize">
+        todo add nckname
+        <!-- <img *ngIf="homeTeamLogo" [src]="'data:image/gif;base64,'+homeTeamLogo['pic']" alt="" class="iconSize"> -->
       </div>
       <div class="col-sm-2 d-flex justify-content-center align-items-center">
         <strong class="result">  {{match.scorehome}} : {{match.scoreaway}}</strong>
       </div>
       <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.awayteam)">
-        <img *ngIf="awayTeamLogo" [src]="'data:image/gif;base64,'+awayTeamLogo['pic']" alt="" class="iconSize mr-1" >
+        todo add nickname
+        <!-- <img *ngIf="awayTeamLogo" [src]="'data:image/gif;base64,'+awayTeamLogo['pic']" alt="" class="iconSize mr-1" > -->
       </div>
     </div>
 

@@ -2,13 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, Observable, startWith, Subscription } from 'rxjs';
 import { Matches } from '../matches';
-import { FileService } from '../services/file.service';
 import { MatchesService } from '../services/matches.service';
 import { TeamsService } from '../services/teams.service';
-import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-create-match',
@@ -61,7 +58,6 @@ export class CreateMatchComponent implements OnInit {
   id: number;
   
   constructor(
-    private fileService: FileService, 
     private teamsService: TeamsService,
     private matchesService: MatchesService, 
     private dialogRef: MatDialogRef<CreateMatchComponent>,
@@ -156,20 +152,8 @@ export class CreateMatchComponent implements OnInit {
       this.dialogRef.close(false);
 
     }
-    
-
-
   }
 
-  getTeamLogo(event, whichTeam: string): void {    
-    this.fileService.getSingleTeamLogo(event.option.value).subscribe(data=>{
-      if (whichTeam === 'home') {
-        this.homeLogoSrc = data['logo']['pic'];
-      } else {
-        this.awayLogoSrc = data['logo']['pic'];
-      } 
-    });
-  }
 
   checkIfMatchIsToUpdate() {
     this.cardTitle = "Update match";
@@ -200,12 +184,6 @@ export class CreateMatchComponent implements OnInit {
     if (this.redCardsEnabled) {
       this.redCardsRecord = matchToUpdate.redcards;
     }
-
-    this.fileService.getMatchLogos(matchToUpdate.hometeam, matchToUpdate.awayteam).subscribe(data=>{
-      this.homeLogoSrc = data[matchToUpdate.hometeam]['pic'];
-      this.awayLogoSrc = data[matchToUpdate.awayteam]['pic'];
-      this.allDataPrepared = true;
-    });
   
   }
 

@@ -14,6 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { TeamsListsComponent } from './teams-lists/teams-lists.component';
+import {MatBadgeModule} from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -110,6 +111,7 @@ import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/g
     AppRoutingModule,
     HttpClientModule,
     MatButtonModule,
+    MatBadgeModule,
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,

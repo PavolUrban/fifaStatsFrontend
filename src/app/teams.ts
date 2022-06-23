@@ -1,5 +1,6 @@
 export class Teams {
     teamName: string;
+    nickname: string;
     logo: string;
     firstSeasonCL: string;
     firstSeasonEL: string;

@@ -142,9 +142,10 @@ export class CreateMatchComponent implements OnInit {
       this.matchesService.updateMatch(this.match).subscribe();
       this.dialogRef.close(true);
     } else {
-      alert("nothing saved now. you need to implement new recordsInMatches approach as it is implemented in updateMatch method");
-      console.log("nothing saved now. you need to implement new recordsInMatches approach as it is implemented in updateMatch method");
-      //this.matchesService.createMatch(this.match).subscribe();
+
+      console.log('ukladam');
+      console.log(this.match);+
+      this.matchesService.createMatch(this.match).subscribe();
       this.dialogRef.close(false);
 
     }

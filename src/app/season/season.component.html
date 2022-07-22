@@ -2,6 +2,7 @@
   <h1 class="pageTitleFormat">{{competitionName}} - {{seasonName}}</h1>
 </div>
 
+<!-- Season stats -->
 <app-season-stats
   [pavolJayWins]="pavolJayWinCount"
   [kotlikWins]="kotlikWinCount"
@@ -14,29 +15,26 @@
   >
 </app-season-stats>
 
+<!-- Goalscorers -->
 <div class="row">
-  
-  <div class="col-sm-4">
+  <div class="col-lg-12 col-xl-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Group stage</h1>
     <mat-card>
       <app-goalscorers-the-newest-one *ngIf="topGoalscorersGroupStage" [data]="topGoalscorersGroupStage" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
-
-  <div class="col-sm-4">
+  <div class="col-lg-12 col-xl-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Play/off</h1>
     <mat-card>
       <app-goalscorers-the-newest-one *ngIf="topGoalscorersPlayOffs" [data]="topGoalscorersPlayOffs" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
-
-  <div class="col-sm-4">
+  <div class="col-lg-12 col-xl-4">
     <h1 class="groupStageHeaderFormat pl-15">Top scorers - Total</h1>
     <mat-card>
       <app-goalscorers-the-newest-one *ngIf="topGoalscorersTotal" [data]="topGoalscorersTotal" [pageSize]="5"></app-goalscorers-the-newest-one>
     </mat-card>
   </div>
-
 </div>
 
 

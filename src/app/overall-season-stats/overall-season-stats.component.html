@@ -1,0 +1,70 @@
+<div class="row">
+
+  <!-- Overall stats -->
+  <div class="col-sm-6">
+    <h1 class="groupStageHeaderFormat pl-15">Overall stats</h1>
+    <table class="customTable table table-sm table-hover">
+      <tbody>
+        <tr>
+          <th></th>
+          <th>Group stage</th>
+          <th>Playoffs</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <th>Matches</th>
+          <td>{{stats.matchesCount[0]}}</td>
+          <td>{{stats.matchesCount[1]}} </td>
+          <td>{{stats.matchesCount[2]}}</td>
+        </tr>
+        <tr>
+          <th>Goals</th>
+          <td>{{stats.goalsCount[0]}} ({{ (stats.goalsCount[0] / stats.matchesCount[0]) || 0 | number:'1.1-1' }})</td>
+          <td>{{stats.goalsCount[1]}} ({{ (stats.goalsCount[1] / stats.matchesCount[1]) || 0 | number:'1.1-1' }})</td>
+          <td>{{stats.goalsCount[2]}} ({{ (stats.goalsCount[2] / stats.matchesCount[2]) || 0 | number:'1.1-1' }})</td>
+        </tr>
+        <tr>
+          <th>Yellow cards</th>
+          <td>x</td>
+          <td>y</td>
+          <td>z</td>
+        </tr>
+        <tr>
+          <th>Red cards</th>
+          <td>x</td>
+          <td>y</td>
+          <td>z</td>
+        </tr>
+        <tr>
+          <th>Pavol Jay</th>
+          <td>x</td>
+          <td>
+            <span class="badge badge-success mr-1"> a </span>-
+            <span class="badge badge-warning mr-1">b </span>-
+            <span class="badge badge-danger mr-1"> c </span>
+          <td>z</td>
+        </tr>
+        <tr>
+          <th>Kotlik</th>
+          <td> x</td>
+          <td>
+            <span class="badge badge-success"> a </span>-
+            <span class="badge badge-warning">b </span>-
+            <span class="badge badge-danger"> c </span>
+          </td>
+          <td>z</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Winners part -->
+  <div class="col-sm-6">
+    <img src='assets/img/{{competition}}Trophy.png' class="trophy" />
+    <p class="center" style='line-height: 20px'>
+      <img src="assets/img/logos/{{stats.winnerTeam}}.jpg" class="winningTeam" />
+      Winner is <b>{{stats.winnerTeam}}</b> managed by <b>{{stats.winnerPlayer}}</b>
+      <img src='assets/img/{{stats.winnerPlayer}}.jpg' alt="" class="winnerPlayer">
+    </p>
+  </div>
+</div>

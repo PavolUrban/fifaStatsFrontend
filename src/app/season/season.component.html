@@ -2,18 +2,11 @@
   <h1 class="pageTitleFormat">{{competitionName}} - {{seasonName}}</h1>
 </div>
 
-<!-- Season stats -->
-<app-season-stats
-  [pavolJayWins]="pavolJayWinCount"
-  [kotlikWins]="kotlikWinCount"
-  [draws]="drawsCount"
-  [goals]="goalsCount"
-  [matches]="matchesCount"
+<app-overall-season-stats *ngIf="overallStats"
   [competition]="competition"
-  [winnerTeam]="winnerTeam"
-  [winnerPlayer]="winnerPlayer"
+  [stats]="overallStats"
   >
-</app-season-stats>
+</app-overall-season-stats>
 
 <!-- Goalscorers -->
 <div class="row">
@@ -66,10 +59,9 @@
               [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': (i==2 && competition==='CL'), 'outOfCompetition': i==3 || (i==2 && competition==='EL')}"
             >
               <td>{{i+1}}.</td>
-              <td> 
+              <td matTooltip="Team managed by {{team.ownedByPlayer}}" matTooltipPosition="after"> 
                 <img src="assets/img/logos/{{team.teamname}}.jpg" alt="" class="iconSize mr-1 cursor-pointer" (click)="goToTeamView(team.teamname)"> 
                 <span class="cursor-pointer" (click)="goToTeamView(team.teamname)">{{team.teamname}}</span>
-                <small> {{team.ownedByPlayer}}</small>
               </td>
               <td>
                 <span class="badge badge-success" *ngIf="i == 0 || i ==1">Q</span>
@@ -95,7 +87,7 @@
 
     <div class="col-sm-5">
       <mat-card>
-        <app-goalscorers-the-newest-one [data]="goalscorers[group.key]" [singleGroupStageLogos]="true" [pageSize]="5"></app-goalscorers-the-newest-one>
+        <app-goalscorers-the-newest-one [data]="goalscorersPerGroup[group.key]" [pageSize]="5"></app-goalscorers-the-newest-one>
       </mat-card>
     </div>
 

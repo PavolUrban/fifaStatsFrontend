@@ -18,7 +18,6 @@ export class GoalscorersTheNewestOneComponent implements OnInit {
 
   @Input() data;
   @Input() pageSize = 15;
-  @Input() singleGroupStageLogos = false;
   @Input() displayNumberOfTeamsPlayerScored = false;
 
   dataSource;

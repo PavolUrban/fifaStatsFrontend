@@ -47,7 +47,7 @@ import { PlayerTeamsDialogComponent } from './player-teams-dialog/player-teams-d
 import { TeamTopGoalscorersComponent } from './team-top-goalscorers/team-top-goalscorers.component';
 import { GroupMatchesDialogComponent } from './group-matches-dialog/group-matches-dialog.component';
 import { CustomMatchesComponent } from './custom-matches/custom-matches.component';
-import { SeasonStatsComponent } from './season-stats/season-stats.component';
+import { OverallSeasonStatsComponent } from './overall-season-stats/overall-season-stats.component';
 import { FinalMatchComponent } from './final-match/final-match.component';
 import { H2HComponent } from './h2-h/h2-h.component';
 import { CreateMatchComponent } from './create-match/create-match.component';
@@ -86,7 +86,7 @@ import { RecordInMatchComponent } from './record-in-match/record-in-match.compon
     TeamTopGoalscorersComponent,
     GroupMatchesDialogComponent,
     CustomMatchesComponent,
-    SeasonStatsComponent,
+    OverallSeasonStatsComponent,
     FinalMatchComponent,
     H2HComponent,
     CreateMatchComponent,

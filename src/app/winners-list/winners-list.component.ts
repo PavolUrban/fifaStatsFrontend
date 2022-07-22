@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,26 +15,16 @@ export class WinnersListComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
   @ViewChild(MatSort, { static: true }) sort : MatSort;
-
   @ViewChild('tabGroup') tabGroup;
 
-
   displayedColumns: string[] = ['season','player','teamname','runnerUp'];
-  // clw.setPlayerName(pc.whoIsWinnerOfMatch(match, "Pavol Jay", "Kotlik"));
-  // clw.setSeason(match.getSeason());
-  // clw.setTeamName(match.getWinner());
-  // clw.setTeamLogo(fileRepository.findByTeamname(match.getWinner()));
   dataSource ;
-
-
 
   constructor(private generalService: GeneralService, private router: Router) { }
 
   ngOnInit(): void {
-
-        
     this.generalService.getWinnersList('CL').subscribe(data=>{
-      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data))); //JSON.parse(JSON.stringify(data['matches'].slice(0, 6)))
+      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
@@ -52,7 +42,7 @@ export class WinnersListComponent implements OnInit {
     let competitionName = this.getCompetitionName();
 
     this.generalService.getWinnersList(competitionName).subscribe(data=>{
-      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data))); //JSON.parse(JSON.stringify(data['matches'].slice(0, 6)))
+      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });

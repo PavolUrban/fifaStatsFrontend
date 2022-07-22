@@ -1,62 +1,40 @@
 <mat-card>
-  <mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)" animationDuration="0ms" >
-    <mat-tab label="Champions league">
-    </mat-tab>
-    <mat-tab label="European league">
-      
-    </mat-tab>
+  <mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)" animationDuration="0ms">
+    <mat-tab label="Champions league"></mat-tab>
+    <mat-tab label="European league"></mat-tab>
   </mat-tab-group>
-
   <mat-card-content>
-  <table mat-table [dataSource]="dataSource" matSort class="table-hover">
-
-    <ng-container matColumnDef="season">
-      <th mat-header-cell *matHeaderCellDef> Season </th>
-      <td mat-cell *matCellDef="let element" (click)="goToSeasonView(element.season)" class="cursor-pointer" matTooltip="Go to {{getCompetitionName()}} - {{element.season}}"> {{element.season}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="player">
-      <th mat-header-cell *matHeaderCellDef> Player </th>
-      <td mat-cell *matCellDef="let element" [ngClass]="{'pavolJayTeam': element.playerName==='Pavol Jay', 'kotlikTeam': element.playerName === 'Kotlik'}"> 
-        {{element.playerName}}
-        <!-- TODO use this for CL and EL together -->
-        <!-- <span [ngClass]="{'pavolJayTeam': element.playerNameEL==='Pavol Jay', 'kotlikTeam': element.playerNameEL === 'Kotlik'}">{{element.playerNameEL}}</span>
-        <br>
-        <span [ngClass]="{'pavolJayTeam': element.playerNameCL==='Pavol Jay', 'kotlikTeam': element.playerNameCL === 'Kotlik'}">{{element.playerNameCL}}</span> -->
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="teamname">
-      <th mat-header-cell *matHeaderCellDef> Winner </th>
-      <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.teamName}} view " *matCellDef="let element" (click)="goToTeamView(element.teamName)">
-        <img src="assets/img/logos/{{element.teamName}}.jpg" alt="" class="iconSize mr-1">
-        <b>{{element.teamName}}</b> 
-        <!-- TODO use this for CL and EL together -->
-        <!-- <img *ngIf="element.teamLogoEL" [src]="'data:image/gif;base64,'+element.teamLogoEL.pic" alt="" class="iconSize mr-1"> <span>{{element.teamNameEL}}</span> 
-        <br>
-        <img *ngIf="element.teamLogoCL" [src]="'data:image/gif;base64,'+element.teamLogoCL.pic" alt="" class="iconSize mr-1"> <span>{{element.teamNameCL}}</span>  -->
-
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="runnerUp">
-      <th mat-header-cell *matHeaderCellDef> Runner-up </th>
-      <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.runnerUp}} view " *matCellDef="let element" (click)="goToTeamView(element.runnerUp)">
-        <img src="assets/img/logos/{{element.runnerUp}}.jpg" alt="" class="iconSize mr-1">{{element.runnerUp}}
-        <!-- <img *ngIf="element.teamLogo" [src]="'data:image/gif;base64,'+element.teamLogo.pic" alt="" class="iconSize mr-1">{{element.teamName}} -->
-       
-
-      </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" class="table-row"></tr>
-  </table>
-  <!-- [pageSize]="paginatorDefaultItems"  [pageIndex]="currentPage" (page)="pageEvent = $event"-->
-   <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" pageSize="10"></mat-paginator>
-  
-  
-      </mat-card-content>
-
-    </mat-card>
-  
+    <table mat-table [dataSource]="dataSource" matSort class="table-hover">
+      <ng-container matColumnDef="season">
+        <th mat-header-cell *matHeaderCellDef> Season </th>
+        <td mat-cell *matCellDef="let element" (click)="goToSeasonView(element.season)" class="cursor-pointer"
+          matTooltip="Go to {{getCompetitionName()}} - {{element.season}}"> {{element.season}}</td>
+      </ng-container>
+      <ng-container matColumnDef="player">
+        <th mat-header-cell *matHeaderCellDef> Player </th>
+        <td mat-cell *matCellDef="let element"
+          [ngClass]="{'pavolJayTeam': element.playerName==='Pavol Jay', 'kotlikTeam': element.playerName === 'Kotlik'}">
+          {{element.playerName}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="teamname">
+        <th mat-header-cell *matHeaderCellDef> Winner </th>
+        <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.teamName}} view "
+          *matCellDef="let element" (click)="goToTeamView(element.teamName)">
+          <img src="assets/img/logos/{{element.teamName}}.jpg" alt="" class="iconSize mr-1">
+          <b>{{element.teamName}}</b>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="runnerUp">
+        <th mat-header-cell *matHeaderCellDef> Runner-up </th>
+        <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.runnerUp}} view "
+          *matCellDef="let element" (click)="goToTeamView(element.runnerUp)">
+          <img src="assets/img/logos/{{element.runnerUp}}.jpg" alt="" class="iconSize mr-1">{{element.runnerUp}}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" class="table-row"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" pageSize="15"></mat-paginator>
+  </mat-card-content>
+</mat-card>

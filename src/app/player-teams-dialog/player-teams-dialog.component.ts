@@ -31,11 +31,7 @@ export class PlayerTeamsDialogComponent implements OnInit {
         console.log(data)
         this.playerName = data['name']
       }
-
-    
-
-
-
+      
     fifaPlayerService.getAllPlayerStats(this.playerName).subscribe(data=>{
       this.statsPerSeason = data['playerStatsPerSeason'];
       console.log("toto su stats pre playera");

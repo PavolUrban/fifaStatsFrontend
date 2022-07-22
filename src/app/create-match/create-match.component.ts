@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { map, Observable, startWith, Subscription } from 'rxjs';
 import { Matches } from '../matches';
 import { MatchesService } from '../services/matches.service';
@@ -15,7 +14,6 @@ import { TeamsService } from '../services/teams.service';
 export class CreateMatchComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
-
   homeTeamControl = new FormControl();
   awayTeamControl = new FormControl();
   teamsList: string[] = [];
@@ -27,23 +25,14 @@ export class CreateMatchComponent implements OnInit {
   awayPlayersControl = new FormControl();
   playersHome: string [];
   playersAway: string [];
-
   seasonsList: string[];
   selectedSeason: string;
   competitionsList: string[];
   selectedCompetition = 'CL'; //default
   competitionsPhases = new Map([["CL", []], ["EL",[]]]);
   competitionPhase = 'GROUP A'; // default
-
-  goalscorersEnabled = false;
-  goalscorersRecord: string;
-  yellowCardsEnabled = false;
-  yellowCardsRecord: string;
-  redCardsEnabled = false;
-  redCardsRecord: string;
-
   match: Matches = new Matches();
-
+  id: number;
   dialogData;
   cardTitle = 'Create new match';
 
@@ -52,22 +41,15 @@ export class CreateMatchComponent implements OnInit {
   localStorageKeyCompetition = 'lastSelectedCompetition';
   localStorageKeyCompetitionPhase = 'lastSelectedCompetitionPhase';
   localStorageKeySeason = 'lastSelectedSeason';
-
-  id: number;
+ 
   
-  constructor(
-    private teamsService: TeamsService,
-    private matchesService: MatchesService, 
-    private dialogRef: MatDialogRef<CreateMatchComponent>,
-    @Inject(MAT_DIALOG_DATA) dialogData)
-  {
+  constructor( private teamsService: TeamsService, private matchesService: MatchesService, private dialogRef: MatDialogRef<CreateMatchComponent>,
+    @Inject(MAT_DIALOG_DATA) dialogData){
     this.dialogData = dialogData;
   }
 
   ngOnInit() {
-
-    this.subscription = this.teamsService.getTeamNames().subscribe(data=>
-      {
+    this.subscription = this.teamsService.getTeamNames().subscribe(data => {
         this.teamsList = data as string[];
   
         this.filteredOptionsHomeTeam = this.homeTeamControl.valueChanges.pipe(
@@ -81,7 +63,7 @@ export class CreateMatchComponent implements OnInit {
         );
       });
 
-      this.subscription = this.matchesService.getDataToCreateMatch().subscribe(data=>{
+      this.subscription = this.matchesService.getDataToCreateMatch().subscribe(data => {
         this.seasonsList = data['seasonsList'];
         this.playersHome = data['playerNamesList'];
         this.playersAway = data['playerNamesList'];
@@ -92,13 +74,15 @@ export class CreateMatchComponent implements OnInit {
         this.selectedCompetition = this.checkLocalStorageOrSetDefault(this.localStorageKeyCompetition, 'CL');
         this.competitionPhase = this.checkLocalStorageOrSetDefault(this.localStorageKeyCompetitionPhase, 'GROUP A');
         this.selectedSeason = this.checkLocalStorageOrSetDefault(this.localStorageKeySeason, this.seasonsList[this.seasonsList.length - 1])
-
         if(this.dialogData) {
           this.checkIfMatchIsToUpdate();
         } else {
           this.allDataPrepared = true;
         }
       });
+
+
+      
   }
 
   checkLocalStorageOrSetDefault (localStorageKey: string, defaultValue): string {
@@ -106,14 +90,6 @@ export class CreateMatchComponent implements OnInit {
       return localStorage.getItem(localStorageKey);
     } else {
       return defaultValue;
-    }
-  }
-
-  resetTeamControl(homeOrAwayControl){
-    if(homeOrAwayControl === 'home'){
-      this.homeTeamControl.setValue('');
-    } else {
-      this.awayTeamControl.setValue('');
     }
   }
 
@@ -132,30 +108,21 @@ export class CreateMatchComponent implements OnInit {
     this.match.season = this.selectedSeason;
     this.match.competition = this.selectedCompetition;
     this.match.competitionPhase = this.competitionPhase;
-    this.match.goalscorers = this.goalscorersRecord;
-    this.match.yellowcards = this.yellowCardsRecord;
-    this.match.redcards = this.redCardsRecord;
-    
 
     if(this.dialogData){
       this.match.id = this.id;
       this.matchesService.updateMatch(this.match).subscribe();
-      this.dialogRef.close(true);
     } else {
-
-      console.log('ukladam');
-      console.log(this.match);+
       this.matchesService.createMatch(this.match).subscribe();
-      this.dialogRef.close(false);
-
     }
+
+    this.dialogRef.close(true);
   }
 
 
   checkIfMatchIsToUpdate() {
     this.cardTitle = "Update match";
     let matchToUpdate: Matches = this.dialogData.match;
-
     this.homeTeamControl.setValue(matchToUpdate.hometeam);
     this.awayTeamControl.setValue(matchToUpdate.awayteam);
     this.scoreHome = matchToUpdate.scorehome;
@@ -165,25 +132,8 @@ export class CreateMatchComponent implements OnInit {
     this.selectedSeason = matchToUpdate.season;
     this.selectedCompetition = matchToUpdate.competition;
     this.competitionPhase = matchToUpdate.competitionPhase;
-    this.goalscorersEnabled = matchToUpdate.goalscorers === null || matchToUpdate.goalscorers === 'null'  ? false: true;
-    this.yellowCardsEnabled = matchToUpdate.yellowcards === null || matchToUpdate.yellowcards === 'null'  ? false: true;
-    this.redCardsEnabled = matchToUpdate.redcards === null || matchToUpdate.redcards === 'null'  ? false: true;
     this.id = matchToUpdate.id;
-    
-    if (this.goalscorersEnabled) {
-      this.goalscorersRecord = matchToUpdate.goalscorers;
-    }
-    
-    if (this.yellowCardsEnabled) {
-      this.yellowCardsRecord = matchToUpdate.yellowcards;
-    }
-
-    if (this.redCardsEnabled) {
-      this.redCardsRecord = matchToUpdate.redcards;
-    }
-  
   }
-
 
   playerChanged(event, player: string): void {
     let value = event.value;
@@ -191,9 +141,9 @@ export class CreateMatchComponent implements OnInit {
 
     // note players home and away contain the same values so it doesn't matter which one we iterate
     this.playersHome.forEach(element => {
-        if(element !== value){
-          opositeValue = element;
-        }
+      if(element !== value){
+        opositeValue = element;
+      }
     });
 
     if(player==='homePlayer'){
@@ -208,18 +158,7 @@ export class CreateMatchComponent implements OnInit {
     this.competitionPhase = 'GROUP A';   // reset to default
   }
 
-  resetProperRecordValue(event: MatSlideToggleChange, record: string){
-    if( record === 'goalscorers' && !event.checked){
-      this.goalscorersRecord = null 
-    } else if ( record === 'yellowcards' && !event.checked) {
-      this.yellowCardsRecord = null;
-    } else if ( record === 'redcards' && !event.checked) {
-      this.redCardsRecord = null;
-    }
-  }
-
   updateLocalStorage(key: string, value: string){
     localStorage.setItem(key, value);
   }
-
 }

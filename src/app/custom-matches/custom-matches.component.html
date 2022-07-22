@@ -114,6 +114,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let element; let i = index;">
           <mat-icon class="iconAnimation" matTooltip="Edit match" (click)="editMatch(element)">edit</mat-icon>
+          <mat-icon class="iconAnimation" matTooltip="Edit match" (click)="addMatchDetails(element)">remove_red_eye</mat-icon>
           <mat-icon class="iconAnimation" matTooltip="View match details" (click)="openMatchDetail(element)">search</mat-icon>
         </td>
       </ng-container>

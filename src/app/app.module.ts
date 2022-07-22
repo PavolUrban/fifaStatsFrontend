@@ -64,6 +64,7 @@ import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GoalscorersWrapperComponent } from './goalscorers-wrapper/goalscorers-wrapper.component';
 import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/goalscorers-the-newest-one.component';
+import { RecordInMatchComponent } from './record-in-match/record-in-match.component';
 
 
 
@@ -99,7 +100,8 @@ import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/g
     GenerateGroupStageComponent,
     CreateMatchWrapperComponent,
     GoalscorersWrapperComponent,
-    GoalscorersTheNewestOneComponent
+    GoalscorersTheNewestOneComponent,
+    RecordInMatchComponent
   ],
   imports: [
     BrowserModule,
@@ -141,6 +143,7 @@ import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/g
     CreateMatchComponent,
     NewTeamDialogComponent,
     MatchDetailComponent,
+    RecordInMatchComponent,
     PlayerTeamsDialogComponent,
     GroupMatchesDialogComponent
   ]

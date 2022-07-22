@@ -4,19 +4,19 @@
 
 <div class="row">
 
-  <div class="col-sm-4">
+  <div class="col-lg-12 col-xl-4">
     <h1 class="groupStageHeaderFormat">Goalscorers</h1>
     <mat-card>
       <app-goalscorers-wrapper [displayNumberOfTeamsPlayerScored]="true" [pageSize]="15"></app-goalscorers-wrapper>
     </mat-card>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-lg-12 col-xl-4">
     <h1 class="groupStageHeaderFormat">Winners list</h1>
     <app-winners-list></app-winners-list>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-lg-12 col-xl-4">
     <h1 class="groupStageHeaderFormat">Trophy room</h1>
 
     <mat-card *ngIf="!!trophyRoom"> 

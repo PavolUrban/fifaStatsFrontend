@@ -13,4 +13,13 @@ export class FifaPlayerService {
   getAllPlayerStats(playerName: string) {
     return this.http.get(`${this.baseUrl}/getStats/${playerName}`);
   }
+
+  getAllPlayers(){
+    return this.http.get(`${this.baseUrl}/getPlayerNames`);
+  }
+
+  savePlayerStat(playerName: string, recordType: string, recordSignature: string, details: string, teamName: string, matchId: number) {
+    return this.http.post(`${this.baseUrl}/savePlayerRecord`, {playerName, recordType, recordSignature, details, teamName, matchId});
+
+  }
 }

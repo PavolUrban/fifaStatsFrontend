@@ -17,47 +17,63 @@
       </div>
       <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.awayteam)">
         <img src="assets/img/logos/{{match.awayteam}}.jpg" alt="" class="iconSize mr-1">
-
       </div>
     </div>
 
 
     <div class="d-flex justify-content-center mt-3 mb-5">
       <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.hometeam)">
-      <strong> {{match.hometeam}}</strong>
+      <div style="display: flex; flex-direction: column; justify-content: center;">
+        <strong> {{match.hometeam}}</strong>
+        {{match.playerH}}
+      </div>
       </div>
       <div class="col-sm-2 d-flex justify-content-center"></div>
 
       <div class="col-sm-5 d-flex justify-content-center" (click)="goToTeamView(match.awayteam)">
-        <strong> {{match.awayteam}}</strong>
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <strong> {{match.awayteam}}</strong>
+          {{match.playerA}}
+        </div>
       </div>
 
     </div>
 
 
-        <table  class="table table-sm mt-3 table-hover">
+      <table  class="table table-sm mt-3 table-hover">
       <tbody>
         <tr>
-          <td>{{match.hometeam}} managed by</td>
-          <th>{{match.playerH}}</th>
+          
         </tr>
-        <tr>
-          <td>{{match.awayteam}} managed by</td>
-          <th>{{match.playerA}}</th>
+
+        <!-- todo vyriesit ked su 2 eventy v rovnaky cas - aj v ramci ineho timu  -->
+        <tr *ngFor="let event of events" style="position: relative;">
+          <!-- todo style it nicer - put it in flex--> 
+          <td style="width: 360px">
+            <ng-container *ngIf="event.teamName === match.hometeam">
+              {{event.minute}}'
+              <span *ngIf="event.recordType==='G'" class="material-icons">sports_soccer</span>
+              <span *ngIf="event.recordType.includes('OG')" class="material-icons " style="color: red;">sports_soccer</span>
+              <span *ngIf="event.recordType==='YC'" class="badge badge-warning" matTooltip="Yellow cards">Y</span>
+              <span *ngIf="event.recordType==='RC'" class="badge badge-danger" matTooltip="Red cards">R </span>
+               {{event.playerName}}  
+            </ng-container>
+          </td>
+          <td style="width: 360px">
+            <ng-container *ngIf="event.teamName === match.awayteam">
+              {{event.minute}}'
+              <span *ngIf="event.recordType==='G'" class="material-icons">sports_soccer</span>
+              <span *ngIf="event.recordType.includes('OG')" class="material-icons " style="color: red;">sports_soccer</span>
+              <span *ngIf="event.recordType==='YC'" class="badge badge-warning" matTooltip="Yellow cards">Y</span>
+              <span *ngIf="event.recordType==='RC'" class="badge badge-danger" matTooltip="Red cards">R </span>
+               {{event.playerName}}  
+            </ng-container>
+          </td>
+ 
         </tr>
-        <tr>
-          <th>Goals</th>
-          <td>{{goalscorersHome.toString()}} - {{goalscorersAway.toString()}}</td>
-        </tr>
-        <tr>
-          <th>Yellow cards</th>
-          <td>{{yellowCardsHome.toString()}} - {{yellowCardsAway.toString()}}</td>
-        </tr>
-        <tr>
+        <!-- <tr>
           <th>Red cards</th>
-          <td>{{redCardsHome.toString()}} - {{redCardsAway.toString()}}</td>
-        </tr>
+          <td><span class="material-icons">sports_soccer</span></td>
+        </tr> -->
       </tbody>
     </table>
-
-

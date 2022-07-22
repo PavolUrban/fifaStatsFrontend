@@ -12,6 +12,7 @@ import { CreateMatchComponent } from '../create-match/create-match.component';
 import { MatchesService } from '../services/matches.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { RecordInMatchComponent } from '../record-in-match/record-in-match.component';
 
 @Component({
   selector: 'app-custom-matches',
@@ -80,6 +81,19 @@ export class CustomMatchesComponent implements OnInit {
     };
 
     this.dialog.open(MatchDetailComponent, dialogConfig);
+  }
+
+  addMatchDetails(match)
+  {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
+    dialogConfig.minWidth = '750px';
+    dialogConfig.minHeight = '600px';
+    dialogConfig.data = {
+      match: match
+    };
+
+    this.dialog.open(RecordInMatchComponent, dialogConfig);
   }
 
   applyFilter(event: Event) {

@@ -1,9 +1,9 @@
-<div class="row">
+<div class="grid grid-cols-2">
 
   <!-- Overall stats -->
-  <div class="col-sm-6">
+  <div>
     <h1 class="groupStageHeaderFormat pl-15">Overall stats</h1>
-    <table class="customTable table table-sm table-hover">
+    <table class="rounded box shadow bg-white table table-sm table-hover">
       <tbody>
         <tr>
           <th></th>
@@ -59,12 +59,17 @@
   </div>
 
   <!-- Winners part -->
-  <div class="col-sm-6">
-    <img src='assets/img/{{competition}}Trophy.png' class="trophy" />
-    <p class="center" style='line-height: 20px'>
+  <div class="grid grid-cols-1">
+    <img src='assets/img/{{competition}}Trophy.png' class="block max-w-[130px] ml-auto w-[40%] mr-auto"/>
+
+    <div class="flex items-center justify-center max-h-[80px]">
       <img src="assets/img/logos/{{stats.winnerTeam}}.jpg" class="winningTeam" />
-      Winner is <b>{{stats.winnerTeam}}</b> managed by <b>{{stats.winnerPlayer}}</b>
+      <p>
+        Winner is <b>{{stats.winnerTeam}}</b> managed by <b>{{stats.winnerPlayer}}</b>
+      </p>
       <img src='assets/img/{{stats.winnerPlayer}}.jpg' alt="" class="winnerPlayer">
-    </p>
+    </div>
   </div>
+
+
 </div>

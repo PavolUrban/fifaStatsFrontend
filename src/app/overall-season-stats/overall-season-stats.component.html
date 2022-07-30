@@ -7,9 +7,9 @@
       <tbody>
         <tr>
           <th></th>
-          <th>Group stage</th>
-          <th>Playoffs</th>
-          <th>Total</th>
+          <th class="text-center">Group stage</th>
+          <th class="text-center">Playoffs</th>
+          <th class="text-center">Total</th>
         </tr>
         <tr>
           <th>Matches</th>
@@ -25,25 +25,33 @@
         </tr>
         <tr>
           <th>Yellow cards</th>
-          <td class="text-center">x</td>
-          <td class="text-center">y</td>
-          <td class="text-center">z</td>
+          <td class="text-center">{{stats.yellowCardsCount[0]}} ({{ (stats.yellowCardsCount[0] / stats.matchesCount[0]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.yellowCardsCount[1]}} ({{ (stats.yellowCardsCount[1] / stats.matchesCount[1]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.yellowCardsCount[2]}} ({{ (stats.yellowCardsCount[2] / stats.matchesCount[2]) || 0 | number:'1.1-1' }})</td>
         </tr>
         <tr>
           <th>Red cards</th>
-          <td class="text-center">x</td>
-          <td class="text-center">y</td>
-          <td class="text-center">z</td>
+          <td class="text-center">{{stats.redCardsCount[0]}} ({{ (stats.redCardsCount[0] / stats.matchesCount[0]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.redCardsCount[1]}} ({{ (stats.redCardsCount[1] / stats.matchesCount[1]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.redCardsCount[2]}} ({{ (stats.redCardsCount[2] / stats.matchesCount[2]) || 0 | number:'1.1-1' }})</td>
         </tr>
         <tr>
           <th>Pavol Jay vs Kotlik</th>
           <td class="text-center">
-            <span class="badge badge-success">{{stats.h2hPlayers[0].pavolJay}}</span>-
-            <span class="badge badge-warning">{{stats.h2hPlayers[0].draws}}</span>-
-            <span class="badge badge-danger">{{stats.h2hPlayers[0].kotlik}}</span>
+            <span class="badge-success">{{stats.h2hPlayers[0].pavolJay}}</span> -
+            <span class="badge-warning">{{stats.h2hPlayers[0].draws}}</span> -
+            <span class="badge-danger">{{stats.h2hPlayers[0].kotlik}}</span>
           </td>
-          <td class="text-center">y</td>
-          <td class="text-center">z</td>
+          <td class="text-center">
+            <span class="badge-success">{{stats.h2hPlayers[1].pavolJay}}</span> -
+            <span class="badge-warning">{{stats.h2hPlayers[1].draws}}</span> -
+            <span class="badge-danger">{{stats.h2hPlayers[1].kotlik}}</span>
+          </td>
+          <td class="text-center">
+            <span class="badge-success">{{stats.h2hPlayers[2].pavolJay}}</span> -
+            <span class="badge-warning">{{stats.h2hPlayers[2].draws}}</span> -
+            <span class="badge-danger">{{stats.h2hPlayers[2].kotlik}}</span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -52,15 +60,23 @@
   <!-- Winners part -->
   <div class="grid grid-cols-1">
     <img src='assets/img/{{competition}}Trophy.png' class="block max-w-[6rem] ml-auto w-[40%] mr-auto"/>
+    
+    <div *ngIf="stats.winnerTeam === 'unknown'; then winnerUnknown else winnerKnown"></div>
+      <ng-template #winnerKnown>
+        <div class="flex items-center justify-center max-h-[80px]">
+          <img src="assets/img/logos/{{stats.winnerTeam}}.jpg" class="winningTeam" />
+          <p>
+            Winner is <b>{{stats.winnerTeam}}</b> managed by <b>{{stats.winnerPlayer}}</b>
+          </p>
+          <img src='assets/img/{{stats.winnerPlayer}}.jpg' alt="" class="w-24 h-24 rounded-full ml-4">
+        </div>
+      </ng-template>
+      
+      <ng-template #winnerUnknown>
+        <p class="flex justify-center">
+          Winner is unknown. Final match has not been played yet.
+        </p> 
+      </ng-template>
 
-    <div class="flex items-center justify-center max-h-[80px]">
-      <img src="assets/img/logos/{{stats.winnerTeam}}.jpg" class="winningTeam" />
-      <p>
-        Winner is <b>{{stats.winnerTeam}}</b> managed by <b>{{stats.winnerPlayer}}</b>
-      </p>
-      <img src='assets/img/{{stats.winnerPlayer}}.jpg' alt="" class="w-24 h-24 rounded-full ml-4">
-    </div>
   </div>
-
-
 </div>

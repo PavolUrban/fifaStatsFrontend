@@ -13,7 +13,7 @@
       <ng-container matColumnDef="player">
         <th mat-header-cell *matHeaderCellDef> Player </th>
         <td mat-cell *matCellDef="let element"
-          [ngClass]="{'pavolJayTeam': element.playerName==='Pavol Jay', 'kotlikTeam': element.playerName === 'Kotlik'}">
+          [ngClass]="{'text-cyan-500': element.playerName==='Pavol Jay', 'text-green-500': element.playerName === 'Kotlik'}">
           {{element.playerName}}
         </td>
       </ng-container>

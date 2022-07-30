@@ -34,7 +34,9 @@ export class SeasonComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-
+      this.topGoalscorersGroupStage = null;
+      this.topGoalscorersPlayOffs = null;
+      this.topGoalscorersTotal = null;
       this.seasonName = params['seasonname'];
       this.competition = params['competition'];
 
@@ -63,6 +65,7 @@ export class SeasonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('destroy called');
     this.subscription.unsubscribe();
   }
 

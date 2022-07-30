@@ -65,6 +65,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GoalscorersWrapperComponent } from './goalscorers-wrapper/goalscorers-wrapper.component';
 import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/goalscorers-the-newest-one.component';
 import { RecordInMatchComponent } from './record-in-match/record-in-match.component';
+import { SeasonBySeasonComponent } from './global-stats/season-by-season/season-by-season.component';
+import { H2hSeasonBySeasonComponent } from './global-stats/h2h-season-by-season/h2h-season-by-season.component';
 
 
 
@@ -101,7 +103,9 @@ import { RecordInMatchComponent } from './record-in-match/record-in-match.compon
     CreateMatchWrapperComponent,
     GoalscorersWrapperComponent,
     GoalscorersTheNewestOneComponent,
-    RecordInMatchComponent
+    RecordInMatchComponent,
+    SeasonBySeasonComponent,
+    H2hSeasonBySeasonComponent
   ],
   imports: [
     BrowserModule,

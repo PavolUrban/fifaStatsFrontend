@@ -9,6 +9,7 @@ import { AllTimeStatsComponent } from './all-time-stats/all-time-stats.component
 import { H2HComponent } from './h2-h/h2-h.component';
 import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
 import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
+import { SeasonBySeasonComponent } from './global-stats/season-by-season/season-by-season.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
     { path: 'season/:seasonname/:competition', component: SeasonComponent},
     { path: 'players', component: PlayersStatsComponent},
     { path: 'allTimeStats',component: AllTimeStatsComponent},
-    { path: 'generateGroupStage', component: GenerateGroupStageComponent}
+    { path: 'generateGroupStage', component: GenerateGroupStageComponent},
+    { path: 'seasonBySeason', component: SeasonBySeasonComponent}
 ];
 
 @NgModule({

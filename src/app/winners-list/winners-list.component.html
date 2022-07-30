@@ -21,15 +21,20 @@
         <th mat-header-cell *matHeaderCellDef> Winner </th>
         <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.teamName}} view "
           *matCellDef="let element" (click)="goToTeamView(element.teamName)">
-          <img src="assets/img/logos/{{element.teamName}}.jpg" alt="" class="iconSize mr-1">
-          <b>{{element.teamName}}</b>
+          <div class="flex space-x-1">
+            <img src="assets/img/logos/{{element.teamName}}.jpg" alt="" class="iconSize">
+            <b>{{element.teamName}}</b>
+          </div>
         </td>
       </ng-container>
       <ng-container matColumnDef="runnerUp">
         <th mat-header-cell *matHeaderCellDef> Runner-up </th>
         <td class="cursor-pointer" mat-cell matTooltip="Redirect to {{element.runnerUp}} view "
           *matCellDef="let element" (click)="goToTeamView(element.runnerUp)">
-          <img src="assets/img/logos/{{element.runnerUp}}.jpg" alt="" class="iconSize mr-1">{{element.runnerUp}}
+          <div class="flex space-x-1">
+            <img src="assets/img/logos/{{element.runnerUp}}.jpg" alt="" class="iconSize">
+            <span>{{element.runnerUp}}</span>
+          </div>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

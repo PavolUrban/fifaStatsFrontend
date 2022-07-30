@@ -1,9 +1,9 @@
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 
   <!-- Overall stats -->
   <div>
     <h1 class="groupStageHeaderFormat pl-15">Overall stats</h1>
-    <table class="rounded box shadow bg-white table table-sm table-hover">
+    <table class="rounded box shadow bg-white table-fixed h-60">
       <tbody>
         <tr>
           <th></th>
@@ -13,46 +13,37 @@
         </tr>
         <tr>
           <th>Matches</th>
-          <td>{{stats.matchesCount[0]}}</td>
-          <td>{{stats.matchesCount[1]}} </td>
-          <td>{{stats.matchesCount[2]}}</td>
+          <td class="text-center">{{stats.matchesCount[0]}}</td>
+          <td class="text-center">{{stats.matchesCount[1]}} </td>
+          <td class="text-center">{{stats.matchesCount[2]}}</td>
         </tr>
         <tr>
           <th>Goals</th>
-          <td>{{stats.goalsCount[0]}} ({{ (stats.goalsCount[0] / stats.matchesCount[0]) || 0 | number:'1.1-1' }})</td>
-          <td>{{stats.goalsCount[1]}} ({{ (stats.goalsCount[1] / stats.matchesCount[1]) || 0 | number:'1.1-1' }})</td>
-          <td>{{stats.goalsCount[2]}} ({{ (stats.goalsCount[2] / stats.matchesCount[2]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.goalsCount[0]}} ({{ (stats.goalsCount[0] / stats.matchesCount[0]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.goalsCount[1]}} ({{ (stats.goalsCount[1] / stats.matchesCount[1]) || 0 | number:'1.1-1' }})</td>
+          <td class="text-center">{{stats.goalsCount[2]}} ({{ (stats.goalsCount[2] / stats.matchesCount[2]) || 0 | number:'1.1-1' }})</td>
         </tr>
         <tr>
           <th>Yellow cards</th>
-          <td>x</td>
-          <td>y</td>
-          <td>z</td>
+          <td class="text-center">x</td>
+          <td class="text-center">y</td>
+          <td class="text-center">z</td>
         </tr>
         <tr>
           <th>Red cards</th>
-          <td>x</td>
-          <td>y</td>
-          <td>z</td>
+          <td class="text-center">x</td>
+          <td class="text-center">y</td>
+          <td class="text-center">z</td>
         </tr>
         <tr>
-          <th>Pavol Jay</th>
-          <td>x</td>
-          <td>
-            <span class="badge badge-success mr-1"> a </span>-
-            <span class="badge badge-warning mr-1">b </span>-
-            <span class="badge badge-danger mr-1"> c </span>
-          <td>z</td>
-        </tr>
-        <tr>
-          <th>Kotlik</th>
-          <td> x</td>
-          <td>
-            <span class="badge badge-success"> a </span>-
-            <span class="badge badge-warning">b </span>-
-            <span class="badge badge-danger"> c </span>
+          <th>Pavol Jay vs Kotlik</th>
+          <td class="text-center">
+            <span class="badge badge-success">{{stats.h2hPlayers[0].pavolJay}}</span>-
+            <span class="badge badge-warning">{{stats.h2hPlayers[0].draws}}</span>-
+            <span class="badge badge-danger">{{stats.h2hPlayers[0].kotlik}}</span>
           </td>
-          <td>z</td>
+          <td class="text-center">y</td>
+          <td class="text-center">z</td>
         </tr>
       </tbody>
     </table>
@@ -60,14 +51,14 @@
 
   <!-- Winners part -->
   <div class="grid grid-cols-1">
-    <img src='assets/img/{{competition}}Trophy.png' class="block max-w-[130px] ml-auto w-[40%] mr-auto"/>
+    <img src='assets/img/{{competition}}Trophy.png' class="block max-w-[6rem] ml-auto w-[40%] mr-auto"/>
 
     <div class="flex items-center justify-center max-h-[80px]">
       <img src="assets/img/logos/{{stats.winnerTeam}}.jpg" class="winningTeam" />
       <p>
         Winner is <b>{{stats.winnerTeam}}</b> managed by <b>{{stats.winnerPlayer}}</b>
       </p>
-      <img src='assets/img/{{stats.winnerPlayer}}.jpg' alt="" class="winnerPlayer">
+      <img src='assets/img/{{stats.winnerPlayer}}.jpg' alt="" class="w-24 h-24 rounded-full ml-4">
     </div>
   </div>
 

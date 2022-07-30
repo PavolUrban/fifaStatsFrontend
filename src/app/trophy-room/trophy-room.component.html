@@ -5,13 +5,13 @@
         <tbody>
             <tr>
                 <th> Champions league ({{data.titlesCountCL}}x) </th>
-                <td>
+                <td class="flex justify-center items-end">
                     <img *ngFor="let n of numSequence(data.titlesCountCL);let i = index;" src='assets/img/CLTrophy.png'class="trophySize"/>
                 </td>
             </tr>
             <tr>
                 <th> European league ({{data.titlesCountEL}}x)</th>
-                <td>
+                <td class="flex justify-center items-end">
                     <img *ngFor="let n of numSequence(data.titlesCountEL);let i = index;" src='assets/img/ELTrophy.png' class="trophySize" />
                 </td>
             </tr>

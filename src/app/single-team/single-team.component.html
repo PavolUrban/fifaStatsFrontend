@@ -1,234 +1,243 @@
-
-
-<div class="row">
-  <div class="col-sm-12">
-    <img src="assets/img/logos/{{team.teamName}}.jpg" class="trophy">
+<div class="space-y-8">
+  <div class="grid grid-cols-1">
+    <div class="p-5 text-center text-6xl  bg-gray-400 rounded">
+      <img src="assets/img/logos/{{team.teamName}}.jpg" class="trophy">
+      <h1>{{team.teamName}}</h1>
+    </div>
   </div>
-</div>
+    <!-- <div class="flex text-8xl justify-center items-center space-x-8 p-8 bg-gray-400 rounded">
+      <img src="assets/img/logos/{{team.teamName}}.jpg">
+      <h1>{{team.teamName}}</h1>
+      
+    </div> -->
 
-<div class="row">
-  <h1 class="pageTitleFormat mt-3 mb-3">{{team.teamName}}</h1>
-</div>
 
+  <div class="grid grid-cols-1 gap-4 xl:flex xl:flex-row">
+    <div class="xl:basis-1/4">
+      <h1 class="groupStageHeaderFormat">Overall stats</h1>
 
-<div class="row">
-  <div class="col-sm-3">
-    <h1 class="groupStageHeaderFormat">Overall stats</h1>
+      <mat-card>
+        <mat-card-content>
 
-    <mat-card>
-      <mat-card-content>
+          <table class="table table-sm mt-3 table-hover">
+            <tbody>
+              <tr>
+                <th> </th>
+                <th> Total</th>
+                <th> Champions League</th>
+                <th> European league</th>
+              </tr>
+              <tr>
+                <th>Seasons</th>
+                <td>
+                  <span class="badge badge-secondary">{{team.seasonsTotal}}</span>
+                </td>
+                <td>
+                  <span class="badge badge-secondary">{{team.seasonsCL}}</span>
+                </td>
+                <td>
+                  <span class="badge badge-secondary">{{team.seasonsEL}}</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Matches</th>
+                <td>
+                  <span class="badge badge-secondary">{{team.matchesTotal}}</span>
+                </td>
+                <td>
+                  <span class="badge badge-secondary">{{team.matchesCL}}</span>
+                </td>
+                <td>
+                  <span class="badge badge-secondary">{{team.matchesEL}}</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Wins</th>
+                <td>
+                  <span class="badge badge-success mr-1">{{team.winsTotal}} ({{((team.winsTotal/team.matchesTotal) *
+                    100) || 0 | number:'1.1-1' }}%)</span>
+                </td>
+                <td>
+                  <span class="badge badge-success mr-1">{{team.winsCL}} ({{((team.winsCL/team.matchesCL) * 100) || 0 |
+                    number:'1.1-1' }}%)</span>
+                </td>
+                <td>
+                  <span class="badge badge-success mr-1">{{team.winsEL}} ({{((team.winsEL/team.matchesEL) * 100) || 0 |
+                    number:'1.1-1' }}%)</span>
+                </td>
+              </tr>
 
-        <table  class="table table-sm mt-3 table-hover">
-          <tbody>
-            <tr>
-              <th> </th>
-              <th> Total</th>
-              <th> Champions League</th>
-              <th> European league</th>
-            </tr>
-            <tr>
-              <th>Seasons</th>
-              <td>
-                <span class="badge badge-secondary">{{team.seasonsTotal}}</span>
-              </td>
-              <td>
-                <span class="badge badge-secondary">{{team.seasonsCL}}</span>
-              </td>
-              <td>
-                <span class="badge badge-secondary">{{team.seasonsEL}}</span>
-              </td>
-            </tr>
-            <tr>
-              <th>Matches</th>
-              <td>
-                <span class="badge badge-secondary">{{team.matchesTotal}}</span>
-              </td>
-              <td>
-                <span class="badge badge-secondary">{{team.matchesCL}}</span>
-              </td>
-              <td>
-                <span class="badge badge-secondary">{{team.matchesEL}}</span>
-              </td>
-            </tr>
-            <tr>
-              <th>Wins</th>
-              <td>
-                <span class="badge badge-success mr-1">{{team.winsTotal}} ({{((team.winsTotal/team.matchesTotal) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-              <td>
-                <span class="badge badge-success mr-1">{{team.winsCL}} ({{((team.winsCL/team.matchesCL) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-              <td>
-                <span class="badge badge-success mr-1">{{team.winsEL}} ({{((team.winsEL/team.matchesEL) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-            </tr>
+              <tr>
+                <th>Draws</th>
+                <td>
+                  <span class="badge badge-warning mr-1">{{team.drawsTotal}} ({{((team.drawsTotal/team.matchesTotal) *
+                    100) || 0 | number:'1.1-1' }}%)</span>
+                </td>
+                <td>
+                  <span class="badge badge-warning mr-1">{{team.drawsCL}} ({{((team.drawsCL/team.matchesCL) * 100) || 0
+                    | number:'1.1-1' }}%)</span>
+                </td>
+                <td>
+                  <span class="badge badge-warning mr-1">{{team.drawsEL}} ({{((team.drawsEL/team.matchesEL) * 100) || 0
+                    | number:'1.1-1' }}%)</span>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Draws</th>
-              <td>
-                <span class="badge badge-warning mr-1">{{team.drawsTotal}} ({{((team.drawsTotal/team.matchesTotal) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-              <td>
-                <span class="badge badge-warning mr-1">{{team.drawsCL}} ({{((team.drawsCL/team.matchesCL) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-              <td>
-                <span class="badge badge-warning mr-1">{{team.drawsEL}} ({{((team.drawsEL/team.matchesEL) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-            </tr>
+              <tr>
+                <th>Losses</th>
+                <td>
+                  <span class="badge badge-danger mr-1">{{team.lossesTotal}} ({{((team.lossesTotal/team.matchesTotal) *
+                    100) || 0 | number:'1.1-1' }}%)</span>
+                </td>
+                <td>
+                  <span class="badge badge-danger mr-1">{{team.lossesCL}} ({{((team.lossesCL/team.matchesCL) * 100) || 0
+                    | number:'1.1-1' }}%)</span>
+                </td>
+                <td>
+                  <span class="badge badge-danger mr-1">{{team.lossesEL}} ({{((team.lossesEL/team.matchesEL) * 100) || 0
+                    | number:'1.1-1' }}%)</span>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Losses</th>
-              <td>
-                <span class="badge badge-danger mr-1">{{team.lossesTotal}} ({{((team.lossesTotal/team.matchesTotal) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-              <td>
-                <span class="badge badge-danger mr-1">{{team.lossesCL}} ({{((team.lossesCL/team.matchesCL) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-              <td>
-                <span class="badge badge-danger mr-1">{{team.lossesEL}} ({{((team.lossesEL/team.matchesEL) * 100) || 0 | number:'1.1-1' }}%)</span>
-              </td>
-            </tr>
+              <tr>
+                <th>Goals scored</th>
+                <td>
+                  <span>{{team.goalsScoredTotal}} ({{((team.goalsScoredTotal/team.matchesTotal)) || 0 | number:'1.1-1'
+                    }})</span>
+                </td>
+                <td>
+                  <span>{{team.goalsScoredCL}} ({{((team.goalsScoredCL/team.matchesCL)) || 0 | number:'1.1-1' }})</span>
+                </td>
+                <td>
+                  <span>{{team.goalsScoredEL}} ({{((team.goalsScoredEL/team.matchesEL)) || 0 | number:'1.1-1' }})</span>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Goals scored</th>
-              <td>
-                <span>{{team.goalsScoredTotal}} ({{((team.goalsScoredTotal/team.matchesTotal)) || 0 | number:'1.1-1' }})</span>
-              </td>
-              <td>
-                <span>{{team.goalsScoredCL}} ({{((team.goalsScoredCL/team.matchesCL)) || 0 | number:'1.1-1' }})</span>
-              </td>
-              <td>
-                <span>{{team.goalsScoredEL}} ({{((team.goalsScoredEL/team.matchesEL)) || 0 | number:'1.1-1' }})</span>
-              </td>
-            </tr>
+              <tr>
+                <th>Goals conceded</th>
+                <td>
+                  <span>{{team.goalsConcededTotal}} ({{((team.goalsConcededTotal/team.matchesTotal)) || 0 |
+                    number:'1.1-1' }})</span>
+                </td>
+                <td>
+                  <span>{{team.goalsConcededCL}} ({{((team.goalsConcededCL/team.matchesCL)) || 0 | number:'1.1-1'
+                    }})</span>
+                </td>
+                <td>
+                  <span>{{team.goalsConcededEL}} ({{((team.goalsConcededEL/team.matchesEL)) || 0 | number:'1.1-1'
+                    }})</span>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Goals conceded</th>
-              <td>
-                <span>{{team.goalsConcededTotal}} ({{((team.goalsConcededTotal/team.matchesTotal)) || 0 | number:'1.1-1' }})</span>
-              </td>
-              <td>
-                <span>{{team.goalsConcededCL}}  ({{((team.goalsConcededCL/team.matchesCL)) || 0 | number:'1.1-1' }})</span>
-              </td>
-              <td>
-                <span>{{team.goalsConcededEL}}  ({{((team.goalsConcededEL/team.matchesEL)) || 0 | number:'1.1-1' }})</span>
-              </td>
-            </tr>
+              <tr>
+                <th>Goal difference</th>
+                <td>
+                  <span>{{team.goalDiffTotal}}</span>
+                </td>
+                <td>
+                  <span>{{team.goalDiffCL}}</span>
+                </td>
+                <td>
+                  <span>{{team.goalDiffEL}}</span>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Goal difference</th>
-              <td>
-                <span>{{team.goalDiffTotal}}</span>
-              </td>
-              <td>
-                <span>{{team.goalDiffCL}}</span>
-              </td>
-              <td>
-                <span>{{team.goalDiffEL}}</span>
-              </td>
-            </tr>
+              <tr *ngIf="!!totalFinalMatches">
+                <th>Runners-up</th>
+                <td>
+                  <span>{{totalFinalMatches.Lost.length}}</span>
+                </td>
+                <td>
+                  <span>{{championsLeagueFinalMatches.Lost.length}}</span>
+                </td>
+                <td>
+                  <span>{{europeanLeagueFinalMatches.Lost.length}}</span>
+                </td>
+              </tr>
 
-            <tr *ngIf="!!totalFinalMatches">
-              <th>Final matches played</th>
-              <td>
-                <span>{{totalFinalMatches.Won.length + totalFinalMatches.Lost.length}}</span>
-              </td>
-              <td>
-                <span>{{championsLeagueFinalMatches.Won.length + championsLeagueFinalMatches.Lost.length}}</span>
-              </td>
-              <td>
-                <span>{{europeanLeagueFinalMatches.Won.length + europeanLeagueFinalMatches.Lost.length}}</span>
-              </td>
-            </tr>
+              <tr *ngIf="!!totalFinalMatches">
+                <th>Titles won</th>
+                <td>
+                  <span>{{totalFinalMatches.Won.length}}</span>
+                </td>
+                <td>
+                  <span>{{championsLeagueFinalMatches.Won.length}}</span>
+                </td>
+                <td>
+                  <span>{{europeanLeagueFinalMatches.Won.length}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-            <tr *ngIf="!!totalFinalMatches">
-              <th>Titles won</th>
-              <td>
-                <span>{{totalFinalMatches.Won.length}}</span>
-              </td>
-              <td>
-                <span>{{championsLeagueFinalMatches.Won.length}}</span>
-              </td>
-              <td>
-                <span>{{europeanLeagueFinalMatches.Won.length}}</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-card-content>
-    </mat-card>
-  </div>
+    <div class="basis-1/4">
+      <h1 class="groupStageHeaderFormat">Trophy room
+      </h1>
 
-  <div class="col-sm-3">
-    <h1 class="groupStageHeaderFormat">Trophy room
-    </h1>
-
-    <mat-card>
+      <mat-card class="text-center">
         <span *ngIf="teamWithoutTrophy">This poor little team has never won anything.</span>
         <app-trophy-room [data]="trophyRoomData"></app-trophy-room>
-    </mat-card>
-  </div>
+      </mat-card>
+    </div>
 
-  <div class="col-sm-6">
-    <h1 class="groupStageHeaderFormat">Latest form</h1>
+    <div class="basis-1/2">
+      <h1 class="groupStageHeaderFormat">Latest form</h1>
 
-    <mat-card>  
-      
-      <app-custom-matches *ngIf="!!teamMatches"
-      [dataSourceNew]="teamMatches"
-      [currentTeam]="team.teamName"
-      [matCardTitle]="'Last 5 matches'"
-      [matCardSubtitle]="'Most recent'"
-      [initPageSize]="5"
-      >
-      </app-custom-matches>
-    </mat-card>
-  </div>
+      <mat-card>
 
-</div>
-
-
-<div class="row mt-3">
-
-  
-  <div class="col-sm-3">
-    <h1 class="groupStageHeaderFormat">Win rate</h1>
-    <mat-card>
-      <mat-card-content>
-        <app-pie-chart-stats *ngIf="totalBilance?.length>0"
-        [series]="totalBilance"
-        >
-        </app-pie-chart-stats>
-      </mat-card-content>
-    </mat-card>
+        <app-custom-matches *ngIf="!!teamMatches" [dataSourceNew]="teamMatches" [currentTeam]="team.teamName"
+          [matCardTitle]="'Last 5 matches'" [matCardSubtitle]="'Most recent'" [initPageSize]="5">
+        </app-custom-matches>
+      </mat-card>
+    </div>
 
   </div>
 
-  <div class="col-sm-5">
-    <h1 class="groupStageHeaderFormat"> TODO Goalscoring time distribution</h1>
-    <mat-card>
-      <app-column-chart [testText]="'now i know only i can stop the rain'" [series]="goalsByMins" [goalsRangesCounts]="goalsInRange" [unkownTimeGoals]="unknownTimeGoals" [unknownTimeConcededGoals]="unknownTimeConcededGoals"></app-column-chart>
-    </mat-card>
-  </div>
-  
- 
 
-  <div class="col-sm-4">
-    <h1 class="groupStageHeaderFormat">Goalscorers</h1>
-    <mat-card>
-      <app-goalscorers-wrapper [teamName]="team.teamName" [pageSize]="5"></app-goalscorers-wrapper>
-    </mat-card>
-  </div>
-
-</div>
+  <div class="grid grid-cols-1 gap-4 xl:flex xl:flex-row xl:space-x-4">
 
 
-<div class="row mt-3">
-  <div class="col-sm-4">
-    <h1 class="groupStageHeaderFormat">Cards</h1>
+    <div class="xl:basis-1/3">
+      <h1 class="groupStageHeaderFormat">Win rate</h1>
+      <mat-card>
+        <mat-card-content>
+          <app-pie-chart-stats *ngIf="totalBilance?.length>0" [series]="totalBilance">
+          </app-pie-chart-stats>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <div class="xl:basis-1/3">
+      <h1 class="groupStageHeaderFormat">Cards</h1>
       <mat-card>
         <app-players-cards-wrapper [teamName]="team.teamName"></app-players-cards-wrapper>
       </mat-card>
-  </div>
-</div>
+    </div>
 
+
+    <div class="xl:basis-1/3">
+      <h1 class="groupStageHeaderFormat">Goalscorers</h1>
+      <mat-card>
+        <app-goalscorers-wrapper [teamName]="team.teamName" [pageSize]="5"></app-goalscorers-wrapper>
+      </mat-card>
+    </div>
+
+  </div>
+
+
+  <div class="grid grid-cols-1">
+    <div>
+      <h1 class="groupStageHeaderFormat"> TODO Goalscoring time distribution</h1>
+      <mat-card>
+        <app-column-chart [testText]="'now i know only i can stop the rain'" [series]="goalsByMins"
+          [goalsRangesCounts]="goalsInRange" [unkownTimeGoals]="unknownTimeGoals"
+          [unknownTimeConcededGoals]="unknownTimeConcededGoals"></app-column-chart>
+      </mat-card>
+    </div>
+  </div>
+
+</div>

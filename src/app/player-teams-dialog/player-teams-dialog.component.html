@@ -10,26 +10,32 @@
     <mat-tab-group>
       
       <mat-tab label="Season by season">
-        <table class="table table-sm mt-3 table-hover">
+        <table>
           <tbody>
             <tr>
-              <th>Season</th>
-              <th>Team</th>
-              <th class="textToRight"><span class="material-icons">sports_soccer</span></th>
-              <th class="textToRight"><span class="badge badge-warning" matTooltip="Yellow cards">Y</span></th>
-              <th class="textToRight"><span class="badge badge-danger" matTooltip="Red cards">R</span></th>
+              <th class="text-start pt-8 pb-1">Season</th>
+              <th class="text-start pt-8 pb-1">Team</th>
+              <th class="pt-8 pb-1">
+                <div class="flex justify-end items-center">
+                  <span class="material-icons">sports_soccer</span>
+                </div>
+              </th>
+              <th class="text-end pt-8 pb-1"><span class="badge-warning" matTooltip="Yellow cards">Y</span></th>
+              <th class="text-end pt-8 pb-1"><span class="badge-danger" matTooltip="Red cards">R</span></th>
             </tr>
-            <tr *ngFor="let season of statsPerSeason">
-              <td [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
+            <tr *ngFor="let season of statsPerSeason" class="hover:bg-gray-200">
+              <td [ngClass]="{'font-bold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
               <td class="cursor-pointer" (click)=goToTeamView(season.teamname)> 
-                <img *ngIf="season.teamname" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize"> 
-                <span
-                  class="ml-1" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.teamname}}
-                </span>
+                <div class="flex items-center space-x-2">
+                  <img *ngIf="season.teamname" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize"> 
+                  <span
+                    class="ml-1" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.teamname}}
+                  </span>
+                </div>
               </td>
-              <td class="textToRight" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.goalsCount}}</td>
-              <td class="textToRight" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.yellowCardsCount}}</td>
-              <td class="textToRight" [ngClass]="{'fontWeigthBold': season.seasonName === 'Total'}">{{season.redCardsCount}}</td>
+              <td class="text-end pr-[9px]"  [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.goalsCount}}</td>
+              <td class="text-end pr-[11px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.yellowCardsCount}}</td>
+              <td class="text-end pr-[11px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.redCardsCount}}</td>
             </tr>
 
           </tbody>

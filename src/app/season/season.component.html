@@ -9,7 +9,9 @@
   </div>
 
   <!-- Goalscorers -->
+  <h1 class="subtitle-format">Goalscorers</h1>
   <div class="grid xl:grid-cols-3 gap-4 grid-cols-1">
+    
     <div>
       <h1 class="groupStageHeaderFormat pl-15">Top scorers - Group stage</h1>
       <mat-card>
@@ -34,7 +36,10 @@
   </div>
 
 
+  <!-- Group stage -->
+  <h1 class="subtitle-format">Group stage</h1>
   <div class="grid grid-cols-1 gap-4">
+   
     <div *ngFor="let group of allGroups | keyvalue">
       <h1 class="groupStageHeaderFormat pl-15">{{group.key}}</h1>
       <mat-card>
@@ -42,7 +47,7 @@
           <div class="flex flex-row space-x-4">
           <!-- TODO add this to separate component -->
           <div class="basis-3/5">
-            <table class="table table-sm margin-top-5rem table-hover">
+            <table class="mt-20">
               <tbody>
                 <tr>
                   <th>#</th>
@@ -60,14 +65,16 @@
                   [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': (i==2 && competition==='CL'), 'outOfCompetition': i==3 || (i==2 && competition==='EL')}">
                   <td>{{i+1}}.</td>
                   <td matTooltip="Team managed by {{team.ownedByPlayer}}" matTooltipPosition="after">
-                    <img src="assets/img/logos/{{team.teamname}}.jpg" alt="" class="iconSize mr-1 cursor-pointer"
+                    <div class="flex space-x-1">
+                      <img src="assets/img/logos/{{team.teamname}}.jpg" alt="" class="iconSize mr-1 cursor-pointer"
                       (click)="goToTeamView(team.teamname)">
-                    <span class="cursor-pointer" (click)="goToTeamView(team.teamname)">{{team.teamname}}</span>
+                      <span class="cursor-pointer" (click)="goToTeamView(team.teamname)">{{team.teamname}}</span>
+                    </div>
                   </td>
                   <td>
-                    <span class="badge badge-success" *ngIf="i == 0 || i ==1">Q</span>
-                    <span class="badge badge-warning" *ngIf="i==2 && competition==='CL'">EL</span>
-                    <span class="badge badge-danger" *ngIf="i==3 || (i==2 && competition==='EL')">NQ</span>
+                    <span class="badge-success" *ngIf="i == 0 || i ==1">Q</span>
+                    <span class="badge-warning" *ngIf="i==2 && competition==='CL'">EL</span>
+                    <span class="badge-danger" *ngIf="i==3 || (i==2 && competition==='EL')">NQ</span>
                   </td>
                   <td>{{team.matches}}</td>
                   <td>{{team.wins}}</td>
@@ -79,11 +86,11 @@
                 </tr>
               </tbody>
             </table>
-            <span class="badge badge-success"> {{playersStats[group.key]["Pavol Jay"] }}</span>
+            <span class="badge-success"> {{playersStats[group.key]["Pavol Jay"] }}</span>
             -
-            <span class="badge badge-warning"> {{playersStats[group.key]["Draws"] }}</span>
+            <span class="badge-warning"> {{playersStats[group.key]["Draws"] }}</span>
             -
-            <span class="badge badge-danger"> {{playersStats[group.key]["Kotlik"] }}</span>
+            <span class="badge-danger"> {{playersStats[group.key]["Kotlik"] }}</span>
           </div>
 
           <div class="basis-2/5">

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { OverallSeasonStats } from '../overall-season-stats.model';
+import { OverallSeasonStats } from '../models/overall-season-stats.model';
 
 @Component({
   selector: 'app-overall-season-stats',

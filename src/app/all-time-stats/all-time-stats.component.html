@@ -1,57 +1,54 @@
-<div class="row">
+<div class="grid grid-cols-1 gap-4">
+
   <h1 class="pageTitleFormat">All time stats</h1>
-</div>
 
-<div class="row">
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
 
-  <div class="col-lg-12 col-xl-4">
-    <h1 class="groupStageHeaderFormat">Goalscorers</h1>
-    <mat-card>
-      <app-goalscorers-wrapper [displayNumberOfTeamsPlayerScored]="true" [pageSize]="15"></app-goalscorers-wrapper>
-    </mat-card>
+    <div>
+      <h1 class="groupStageHeaderFormat">Goalscorers</h1>
+      <mat-card>
+        <app-goalscorers-wrapper [displayNumberOfTeamsPlayerScored]="true" [pageSize]="15"></app-goalscorers-wrapper>
+      </mat-card>
+    </div>
+
+    <div>
+      <h1 class="groupStageHeaderFormat">Winners list</h1>
+      <app-winners-list></app-winners-list>
+    </div>
+
+    <div>
+      <h1 class="groupStageHeaderFormat">Trophy room</h1>
+      <mat-card *ngIf="!!trophyRoom">
+        <mat-tab-group animationDuration="0ms">
+          <mat-tab label="{{trophyRoom[0].playerName}}">
+            <app-trophy-room [data]="trophyRoom[0]"></app-trophy-room>
+          </mat-tab>
+          <mat-tab label="{{trophyRoom[1].playerName}}">
+            <app-trophy-room [data]="trophyRoom[1]"></app-trophy-room>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+
+    <div>
+      <h1 class="groupStageHeaderFormat">Cards</h1>
+      <mat-card>
+        <app-players-cards-wrapper></app-players-cards-wrapper>
+      </mat-card>
+    </div>
+
   </div>
 
-  <div class="col-lg-12 col-xl-4">
-    <h1 class="groupStageHeaderFormat">Winners list</h1>
-    <app-winners-list></app-winners-list>
-  </div>
+  
+ 
 
-  <div class="col-lg-12 col-xl-4">
-    <h1 class="groupStageHeaderFormat">Trophy room</h1>
 
-    <mat-card *ngIf="!!trophyRoom"> 
-    <mat-tab-group animationDuration="0ms">
-      <mat-tab label="{{trophyRoom[0].playerName}}">
-        <app-trophy-room [data]="trophyRoom[0]"></app-trophy-room>
-      </mat-tab>
-      <mat-tab label="{{trophyRoom[1].playerName}}">
-        <app-trophy-room [data]="trophyRoom[1]"></app-trophy-room>
-      </mat-tab>
-    </mat-tab-group>
-    </mat-card>
-  </div>
 
-</div>
+  <div class="row mt-5">
+    <div class="col-sm-12">
+      <h1 class="groupStageHeaderFormat">Team stats</h1>
 
-<div class="row mt-3">
-  <div class="col-sm-6">
-    <h1 class="groupStageHeaderFormat">Cards</h1>
-    <mat-card>
-      <app-players-cards-wrapper></app-players-cards-wrapper>
-    </mat-card>
-  </div>
-
-  <div class="col-sm-4">
-    <h1 class="groupStageHeaderFormat">Goals newest</h1>
-    <mat-card>
-    </mat-card>
-  </div>
-</div>
-
-<div class="row mt-5">
-  <div class="col-sm-12">
-    <h1 class="groupStageHeaderFormat">Team stats</h1>
-
-    <app-all-time-team-stats></app-all-time-team-stats>
+      <app-all-time-team-stats></app-all-time-team-stats>
+    </div>
   </div>
 </div>

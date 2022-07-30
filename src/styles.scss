@@ -6,6 +6,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 html { 
   height:100%;
 }
@@ -13,30 +15,17 @@ body {
   min-height:100%;
 }
 
-.matchWinner{
-  font-weight: bold;
-}
-
-.pavolJayTeam{
-  color:rgb(10,151,176);
-}
-
-.playersTeam{
-  font-weight: normal !important;
-}
 
 
-.kotlikTeam{
-    color: rgb(140,186,81);
-}
+// .pavolJayTeam{
+//   color:rgb(10,151,176);
+// }
 
-.cursor-pointer{
-  cursor: pointer;
-}
 
-.cursor-disabled{
-  cursor: not-allowed;
-}
+
+// .kotlikTeam{
+//     color: rgb(140,186,81);
+// }
 
 
 
@@ -64,34 +53,6 @@ cursor: pointer;
   }
 }
 
-
-.appBackground{
-  background-color: rgba($color: aqua, $alpha: 0.1);
-}
-
-.pl-15 {
-  padding-left: 15px;
-}
-
-.pr-15 {
-  padding-right: 15px;
-}
-
-.row {
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
-
-.pageTitleFormat{
-  text-align: center;
-  font-size: 100px;
-  padding: 20px;
-  padding-bottom: 36px;
-  width: 100%;
-  border-radius: 25px;
-  background-color: #c3c3c3;
-}
 // todo rename this
 .groupStageHeaderFormat{
   text-align: center;
@@ -103,6 +64,38 @@ cursor: pointer;
 
 .trophySize{
   max-height: 75px;
+}
+
+
+@layer components {
+  .badge-danger {
+    @apply bg-red-100 text-red-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-900;
+  }
+
+  .pageTitleFormat {
+    @apply p-5 text-center text-6xl bg-gray-400 rounded;
+  }
+
+  .subtitle-format {
+    @apply p-3 text-center text-2xl bg-gray-300 rounded;
+  }
+}
+
+th:first-child, td:first-child {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+th {
+  text-align: start;
 }
 
 

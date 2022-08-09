@@ -2,8 +2,8 @@ import { Component, Inject, OnInit, SystemJsNgModuleLoader } from '@angular/core
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable, startWith, Subscription } from 'rxjs';
-import { Matches } from '../shared/models/matches';
-import { FifaPlayerService } from '../shared/services/fifaPlayer.service';
+import { Matches } from '../../../shared/models/matches';
+import { FifaPlayerService } from '../../../shared/services/fifaPlayer.service';
 
 @Component({
   selector: 'app-record-in-match',

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { MatchesComponent } from './matches/matches.component';
+import { MatchesComponent } from './components/matches-view/matches/matches.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -13,7 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { TeamsListsComponent } from './teams-lists/teams-lists.component';
+import { TeamsListsComponent } from './components/all-teams-view/teams-lists/teams-lists.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -42,7 +42,6 @@ import { SeasonComponent } from './season-view/season/season.component';
 import { PlayersStatsComponent } from './players-view/players-stats/players-stats.component';
 import { PlayOffComponent } from './play-off/play-off.component';
 import { PlayerTeamsDialogComponent } from './player-teams-dialog/player-teams-dialog.component';
-import { TeamTopGoalscorersComponent } from './team-top-goalscorers/team-top-goalscorers.component';
 import { GroupMatchesDialogComponent } from './group-matches-dialog/group-matches-dialog.component';
 import { CustomMatchesComponent } from './shared/components/custom-matches/custom-matches.component';
 import { OverallSeasonStatsComponent } from './season-view/overall-season-stats/overall-season-stats.component';
@@ -50,22 +49,22 @@ import { FinalMatchComponent } from './final-match/final-match.component';
 import { H2HComponent } from './h2-h/h2-h.component';
 import { WinnersListComponent } from './global-stats/winners-list/winners-list.component';
 import { TrophyRoomComponent } from './single-team-view/trophy-room/trophy-room.component';
-import { ColumnChartComponent } from './components/column-chart/column-chart.component';
-import { PlayersCardsWrapperComponent } from './players-cards-wrapper/players-cards-wrapper.component';
-import { PlayersCardsComponent } from './players-cards/players-cards.component';
+import { ColumnChartComponent } from './shared/components/column-chart/column-chart.component';
+import { PlayersCardsWrapperComponent } from './shared/components/players-cards-wrapper/players-cards-wrapper.component';
+import { PlayersCardsComponent } from './shared/components/players-cards/players-cards.component';
 import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GoalscorersWrapperComponent } from './goalscorers-wrapper/goalscorers-wrapper.component';
-import { GoalscorersTheNewestOneComponent } from './goalscorers-the-newest-one/goalscorers-the-newest-one.component';
-import { RecordInMatchComponent } from './record-in-match/record-in-match.component';
+import { GoalscorersWrapperComponent } from './shared/components/goalscorers-wrapper/goalscorers-wrapper.component';
+import { GoalscorersTheNewestOneComponent } from './shared/components/goalscorers-the-newest-one/goalscorers-the-newest-one.component';
+import { RecordInMatchComponent } from './components/matches-view/record-in-match/record-in-match.component';
 import { SeasonBySeasonComponent } from './global-stats/season-by-season/season-by-season.component';
 import { H2hSeasonBySeasonComponent } from './global-stats/h2h-season-by-season/h2h-season-by-season.component';
 import { AllTimeTeamStatsComponent } from './global-stats/all-time-team-stats/all-time-team-stats.component';
 import { AllTimeStatsComponent } from './global-stats/all-time-stats/all-time-stats.component';
-import { CreateMatchComponent } from './components/create-match/create-match.component';
+import { CreateMatchComponent } from './components/matches-view/create-match/create-match.component';
 
 
 
@@ -84,7 +83,6 @@ import { CreateMatchComponent } from './components/create-match/create-match.com
     AllTimeStatsComponent,
     AllTimeTeamStatsComponent,
     PlayerTeamsDialogComponent,
-    TeamTopGoalscorersComponent,
     GroupMatchesDialogComponent,
     CustomMatchesComponent,
     OverallSeasonStatsComponent,

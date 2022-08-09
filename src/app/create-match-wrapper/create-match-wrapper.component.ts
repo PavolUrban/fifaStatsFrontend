@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateMatchComponent } from '../components/create-match/create-match.component';
+import { CreateMatchComponent } from '../components/matches-view/create-match/create-match.component';
 
 @Component({
   selector: 'app-create-match-wrapper',

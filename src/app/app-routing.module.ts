@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MatchesComponent } from './matches/matches.component';
-import { TeamsListsComponent } from './teams-lists/teams-lists.component';
+import { MatchesComponent } from './components/matches-view/matches/matches.component';
+import { TeamsListsComponent } from './components/all-teams-view/teams-lists/teams-lists.component';
 import { SingleTeamComponent } from './single-team-view/single-team/single-team.component';
 import { SeasonComponent } from './season-view/season/season.component';
 import { PlayersStatsComponent } from './players-view/players-stats/players-stats.component';

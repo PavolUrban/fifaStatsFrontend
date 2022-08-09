@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { filter } from 'rxjs';
-import { PlayerTeamsDialogComponent } from '../player-teams-dialog/player-teams-dialog.component';
+import { PlayerTeamsDialogComponent } from '../../../player-teams-dialog/player-teams-dialog.component';
 
 @Component({
   selector: 'app-players-cards',

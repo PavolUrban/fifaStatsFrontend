@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { GeneralService } from '../shared/services/general.service';
+import { GeneralService } from '../../services/general.service';
 
 @Component({
   selector: 'app-players-cards-wrapper',

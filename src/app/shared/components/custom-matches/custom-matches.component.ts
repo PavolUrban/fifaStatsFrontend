@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 import { MatchesService } from '../../services/matches.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
-import { RecordInMatchComponent } from '../../../record-in-match/record-in-match.component';
-import { CreateMatchComponent } from 'src/app/components/create-match/create-match.component';
+import { RecordInMatchComponent } from '../../../components/matches-view/record-in-match/record-in-match.component';
+import { CreateMatchComponent } from 'src/app/components/matches-view/create-match/create-match.component';
 
 @Component({
   selector: 'app-custom-matches',

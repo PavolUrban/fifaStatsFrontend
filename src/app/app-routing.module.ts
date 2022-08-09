@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MatchesComponent } from './matches/matches.component';
 import { TeamsListsComponent } from './teams-lists/teams-lists.component';
-import { SingleTeamComponent } from './single-team/single-team.component';
-import { SeasonComponent } from './season/season.component';
-import { PlayersStatsComponent } from './players-stats/players-stats.component';
-import { AllTimeStatsComponent } from './all-time-stats/all-time-stats.component';
+import { SingleTeamComponent } from './single-team-view/single-team/single-team.component';
+import { SeasonComponent } from './season-view/season/season.component';
+import { PlayersStatsComponent } from './players-view/players-stats/players-stats.component';
 import { H2HComponent } from './h2-h/h2-h.component';
 import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
 import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
 import { SeasonBySeasonComponent } from './global-stats/season-by-season/season-by-season.component';
+import { AllTimeStatsComponent } from './global-stats/all-time-stats/all-time-stats.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },

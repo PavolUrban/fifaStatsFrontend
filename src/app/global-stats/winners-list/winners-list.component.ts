@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
-import { GeneralService } from '../services/general.service';
+import { GeneralService } from 'src/app/shared/services/general.service';
 
 @Component({
   selector: 'app-winners-list',

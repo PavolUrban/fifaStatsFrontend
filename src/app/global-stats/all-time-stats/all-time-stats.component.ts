@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import { GeneralService } from '../services/general.service';
 import { Subscription } from 'rxjs';
+import { GeneralService } from 'src/app/shared/services/general.service';
 
 @Component({
   selector: 'app-all-time-stats',

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { MatchesService } from '../services/matches.service';
+import { MatchesService } from '../shared/services/matches.service';
 import { Subscription } from 'rxjs';
 
 

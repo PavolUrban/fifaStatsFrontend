@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GeneralService } from '../services/general.service';
+import { GeneralService } from '../../shared/services/general.service';
 import { Subscription } from 'rxjs';
-import { MatchesService } from '../services/matches.service';
+import { MatchesService } from '../../shared/services/matches.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-matches-dialog.component';
-import { OverallSeasonStats } from '../models/overall-season-stats.model';
+import { GroupMatchesDialogComponent } from '../../group-matches-dialog/group-matches-dialog.component';
+import { OverallSeasonStats } from '../../models/overall-season-stats.model';
 
 @Component({
   selector: 'app-season',

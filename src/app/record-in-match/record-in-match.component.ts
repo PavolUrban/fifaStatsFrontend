@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable, startWith, Subscription } from 'rxjs';
 import { Matches } from '../matches';
-import { FifaPlayerService } from '../services/fifaPlayer.service';
+import { FifaPlayerService } from '../shared/services/fifaPlayer.service';
 
 @Component({
   selector: 'app-record-in-match',

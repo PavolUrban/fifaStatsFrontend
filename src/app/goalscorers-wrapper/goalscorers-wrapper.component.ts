@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { GeneralService } from '../services/general.service';
+import { GeneralService } from '../shared/services/general.service';
 
 @Component({
   selector: 'app-goalscorers-wrapper',

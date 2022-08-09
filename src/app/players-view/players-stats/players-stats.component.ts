@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { PlayerStatsService } from '../services/player-stats.service';
+import { PlayerStatsService } from '../../shared/services/player-stats.service';
 
 @Component({
   selector: 'app-players-stats',

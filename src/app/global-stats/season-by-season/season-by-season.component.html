@@ -1,8 +1,91 @@
 <div class="grid grid-cols-1 gap-4">
 
     <h1 class="pageTitleFormat">Season by season</h1>
-  
-    <div>
-        TODO
-    </div>
-  </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="table-hover">
+
+        <ng-container matColumnDef="seasonName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Season </th>
+            <td mat-cell *matCellDef="let element" class="space-x-2">
+                <span class="font-bold">{{element.seasonName}}</span>
+                <ng-container [ngSwitch]="element.matchesCount">
+                    <span *ngSwitchCase="125" class="badge-success">Completed</span>
+                    <span *ngSwitchCase="0" class="badge-danger">Not started</span>
+                    <span *ngSwitchDefault class="badge-warning">In progress</span>
+                </ng-container>
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="matchesCount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Matches </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.matchesCount}}
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="goalsCount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Goals </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{element.goalsCount}}</span>
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="avgGoalsPerMatch">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Avg </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.avgGoalsPerMatch}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pavolJay">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pavol Jay </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.pavolJay}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pavolJayAvg">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pavol Jay Avg</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.pavolJayAvg}} %</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="draws">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Draws </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.draws}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="drawsAvg">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Draws Avg</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.drawsAvg}} %</span>
+            </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="kotlik">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kotlik </th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.kotlik}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="kotlikAvg">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kotlik Avg</th>
+            <td mat-cell *matCellDef="let element">
+                <span>{{ element.kotlikAvg}} %</span>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></tr>
+    </table>
+
+</div>

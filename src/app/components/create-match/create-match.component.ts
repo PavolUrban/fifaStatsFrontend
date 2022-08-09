@@ -2,9 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable, startWith, Subscription } from 'rxjs';
-import { Matches } from '../matches';
-import { MatchesService } from '../services/matches.service';
-import { TeamsService } from '../services/teams.service';
+import { Matches } from 'src/app/matches';
+import { MatchesService } from 'src/app/shared/services/matches.service';
+import { TeamsService } from 'src/app/shared/services/teams.service';
+
 
 @Component({
   selector: 'app-create-match',

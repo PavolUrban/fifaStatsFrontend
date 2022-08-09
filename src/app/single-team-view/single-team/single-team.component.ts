@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Teams } from '../teams';
-import { TeamsService } from '../services/teams.service';
+import { Teams } from '../../teams';
+import { TeamsService } from '../../shared/services/teams.service';
 
 
 

@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Matches } from '../matches';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatchesService } from '../services/matches.service';
+import { MatchesService } from '../shared/services/matches.service';
 
 @Component({
   selector: 'app-match-detail',

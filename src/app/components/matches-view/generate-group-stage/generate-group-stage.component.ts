@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { map, Observable, startWith, Subscription } from 'rxjs';
-import { TeamsService } from '../shared/services/teams.service';
+import { TeamsService } from '../../../shared/services/teams.service';
 import { FormControl } from '@angular/forms';
-import { SnackBarComponent } from '../shared/components/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 

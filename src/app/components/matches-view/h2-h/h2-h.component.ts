@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { MatchesService } from '../shared/services/matches.service';
-import { TeamsService } from '../shared/services/teams.service';
+import { MatchesService } from '../../../shared/services/matches.service';
+import { TeamsService } from '../../../shared/services/teams.service';
 import { Subscription, Observable } from 'rxjs';
 import {FormControl, Validators} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';

@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NewTeamDialogComponent } from '../../../new-team-dialog/new-team-dialog.component';
+import { NewTeamDialogComponent } from '../new-team-dialog/new-team-dialog.component';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

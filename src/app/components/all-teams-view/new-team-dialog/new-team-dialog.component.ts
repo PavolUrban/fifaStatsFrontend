@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Teams } from '../shared/models/teams';
-import { TeamsService } from '../shared/services/teams.service';
+import { Teams } from '../../../shared/models/teams';
+import { TeamsService } from '../../../shared/services/teams.service';
 
 @Component({
   selector: 'app-new-team-dialog',

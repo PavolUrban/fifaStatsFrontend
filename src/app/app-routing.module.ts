@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MatchesComponent } from './components/matches-view/matches/matches.component';
 import { TeamsListsComponent } from './components/all-teams-view/teams-lists/teams-lists.component';
-import { SingleTeamComponent } from './single-team-view/single-team/single-team.component';
-import { SeasonComponent } from './season-view/season/season.component';
-import { PlayersStatsComponent } from './players-view/players-stats/players-stats.component';
-import { H2HComponent } from './h2-h/h2-h.component';
-import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
-import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';
-import { SeasonBySeasonComponent } from './global-stats/season-by-season/season-by-season.component';
-import { AllTimeStatsComponent } from './global-stats/all-time-stats/all-time-stats.component';
+import { SingleTeamComponent } from './components/single-team-view/single-team/single-team.component';
+import { SeasonComponent } from './components/season-view/season/season.component';
+import { PlayersStatsComponent } from './components/players-view/players-stats/players-stats.component';
+import { H2HComponent } from './components/matches-view/h2-h/h2-h.component';
+import { GenerateGroupStageComponent } from './components/matches-view/generate-group-stage/generate-group-stage.component';
+import { CreateMatchWrapperComponent } from './components/matches-view/create-match-wrapper/create-match-wrapper.component';
+import { SeasonBySeasonComponent } from './components/global-stats-view/season-by-season/season-by-season.component';
+import { AllTimeStatsComponent } from './components/global-stats-view/all-time-stats/all-time-stats.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
@@ -22,7 +22,8 @@ const routes: Routes = [
     { path: 'players', component: PlayersStatsComponent},
     { path: 'allTimeStats',component: AllTimeStatsComponent},
     { path: 'generateGroupStage', component: GenerateGroupStageComponent},
-    { path: 'seasonBySeason', component: SeasonBySeasonComponent}
+    { path: 'seasonBySeason', component: SeasonBySeasonComponent},
+    // { path: 'winners', component: }
 ];
 
 @NgModule({

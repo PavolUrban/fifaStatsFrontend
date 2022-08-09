@@ -5,7 +5,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatchDetailComponent } from '../../../match-detail/match-detail.component';
+import { MatchDetailComponent } from '../match-detail/match-detail.component';
 import { Teams } from '../../models/teams';
 import { Router } from '@angular/router';
 import { MatchesService } from '../../services/matches.service';

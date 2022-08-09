@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Matches } from '../shared/models/matches';
+import { Matches } from '../../models/matches';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatchesService } from '../shared/services/matches.service';
+import { MatchesService } from '../../services/matches.service';
 
 @Component({
   selector: 'app-match-detail',

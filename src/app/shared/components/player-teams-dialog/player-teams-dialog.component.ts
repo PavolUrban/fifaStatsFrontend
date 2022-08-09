@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { FifaPlayerService } from '../shared/services/fifaPlayer.service';
+import { FifaPlayerService } from '../../services/fifaPlayer.service';
 
 @Component({
   selector: 'app-player-teams-dialog',

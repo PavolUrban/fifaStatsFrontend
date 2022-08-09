@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Matches } from '../matches';
+import { Matches } from '../shared/models/matches';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatchesService } from '../shared/services/matches.service';

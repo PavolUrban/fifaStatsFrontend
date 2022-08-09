@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
-import { Matches } from '../../matches';
+import { Matches } from '../models/matches';
 import { Observable } from 'rxjs';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatchDetailComponent } from '../../match-detail/match-detail.component';
-import { Teams } from '../../teams';
+import { Teams } from '../models/teams';
 import { Router } from '@angular/router';
 import { MatchesService } from '../services/matches.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

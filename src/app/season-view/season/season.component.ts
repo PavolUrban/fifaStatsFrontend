@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { MatchesService } from '../../shared/services/matches.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { GroupMatchesDialogComponent } from '../../group-matches-dialog/group-matches-dialog.component';
-import { OverallSeasonStats } from '../../models/overall-season-stats.model';
+import { OverallSeasonStats } from '../../shared/models/overall-season-stats.model';
 
 @Component({
   selector: 'app-season',

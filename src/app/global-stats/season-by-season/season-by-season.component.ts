@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { OverallSeasonStats } from 'src/app/models/overall-season-stats.model';
+import { OverallSeasonStats } from 'src/app/shared/models/overall-season-stats.model';
 import { SeasonBySeasonService } from 'src/app/shared/services/seasonBySeason.service';
 
 @Component({

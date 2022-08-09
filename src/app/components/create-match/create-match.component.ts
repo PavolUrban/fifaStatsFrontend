@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable, startWith, Subscription } from 'rxjs';
-import { Matches } from 'src/app/matches';
+import { Matches } from 'src/app/shared/models/matches';
 import { MatchesService } from 'src/app/shared/services/matches.service';
 import { TeamsService } from 'src/app/shared/services/teams.service';
 

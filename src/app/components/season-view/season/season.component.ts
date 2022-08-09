@@ -81,7 +81,8 @@ export class SeasonComponent implements OnInit, OnDestroy {
       dialogConfig.minWidth = '900px';
       dialogConfig.minHeight = '500px';
       dialogConfig.data = {
-        matches: data
+        matches: data,
+        groupName: competitionPhase
       };
       this.dialog.open(GroupMatchesDialogComponent, dialogConfig);
     });

@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-tab-group #tabGroup (selectedTabChange)="tabChanged()" animationDuration="0ms">
+    <mat-tab label="Champions league"></mat-tab>
+    <mat-tab label="European league"></mat-tab>
+  </mat-tab-group>
+  <mat-card-content class="pt-16">
+    <app-matches-table *ngIf="!!dataToPass" [data]="dataToPass" [showCompetitionPhase]="false" [showCompetition]="false" [pageSize]=15></app-matches-table>
+  </mat-card-content>
+</mat-card>

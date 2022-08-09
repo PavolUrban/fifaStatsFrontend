@@ -10,9 +10,5 @@ export class Matches {
     playerA: string;
     competition: string;
     competitionPhase: string;
-
-    //unformated values
-    goalscorers: string;
-    yellowcards: string;
-    redcards: string;
+    winnerPlayer: string;
 }

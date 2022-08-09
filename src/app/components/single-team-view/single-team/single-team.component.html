@@ -187,10 +187,7 @@
       <h1 class="groupStageHeaderFormat">Latest form</h1>
 
       <mat-card>
-
-        <app-custom-matches *ngIf="!!teamMatches" [dataSourceNew]="teamMatches" [currentTeam]="team.teamName"
-          [matCardTitle]="'Last 5 matches'" [matCardSubtitle]="'Most recent'" [initPageSize]="5">
-        </app-custom-matches>
+        <app-matches-table *ngIf="!!teamMatches" [data]="teamMatches" [currentTeam]="team.teamName"></app-matches-table>
       </mat-card>
     </div>
 

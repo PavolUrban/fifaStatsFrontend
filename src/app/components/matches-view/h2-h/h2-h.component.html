@@ -70,13 +70,7 @@
 
 </div>
 
-<app-custom-matches class="mt-5" *ngIf="!!allMatches"
-  [dataSourceNew]="allMatches"
-  [matCardTitle]="'History'"
-  [matCardSubtitle]="'All matches'"
-  [initPageSize]="20"
->
-</app-custom-matches>
+<app-matches-table *ngIf="!!allMatches" [data]="allMatches" [pageSize]="20"></app-matches-table>
 
 
 

@@ -47,7 +47,7 @@ import { CustomMatchesComponent } from './shared/components/custom-matches/custo
 import { OverallSeasonStatsComponent } from './components/season-view/overall-season-stats/overall-season-stats.component';
 import { FinalMatchComponent } from './components/matches-view/final-match/final-match.component';
 import { H2HComponent } from './components/matches-view/h2-h/h2-h.component';
-import { WinnersListComponent } from './components/global-stats-view/winners-list/winners-list.component';
+import { WinnersListComponent } from './components/global-stats-view/winners/winners-list/winners-list.component';
 import { TrophyRoomComponent } from './components/single-team-view/trophy-room/trophy-room.component';
 import { ColumnChartComponent } from './shared/components/column-chart/column-chart.component';
 import { PlayersCardsWrapperComponent } from './shared/components/players-cards-wrapper/players-cards-wrapper.component';
@@ -65,6 +65,8 @@ import { H2hSeasonBySeasonComponent } from './components/global-stats-view/h2h-s
 import { AllTimeTeamStatsComponent } from './components/global-stats-view/all-time-team-stats/all-time-team-stats.component';
 import { AllTimeStatsComponent } from './components/global-stats-view/all-time-stats/all-time-stats.component';
 import { CreateMatchComponent } from './components/matches-view/create-match/create-match.component';
+import { WinnersWrapperComponent } from './components/global-stats-view/winners/winners-wrapper/winners-wrapper.component';
+import { MatchesTableComponent } from './shared/components/matches-table/matches-table.component';
 
 
 
@@ -101,7 +103,9 @@ import { CreateMatchComponent } from './components/matches-view/create-match/cre
     GoalscorersTheNewestOneComponent,
     RecordInMatchComponent,
     SeasonBySeasonComponent,
-    H2hSeasonBySeasonComponent
+    H2hSeasonBySeasonComponent,
+    WinnersWrapperComponent,
+    MatchesTableComponent
   ],
   imports: [
     BrowserModule,

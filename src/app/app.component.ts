@@ -10,13 +10,11 @@ export class AppComponent implements OnInit {
 
   constructor(private generalService : GeneralService) { }
 
-  seasonsList = [];
+  seasonsList: Array<string> = [];
 
   ngOnInit() {
     this.generalService.getSeasonsList().subscribe(data=>{
-      this.seasonsList = JSON.parse(JSON.stringify(data));
+      this.seasonsList = data as Array<string>;
     });
-
   }
-
 }

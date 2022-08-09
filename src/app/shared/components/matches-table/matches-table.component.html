@@ -1,0 +1,99 @@
+<table mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="index">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="season">
+    <th mat-header-cell *matHeaderCellDef> Season </th>
+    <td mat-cell *matCellDef="let element" class="cursor-pointer" (click)="generalRouterService.goToSeasonView(element.season, element.competition)"> {{element.season}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="competition">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="{'hidden': !showCompetition}"> Comp </th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'hidden': !showCompetition}"> {{element.competition}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phase">
+    <th mat-header-cell *matHeaderCellDef [ngClass]="{'hidden': !showCompetitionPhase}"> Phase </th>
+    <!-- {{(element.competitionPhase==='Final' && currentTeam===element.winner)? 'Final - WINNER' : element.competitionPhase}} -->
+    <td mat-cell *matCellDef="let element" [ngClass]="{'hidden': !showCompetitionPhase}">
+      <span>{{element.competitionPhase}} </span>
+    </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="winnerPlayer">
+    <th mat-header-cell *matHeaderCellDef>Winner</th>
+    <td mat-cell *matCellDef="let element" class="font-bold"
+      [ngClass]="{'text-cyan-500': element.winnerPlayer === 'Pavol Jay', 'text-green-500': element.winnerPlayer === 'Kotlik'}">
+      {{element.winnerPlayer}}</td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="hometeam">
+    <th mat-header-cell *matHeaderCellDef class="!pr-4">
+      <span class="flex justify-end"> Hometeam</span>
+    </th>
+    <td mat-cell *matCellDef="let element" class="cursor-pointer !pr-4">
+      <div class="flex items-center justify-end space-x-1">
+        <span (click)="generalRouterService.goToTeamView(element.hometeam)" class="cursor-pointer" [ngClass]="{'font-bold': element.winner === element.hometeam}">{{element.hometeam}}</span>
+        <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.hometeam}}.jpg"
+          (click)="generalRouterService.goToTeamView(element.hometeam)" matTooltip="{{element.hometeam}}" alt="">
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef>
+      <span class="flex justify-center">Score</span>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <span class="flex justify-center font-bold">
+        {{element.scorehome}} : {{element.scoreaway}}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="awayteam">
+    <th mat-header-cell *matHeaderCellDef class="!pl-4"> Awayteam </th>
+    <td mat-cell *matCellDef="let element" class="!pl-4">
+      <div class="flex items-center space-x-1">
+        <img (click)="generalRouterService.goToTeamView(element.awayteam)" class="max-h-[25px] cursor-pointer"
+          src="assets/img/logos/{{element.awayteam}}.jpg" matTooltip="{{element.awayteam}}" alt="">
+        <span (click)="generalRouterService.goToTeamView(element.awayteam)" [ngClass]="{'font-bold': element.winner === element.awayteam}" class="cursor-pointer">{{element.awayteam}}</span>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="winnerBadge">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element" [ngSwitch]="element.winner">
+      <ng-container *ngIf="!!currentTeam">
+        <span *ngSwitchCase="currentTeam" class="badge-success">W</span>
+        <span *ngSwitchCase="'D'" class="badge-warning">D</span>
+        <span *ngSwitchDefault class="badge-danger">L</span>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element; let i = index;">
+      <div class="flex items-center">
+        <mat-icon *ngIf="editAllowed" class="iconAnimation" matTooltip="Edit match" (click)="editMatch(element)">edit</mat-icon>
+        <mat-icon *ngIf="editAllowed" class="iconAnimation" matTooltip="Add match details"
+          (click)="addMatchDetails(element)">remove_red_eye</mat-icon>
+        <mat-icon class="iconAnimation" matTooltip="View match details" (click)="openMatchDetail(element)">search
+        </mat-icon>
+      </div>
+    </td>
+  </ng-container>
+
+  <!--   -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" [ngClass]="{'bg-yellow-500': (row.competitionPhase==='Final' && currentTeam===row.winner)}"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="pageSize"></mat-paginator>

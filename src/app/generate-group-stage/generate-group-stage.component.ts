@@ -3,7 +3,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { map, Observable, startWith, Subscription } from 'rxjs';
 import { TeamsService } from '../shared/services/teams.service';
 import { FormControl } from '@angular/forms';
-import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
+import { SnackBarComponent } from '../shared/components/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 

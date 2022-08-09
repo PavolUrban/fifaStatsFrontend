@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
-import { Matches } from '../models/matches';
+import { Matches } from '../../models/matches';
 import { Observable } from 'rxjs';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatchDetailComponent } from '../../match-detail/match-detail.component';
-import { Teams } from '../models/teams';
+import { MatchDetailComponent } from '../../../match-detail/match-detail.component';
+import { Teams } from '../../models/teams';
 import { Router } from '@angular/router';
-import { MatchesService } from '../services/matches.service';
+import { MatchesService } from '../../services/matches.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
-import { RecordInMatchComponent } from '../../record-in-match/record-in-match.component';
+import { RecordInMatchComponent } from '../../../record-in-match/record-in-match.component';
 import { CreateMatchComponent } from 'src/app/components/create-match/create-match.component';
 
 @Component({

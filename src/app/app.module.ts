@@ -37,14 +37,14 @@ import { NewTeamDialogComponent } from './new-team-dialog/new-team-dialog.compon
 import { SingleTeamComponent } from './single-team-view/single-team/single-team.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatchDetailComponent } from './match-detail/match-detail.component';
-import { PieChartStatsComponent } from './pie-chart-stats/pie-chart-stats.component';
+import { PieChartStatsComponent } from './shared/components/pie-chart-stats/pie-chart-stats.component';
 import { SeasonComponent } from './season-view/season/season.component';
 import { PlayersStatsComponent } from './players-view/players-stats/players-stats.component';
 import { PlayOffComponent } from './play-off/play-off.component';
 import { PlayerTeamsDialogComponent } from './player-teams-dialog/player-teams-dialog.component';
 import { TeamTopGoalscorersComponent } from './team-top-goalscorers/team-top-goalscorers.component';
 import { GroupMatchesDialogComponent } from './group-matches-dialog/group-matches-dialog.component';
-import { CustomMatchesComponent } from './shared/custom-matches/custom-matches.component';
+import { CustomMatchesComponent } from './shared/components/custom-matches/custom-matches.component';
 import { OverallSeasonStatsComponent } from './season-view/overall-season-stats/overall-season-stats.component';
 import { FinalMatchComponent } from './final-match/final-match.component';
 import { H2HComponent } from './h2-h/h2-h.component';
@@ -53,7 +53,7 @@ import { TrophyRoomComponent } from './single-team-view/trophy-room/trophy-room.
 import { ColumnChartComponent } from './components/column-chart/column-chart.component';
 import { PlayersCardsWrapperComponent } from './players-cards-wrapper/players-cards-wrapper.component';
 import { PlayersCardsComponent } from './players-cards/players-cards.component';
-import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
+import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { GenerateGroupStageComponent } from './generate-group-stage/generate-group-stage.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CreateMatchWrapperComponent } from './create-match-wrapper/create-match-wrapper.component';

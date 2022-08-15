@@ -67,6 +67,8 @@ import { AllTimeStatsComponent } from './components/global-stats-view/all-time-s
 import { CreateMatchComponent } from './components/matches-view/create-match/create-match.component';
 import { WinnersWrapperComponent } from './components/global-stats-view/winners/winners-wrapper/winners-wrapper.component';
 import { MatchesTableComponent } from './shared/components/matches-table/matches-table.component';
+import { TeamTrophiesComponent } from './components/global-stats-view/winners/team-trophies/team-trophies.component';
+import { TopMatchesComponent } from './components/global-stats-view/top-records-matches/top-matches/top-matches.component';
 
 
 
@@ -105,7 +107,9 @@ import { MatchesTableComponent } from './shared/components/matches-table/matches
     SeasonBySeasonComponent,
     H2hSeasonBySeasonComponent,
     WinnersWrapperComponent,
-    MatchesTableComponent
+    MatchesTableComponent,
+    TeamTrophiesComponent,
+    TopMatchesComponent
   ],
   imports: [
     BrowserModule,

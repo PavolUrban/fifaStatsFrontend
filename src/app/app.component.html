@@ -28,6 +28,7 @@
     <button mat-button routerLink="players">Players</button>
     <button mat-button [matMenuTriggerFor]="globalStats">Global stats</button>
     <mat-menu #globalStats="matMenu">
+      <button mat-menu-item routerLink="topMatches">Top matches</button>
       <button mat-menu-item routerLink="winners">Winners</button>
       <button mat-menu-item routerLink="allTimeStats">All time stats</button>
       <button mat-menu-item routerLink="seasonBySeason">Season by season</button>

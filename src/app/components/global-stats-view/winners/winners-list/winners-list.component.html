@@ -3,7 +3,7 @@
     <mat-tab label="Champions league"></mat-tab>
     <mat-tab label="European league"></mat-tab>
   </mat-tab-group>
-  <mat-card-content class="pt-16">
+  <mat-card-content>
     <app-matches-table *ngIf="!!dataToPass" [data]="dataToPass" [showCompetitionPhase]="false" [showCompetition]="false" [pageSize]=15></app-matches-table>
   </mat-card-content>
 </mat-card>

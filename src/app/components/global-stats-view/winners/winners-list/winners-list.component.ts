@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Matches } from 'src/app/shared/models/matches';
-import { GeneralService } from 'src/app/shared/services/general.service';
+import { TeamTrophyModel } from 'src/app/shared/models/team-trophy.model';
+import { GlobalStatsService } from 'src/app/shared/services/global-stats.service';
 
 @Component({
   selector: 'app-winners-list',
@@ -11,15 +12,16 @@ export class WinnersListComponent implements OnInit {
 
   @ViewChild('tabGroup') tabGroup;
   dataToPass: Array<Matches>;
+  teamTrophiesList: Array<TeamTrophyModel>;
 
-  constructor(public generalService: GeneralService) { }
+  constructor(private globalStatsService: GlobalStatsService) { }
 
   ngOnInit(): void {
     this.reloadData('CL');
   }
 
   reloadData(competition: string): void {
-    this.generalService.getWinnersList(competition).subscribe( data =>{
+    this.globalStatsService.getWinnersList(competition).subscribe( data =>{
       this.dataToPass = data as Array<Matches>;
     });
   }

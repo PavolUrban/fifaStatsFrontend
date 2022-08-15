@@ -23,7 +23,8 @@ export class MatchesTableComponent implements OnInit {
   @Input() showCompetition: boolean = true;
   @Input() pageSize: number = 5;
   @Input() set data(matches: Matches[]) {
-    this.dataSource = new MatTableDataSource<Matches>(matches)
+    this.dataSource = new MatTableDataSource<Matches>(matches);
+    this.dataSource.paginator = this.paginator;
   };
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -34,7 +35,6 @@ export class MatchesTableComponent implements OnInit {
   constructor(public generalRouterService: GeneralRouterService, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
   addMatchDetails(match: Matches) {

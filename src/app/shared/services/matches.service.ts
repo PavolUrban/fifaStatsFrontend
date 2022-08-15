@@ -55,5 +55,9 @@ export class MatchesService {
     insertAllRecordsToNewTable(){
       return this.http.get("http://localhost:8080/matches/prepareAllRecords/existingMatches");
     }
-  
+
+
+  getMatchesByRecordType(recordType: string) {
+    return this.http.get(`${this.baseUrl}/topMatches/${recordType}`);
+  }
 }

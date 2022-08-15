@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamTrophyModel } from 'src/app/shared/models/team-trophy.model';
+import { GlobalStatsService } from 'src/app/shared/services/global-stats.service';
 
 @Component({
   selector: 'app-winners-wrapper',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinnersWrapperComponent implements OnInit {
 
-  constructor() { }
+  // todo subscription + unsubscribe + winners list integrate here
+
+  teamTrophiesList: Array<TeamTrophyModel>;
+  constructor(private globalStatsService: GlobalStatsService) { }
 
   ngOnInit(): void {
+    this.globalStatsService.getTrophyRoomTeams().subscribe(data=> {
+      this.teamTrophiesList = data as Array<TeamTrophyModel>;
+    })
   }
+
+  
 
 }

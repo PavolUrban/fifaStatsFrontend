@@ -1,16 +1,20 @@
 <div class="grid grid-cols-1 gap-4">
-    <h1 class="pageTitleFormat">All time stats</h1>
+    <h1 class="pageTitleFormat">Winners</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
         <div>
-            <h1 class="groupStageHeaderFormat">Winners list</h1>
+            <h1 class="groupStageHeaderFormat">Final matches</h1>
             <app-winners-list></app-winners-list>
         </div>
-    
+
         <div>
             <h1 class="groupStageHeaderFormat">Trophies count</h1>
-            <!-- Trophies table e.g. 1. LFC - 5, 2. Real - 4 -->
+            <mat-card>
+                <mat-card-content>
+                    <app-team-trophies *ngIf="!!teamTrophiesList" [data]="teamTrophiesList"></app-team-trophies>
+                </mat-card-content>
+            </mat-card>
         </div>
     </div>
 </div>

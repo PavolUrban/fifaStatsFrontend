@@ -1,0 +1,95 @@
+<table mat-table [dataSource]="dataSource" matSort>
+    <!-- 'index', 'teamName', 'runnersUpEL', 'runnersUpCL', 'runnersUpTotal', 'winCountEL', 'winCountCL', 'winCountTotal' -->
+    <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="teamName">
+        <th mat-header-cell *matHeaderCellDef class="!pr-4" mat-sort-header>Team
+        </th>
+        <td mat-cell *matCellDef="let element" class="cursor-pointer !pr-4">
+            <div class="flex items-center space-x-1">
+                <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.teamName}}.jpg"
+                (click)="generalRouterService.goToTeamView(element.teamName)" matTooltip="{{element.teamName}}"
+                alt="">
+                <span (click)="generalRouterService.goToTeamView(element.teamName)" class="cursor-pointer">{{element.teamName}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="runnersUpEL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='before'>
+            <span class="flex justify-end"> RunnersUp EL</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="flex justify-end">
+                <span [ngClass]="{'badge-runner-up': element.runnersUpEL > 0, 'badge-default': element.runnersUpEL === 0}">{{element.runnersUpEL}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="runnersUpCL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='before'>
+            <span class="flex justify-end"> RunnersUp CL</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="flex justify-end">
+                <span [ngClass]="{'badge-runner-up': element.runnersUpCL > 0, 'badge-default': element.runnersUpCL === 0}">{{element.runnersUpCL}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="runnersUpTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='before'>
+            <span class="flex justify-end"> RunnersUp Total</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="flex justify-end">
+                <span [ngClass]="{'badge-runner-up': element.runnersUpTotal > 0, 'badge-default': element.runnersUpTotal === 0}">{{element.runnersUpTotal}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="winCountEL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='before'>
+            <span class="flex justify-end"> Wins EL</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="flex justify-end">
+                <span [ngClass]="{'badge-winner': element.winCountEL > 0, 'badge-default': element.winCountEL === 0}">{{element.winCountEL}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="winCountCL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='before'>
+            <span class="flex justify-end"> Wins CL</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="flex justify-end">
+                <span [ngClass]="{'badge-winner': element.winCountCL > 0, 'badge-default': element.winCountCL === 0}">{{element.winCountCL}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="winCountTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition='before'>
+            <span class="flex justify-end"> Wins Total</span>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="flex justify-end">
+                <span [ngClass]="{'badge-winner': element.winCountTotal > 0, 'badge-default': element.winCountTotal === 0}">{{element.winCountTotal}}</span>
+            </div>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" pageSize="12"></mat-paginator>

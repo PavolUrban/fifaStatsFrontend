@@ -11,6 +11,7 @@ import { CreateMatchWrapperComponent } from './components/matches-view/create-ma
 import { SeasonBySeasonComponent } from './components/global-stats-view/season-by-season/season-by-season.component';
 import { AllTimeStatsComponent } from './components/global-stats-view/all-time-stats/all-time-stats.component';
 import { WinnersWrapperComponent } from './components/global-stats-view/winners/winners-wrapper/winners-wrapper.component';
+import { TopMatchesComponent } from './components/global-stats-view/top-records-matches/top-matches/top-matches.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
     { path: 'allTimeStats',component: AllTimeStatsComponent},
     { path: 'generateGroupStage', component: GenerateGroupStageComponent},
     { path: 'seasonBySeason', component: SeasonBySeasonComponent},
-    { path: 'winners', component: WinnersWrapperComponent}
+    { path: 'winners', component: WinnersWrapperComponent},
+    { path: 'topMatches', component: TopMatchesComponent}
 ];
 
 @NgModule({

@@ -9,10 +9,16 @@ export class GeneralRouterService {
     constructor(private router: Router) { }
 
     goToTeamView(teamName: string): void {
-        this.router.navigate(['/teaminfo/' + teamName]);
+        this.router.navigate(['/teaminfo/' + teamName])
+            .then(() => {
+                window.location.reload();
+            });
     }
 
     goToSeasonView(season: string, competition: string): void {
-        this.router.navigate(['/season/' + season + "/" + competition]);
+        this.router.navigate(['/season/' + season + "/" + competition])
+        .then(() => {
+            window.location.reload();
+        });
     }
 }

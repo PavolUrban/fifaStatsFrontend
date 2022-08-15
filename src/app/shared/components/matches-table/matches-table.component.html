@@ -26,9 +26,11 @@
 
   <ng-container matColumnDef="winnerPlayer">
     <th mat-header-cell *matHeaderCellDef>Winner</th>
-    <td mat-cell *matCellDef="let element" class="font-bold"
-      [ngClass]="{'text-cyan-500': element.winnerPlayer === 'Pavol Jay', 'text-green-500': element.winnerPlayer === 'Kotlik'}">
-      {{element.winnerPlayer}}</td>
+    <td mat-cell *matCellDef="let element" class="font-bold">
+      <span class="w-20 flex justify-center" [ngClass]="{'badge-pavol-jay': element.winnerPlayer === 'Pavol Jay', 'badge-kotlik': element.winnerPlayer === 'Kotlik'}">
+        {{element.winnerPlayer}}
+      </span>
+    </td>
   </ng-container>
 
 

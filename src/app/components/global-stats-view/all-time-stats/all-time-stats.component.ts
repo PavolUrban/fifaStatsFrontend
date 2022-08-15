@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GeneralService } from 'src/app/shared/services/general.service';
+import { GlobalStatsService } from 'src/app/shared/services/global-stats.service';
 
 @Component({
   selector: 'app-all-time-stats',
@@ -15,10 +15,10 @@ export class AllTimeStatsComponent implements OnInit {
 
   trophyRoom;
   winnersList;
-  constructor(private generalService: GeneralService) { }
+  constructor(private globalStatsService: GlobalStatsService) { }
 
   ngOnInit() {
-    this.subscription = this.generalService.getTrophyRoom().subscribe(data=>{
+    this.subscription = this.globalStatsService.getTrophyRoom().subscribe(data=>{
       this.trophyRoom = data;
     });
   }

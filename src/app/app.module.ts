@@ -69,6 +69,8 @@ import { WinnersWrapperComponent } from './components/global-stats-view/winners/
 import { MatchesTableComponent } from './shared/components/matches-table/matches-table.component';
 import { TeamTrophiesComponent } from './components/global-stats-view/winners/team-trophies/team-trophies.component';
 import { TopMatchesComponent } from './components/global-stats-view/top-records-matches/top-matches/top-matches.component';
+import { TopFifaPlayersComponent } from './components/global-stats-view/top-fifa-players/top-fifa-players.component';
+import { GoalDistributonComponent } from './shared/components/goal-distributon/goal-distributon.component';
 
 
 
@@ -109,7 +111,9 @@ import { TopMatchesComponent } from './components/global-stats-view/top-records-
     WinnersWrapperComponent,
     MatchesTableComponent,
     TeamTrophiesComponent,
-    TopMatchesComponent
+    TopMatchesComponent,
+    TopFifaPlayersComponent,
+    GoalDistributonComponent
   ],
   imports: [
     BrowserModule,

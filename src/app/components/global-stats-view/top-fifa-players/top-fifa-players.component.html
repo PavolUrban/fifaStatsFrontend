@@ -1,0 +1,144 @@
+<div class="grid grid-cols-1 gap-4">
+  <h1 class="pageTitleFormat">Matches records</h1>
+  <div>
+    <h1 class="groupStageHeaderFormat">Goalscorers</h1>
+    <mat-card>
+      <mat-card-content>
+        <div class="flex space-x-2">
+          <mat-form-field>
+            <mat-label>Record type</mat-label>
+            <mat-select [(ngModel)]="selectedRecordType" (selectionChange)="updatePlayersWithRecords()">
+              <mat-option *ngFor="let recordType of recordTypesList" [value]="recordType">{{recordType}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Competition</mat-label>
+            <mat-select [(ngModel)]="selectedCompetition" (selectionChange)="updatePlayersWithRecords()">
+              <mat-option *ngFor="let competition of competitionList" [value]="competition">{{competition}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Competition phase</mat-label>
+            <mat-select [disabled]="competitionPhaseSelectionDisabled" [(ngModel)]="selectedPhase" (selectionChange)="updatePlayersWithRecords()">
+              <mat-option *ngFor="let competitionPhase of competitionPhaseList" [value]="competitionPhase">{{competitionPhase}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef> # </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="season">
+                <th mat-header-cell *matHeaderCellDef> Season </th>
+                <td mat-cell *matCellDef="let element" class="cursor-pointer" (click)="generalRouterService.goToSeasonView(element.season, element.competition)"> {{element.season}} </td>
+              </ng-container> -->
+
+        <!-- <ng-container matColumnDef="competition">
+                <th mat-header-cell *matHeaderCellDef [ngClass]="{'hidden': !showCompetition}"> Comp </th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{'hidden': !showCompetition}"> {{element.competition}} </td>
+              </ng-container> -->
+        <ng-container matColumnDef="playerName">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>Player</span>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="flex items-center space-x-1">
+              <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.teamName}}.jpg"
+                (click)="generalRouterService.goToTeamView(element.teamName)" matTooltip="{{element.teamName}}" alt="">
+              <span (click)="dialogOpenerService.openPlayersDetail(element.playerName)">{{element.playerName}}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="recordEventCount">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>Count</span>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="font-bold">
+              {{element.recordEventCount}}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="season">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>Season</span>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <span>
+              {{element.season}}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="homeTeam">
+          <th mat-header-cell *matHeaderCellDef>
+            <span class="flex justify-end"> Home </span>
+          </th>
+          <td mat-cell *matCellDef="let element" class="cursor-pointer w-[190px]">
+            <div class="flex items-center justify-end space-x-1">
+              <span (click)="generalRouterService.goToTeamView(element.homeTeam)" class="cursor-pointer"
+                [ngClass]="{'font-bold': element.winner === element.homeTeam}">{{element.homeTeam}}</span>
+              <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.homeTeam}}.jpg"
+                (click)="generalRouterService.goToTeamView(element.homeTeam)" matTooltip="{{element.homeTeam}}" alt="">
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef>
+            <span class="flex justify-center">Score</span>
+          </th>
+          <td mat-cell *matCellDef="let element" class="w-[40px]">
+            <span class="flex justify-center ">
+              {{element.score}}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="awayTeam">
+          <th mat-header-cell *matHeaderCellDef> Away </th>
+          <td mat-cell *matCellDef="let element" class="w-[190px]">
+            <div class="flex items-center space-x-1 ">
+              <img (click)="generalRouterService.goToTeamView(element.awayTeam)" class="max-h-[25px] cursor-pointer"
+                src="assets/img/logos/{{element.awayTeam}}.jpg" matTooltip="{{element.awayTeam}}" alt="">
+              <span (click)="generalRouterService.goToTeamView(element.awayTeam)"
+                [ngClass]="{'font-bold': element.winner === element.awayTeam}"
+                class="cursor-pointer">{{element.awayTeam}}</span>
+            </div>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td class="w-[48px]" mat-cell *matCellDef="let element; let i = index;">
+            <div class="flex items-center">
+              <mat-icon class="iconAnimation" matTooltip="View match details" (click)="getMatchToOpen(element)">search
+              </mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <!--   -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="10"></mat-paginator>
+
+      Note: Currently this is working only for new fifa format!
+
+    </mat-card>
+  </div>
+
+</div>

@@ -1,66 +1,40 @@
 <div class="row">
   <div class="col-sm-12">
-
     <h1 class="groupStageHeaderFormat">{{playerName}}</h1>
-
     <mat-card>
-    <img [src]="imgSrc" alt="" class="playerFoto mr-1">
+      <img [src]="imgSrc" alt="" class="playerFoto mr-1">
+      <table>
+        <tbody>
+          <tr>
+            <th class="text-start pt-8 pb-1">Season</th>
+            <th class="text-start pt-8 pb-1">Team</th>
+            <th class="pt-8 pb-1">
+              <div class="flex justify-end items-center">
+                <span class="material-icons">sports_soccer</span>
+              </div>
+            </th>
+            <th class="text-end pt-8 pb-1"><span class="badge-warning" matTooltip="Yellow cards">Y</span></th>
+            <th class="text-end pt-8 pb-1"><span class="badge-danger" matTooltip="Red cards">R</span></th>
+          </tr>
+          <tr *ngFor="let season of statsPerSeason" class="hover:bg-gray-200">
+            <td [ngClass]="{'font-bold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
+            <td class="cursor-pointer" (click)="generalRouterService.goToTeamView(season.teamname)">
+              <div class="flex items-center space-x-2">
+                <img *ngIf="season.teamname" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize">
+                <span class="ml-1" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.teamname}}
+                </span>
+              </div>
+            </td>
+            <td class="text-end pr-[9px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">
+              {{season.goalsCount}}</td>
+            <td class="text-end pr-[11px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">
+              {{season.yellowCardsCount}}</td>
+            <td class="text-end pr-[11px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">
+              {{season.redCardsCount}}</td>
+          </tr>
 
-
-    <mat-tab-group>
-      
-      <mat-tab label="Season by season">
-        <table>
-          <tbody>
-            <tr>
-              <th class="text-start pt-8 pb-1">Season</th>
-              <th class="text-start pt-8 pb-1">Team</th>
-              <th class="pt-8 pb-1">
-                <div class="flex justify-end items-center">
-                  <span class="material-icons">sports_soccer</span>
-                </div>
-              </th>
-              <th class="text-end pt-8 pb-1"><span class="badge-warning" matTooltip="Yellow cards">Y</span></th>
-              <th class="text-end pt-8 pb-1"><span class="badge-danger" matTooltip="Red cards">R</span></th>
-            </tr>
-            <tr *ngFor="let season of statsPerSeason" class="hover:bg-gray-200">
-              <td [ngClass]="{'font-bold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
-              <td class="cursor-pointer" (click)=goToTeamView(season.teamname)> 
-                <div class="flex items-center space-x-2">
-                  <img *ngIf="season.teamname" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize"> 
-                  <span
-                    class="ml-1" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.teamname}}
-                  </span>
-                </div>
-              </td>
-              <td class="text-end pr-[9px]"  [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.goalsCount}}</td>
-              <td class="text-end pr-[11px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.yellowCardsCount}}</td>
-              <td class="text-end pr-[11px]" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.redCardsCount}}</td>
-            </tr>
-
-          </tbody>
-        </table>
-      </mat-tab>
-
-      <mat-tab label="Goals by teams count" *ngIf="!!playerInfo">
-        <table class="table table-sm mt-3 table-hover">
-          <tbody>
-            <tr *ngFor="let item of playerTeams | keyvalue">
-              <th>{{item.key}}</th>
-              <td>{{item.value}}</td>
-            </tr>
-            <tr>
-              <th>Total</th>
-              <td>{{playerInfo.totalGoalsCount}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-tab>
-
-    </mat-tab-group>
-
-
-
-  </mat-card>
+        </tbody>
+      </table>
+    </mat-card>
   </div>
 </div>

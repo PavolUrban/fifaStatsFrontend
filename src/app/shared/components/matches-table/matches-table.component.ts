@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CreateMatchComponent } from 'src/app/components/matches-view/create-match/create-match.component';
 import { RecordInMatchComponent } from 'src/app/components/matches-view/record-in-match/record-in-match.component';
 import { Matches } from '../../models/matches';
+import { DialogOpenerService } from '../../services/dialog-opener.service';
 import { GeneralRouterService } from '../../services/general-router.service';
 import { MatchDetailComponent } from '../match-detail/match-detail.component';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
@@ -32,7 +33,7 @@ export class MatchesTableComponent implements OnInit {
   dataSource: MatTableDataSource<Matches> ;
   displayedColumns: string[] = ['index', 'season', 'competition', 'phase', 'winnerPlayer', 'hometeam', 'score', 'awayteam', 'winnerBadge', 'actions'];
 
-  constructor(public generalRouterService: GeneralRouterService, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(public generalRouterService: GeneralRouterService, private dialog: MatDialog, private _snackBar: MatSnackBar, public dialogOpenerService: DialogOpenerService) { }
 
   ngOnInit() {
   }
@@ -47,18 +48,6 @@ export class MatchesTableComponent implements OnInit {
     };
 
     this.dialog.open(RecordInMatchComponent, dialogConfig);
-  }
-
-  openMatchDetail(match: Matches) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.minWidth = '750px';
-    dialogConfig.minHeight = '600px';
-    dialogConfig.data = {
-      match: match
-    };
-
-    this.dialog.open(MatchDetailComponent, dialogConfig);
   }
 
   editMatch(match){

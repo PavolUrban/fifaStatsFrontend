@@ -17,15 +17,12 @@ export class SingleTeamComponent implements OnInit {
   subtitle: string = "All European competitions"
   teamMatches;
   totalBilance = [];
-  goalsByMins;
-  goalsInRange;
+
   championsLeagueFinalMatches;
   europeanLeagueFinalMatches;
   totalFinalMatches;
   trophyRoomData = new Object();
   teamWithoutTrophy = false;
-  unknownTimeGoals: number;
-  unknownTimeConcededGoals: number;
 
 
   constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService) { }
@@ -48,10 +45,7 @@ export class SingleTeamComponent implements OnInit {
           this.teamWithoutTrophy = true;
         }
 
-        this.goalsByMins = data["goalsByMinutesCount"]; // todo this can be soon removed
-        this.goalsInRange = data["goalsPerTimeRanges"];
-        this.unknownTimeGoals = data['unknownTimeGoals'];
-        this.unknownTimeConcededGoals = data['unknownConcededGoalsTime'];
+
         this.teamMatches = data["matches"];
         let matchStats = data["matchesStats"];
         this.team.winsCL = matchStats["CL"]["Wins"];
@@ -91,11 +85,5 @@ export class SingleTeamComponent implements OnInit {
       });
     });
 
-  }
-
-
-  //todo this is duplicate!
-  numSequence(n: number): Array<number> {
-    return Array(n);
   }
 }

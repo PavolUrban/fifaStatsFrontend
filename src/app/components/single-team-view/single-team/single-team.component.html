@@ -5,7 +5,7 @@
       <h1>{{team.teamName}}</h1>
     </div>
   </div>
-    <!-- <div class="flex text-8xl justify-center items-center space-x-8 p-8 bg-gray-400 rounded">
+  <!-- <div class="flex text-8xl justify-center items-center space-x-8 p-8 bg-gray-400 rounded">
       <img src="assets/img/logos/{{team.teamName}}.jpg">
       <h1>{{team.teamName}}</h1>
       
@@ -226,14 +226,21 @@
   </div>
 
 
-  <div class="grid grid-cols-1">
+  <div class="grid grid-cols-2 gap-4">
     <div>
       <h1 class="groupStageHeaderFormat"> TODO Goalscoring time distribution</h1>
       <mat-card>
-        <app-column-chart [testText]="'now i know only i can stop the rain'" [series]="goalsByMins"
+
+        <app-goal-distributon></app-goal-distributon>
+        <!-- <app-column-chart [testText]="'now i know only i can stop the rain'" [series]="goalsByMins"
           [goalsRangesCounts]="goalsInRange" [unkownTimeGoals]="unknownTimeGoals"
-          [unknownTimeConcededGoals]="unknownTimeConcededGoals"></app-column-chart>
+          [unknownTimeConcededGoals]="unknownTimeConcededGoals"></app-column-chart> -->
       </mat-card>
+    </div>
+
+    <div>
+      <h1 class="groupStageHeaderFormat"> Best matches</h1>
+      <app-top-matches [specificTeam]="team.teamName"></app-top-matches>
     </div>
   </div>
 

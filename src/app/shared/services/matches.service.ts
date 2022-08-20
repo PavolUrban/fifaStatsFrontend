@@ -50,6 +50,10 @@ export class MatchesService {
     return this.http.get(`${this.baseUrl}/getMatchDetails/${matchId}/${hometeam}/${awayteam}`);
   }
 
+  getMatchById(matchId: number){
+    return this.http.get(`${this.baseUrl}/getMatchById/${matchId}`);
+  }
+
 
  //todo toto pojde soon prec
     insertAllRecordsToNewTable(){
@@ -57,7 +61,7 @@ export class MatchesService {
     }
 
 
-  getMatchesByRecordType(recordType: string) {
-    return this.http.get(`${this.baseUrl}/topMatches/${recordType}`);
+  getMatchesByRecordType(recordType: string, selectedPlayer: string, selectedCompetition: string, teamName: string) {
+    return this.http.get(`${this.baseUrl}/topMatches/${recordType}/${selectedPlayer}/${selectedCompetition}/${teamName}`);
   }
 }

@@ -20,6 +20,9 @@ export class FifaPlayerService {
 
   savePlayerStat(playerName: string, recordType: string, recordSignature: string, details: string, teamName: string, matchId: number) {
     return this.http.post(`${this.baseUrl}/savePlayerRecord`, {playerName, recordType, recordSignature, details, teamName, matchId});
+  }
 
+  getPlayersWithRecords(recordType: string, competition: string, competitionPhase: string) {
+    return this.http.get(`${this.baseUrl}/getPlayersWithRecord/${recordType}/${competition}/${competitionPhase}`);
   }
 }

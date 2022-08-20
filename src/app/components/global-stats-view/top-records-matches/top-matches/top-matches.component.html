@@ -1,16 +1,30 @@
-<div class="grid grid-cols-1 gap-4">
-    <h1 class="pageTitleFormat">Matches records</h1>
-
-    <mat-card class="mt-5">
-        <mat-card-content>
-            <mat-form-field class="ml-3">
+<mat-card>
+    <mat-card-content>
+        <div class="flex space-x-2">
+            <mat-form-field>
                 <mat-label>Record type</mat-label>
                 <mat-select [(ngModel)]="selectedRecordType" (selectionChange)="updateMatches()">
-                    <mat-option *ngFor="let recordType of recordList" [value]="recordType">{{recordType}}</mat-option>
+                    <mat-option *ngFor="let recordType of recordList" [value]="recordType">{{recordType}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <app-matches-table *ngIf="!!matches" [data]="matches" [pageSize]="10"></app-matches-table>
-        </mat-card-content>
-    </mat-card>
-</div>
+            <mat-form-field>
+                <mat-label>Competition</mat-label>
+                <mat-select [(ngModel)]="selectedCompetition" (selectionChange)="updateMatches()">
+                    <mat-option *ngFor="let competition of competitionList" [value]="competition">{{competition}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Player</mat-label>
+                <mat-select [disabled]="isPlayersListDisabled" [(ngModel)]="selectedPlayer"
+                    (selectionChange)="updateMatches()">
+                    <mat-option *ngFor="let player of playersList" [value]="player">{{player}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <app-matches-table *ngIf="!!matches" [data]="matches" [pageSize]="10"></app-matches-table>
+    </mat-card-content>
+</mat-card>

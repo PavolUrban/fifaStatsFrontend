@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DialogOpenerService } from '../../services/dialog-opener.service';
 import { PlayerTeamsDialogComponent } from '../player-teams-dialog/player-teams-dialog.component';
 
 @Component({
@@ -24,7 +25,7 @@ export class GoalscorersTheNewestOneComponent implements OnInit {
   displayedColumns: string[];
 
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  constructor(public dialogOpenerService: DialogOpenerService, private router: Router) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
@@ -49,15 +50,7 @@ export class GoalscorersTheNewestOneComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
-  openPlayersDetail(name: string) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = false;
-    dialogConfig.data = {
-      player: name
-    };
 
-   this.dialog.open(PlayerTeamsDialogComponent, dialogConfig);
-  }
 
   goToTeamView(teamname: string){
     this.router.navigate(['/teaminfo/'+teamname]);

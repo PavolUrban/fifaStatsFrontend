@@ -21,7 +21,7 @@ import { CreateMatchComponent } from 'src/app/components/matches-view/create-mat
 })
 export class CustomMatchesComponent implements OnInit {
 
-  // TOdo this
+  // TOdo this will go soon away completely
 
   @Input() currentTeam: string = null;
   @Input() dataSourceNew = [];

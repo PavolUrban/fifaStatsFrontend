@@ -12,6 +12,7 @@ import { SeasonBySeasonComponent } from './components/global-stats-view/season-b
 import { AllTimeStatsComponent } from './components/global-stats-view/all-time-stats/all-time-stats.component';
 import { WinnersWrapperComponent } from './components/global-stats-view/winners/winners-wrapper/winners-wrapper.component';
 import { TopMatchesComponent } from './components/global-stats-view/top-records-matches/top-matches/top-matches.component';
+import { TopFifaPlayersComponent } from './components/global-stats-view/top-fifa-players/top-fifa-players.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'customer', pathMatch: 'full' },
@@ -26,7 +27,8 @@ const routes: Routes = [
     { path: 'generateGroupStage', component: GenerateGroupStageComponent},
     { path: 'seasonBySeason', component: SeasonBySeasonComponent},
     { path: 'winners', component: WinnersWrapperComponent},
-    { path: 'topMatches', component: TopMatchesComponent}
+    { path: 'topMatches', component: TopMatchesComponent},
+    { path: 'topFifaPlayers', component: TopFifaPlayersComponent}
 ];
 
 @NgModule({

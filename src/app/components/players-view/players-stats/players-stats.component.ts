@@ -20,7 +20,6 @@ export class PlayersStatsComponent implements OnInit {
     this.playerStatsService.getGlobalPlayersStats().subscribe(data=>
       {
         this.playersStats = data;
-        // this.imgSrc = "./assets/img/" + name+ ".jpg";
         this.numberOfMatches = this.playersStats['Pavol Jay']['wins'] + this.playersStats['Pavol Jay']['draws'] + this.playersStats['Pavol Jay']['losses'];
         this.goalsTotal = this.playersStats['Pavol Jay']['goalsScored'] + this.playersStats['Pavol Jay']['goalsConceded'];
       }

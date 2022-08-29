@@ -72,6 +72,8 @@ import { TopMatchesComponent } from './components/global-stats-view/top-records-
 import { TopFifaPlayersComponent } from './components/global-stats-view/top-fifa-players/top-fifa-players.component';
 import { GoalDistributonComponent } from './shared/components/goal-distributon/goal-distributon.component';
 import { RecordsDetailComponent } from './shared/components/match-detail/records-detail/records-detail.component';
+import { RecordCellComponent } from './shared/components/match-detail/records-detail/record-cell/record-cell.component';
+import { GroupStageComponent } from './components/season-view/group-stage/group-stage.component';
 
 
 
@@ -115,7 +117,9 @@ import { RecordsDetailComponent } from './shared/components/match-detail/records
     TopMatchesComponent,
     TopFifaPlayersComponent,
     GoalDistributonComponent,
-    RecordsDetailComponent
+    RecordsDetailComponent,
+    RecordCellComponent,
+    GroupStageComponent
   ],
   imports: [
     BrowserModule,

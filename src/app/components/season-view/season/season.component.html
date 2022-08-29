@@ -1,114 +1,50 @@
 <div class="space-y-8">
 
-  <h1 class="pageTitleFormat">{{competitionName}} - {{seasonName}}</h1>
+  <h1 class="pageTitleFormat">
+    <!-- season next, prev TODO -->
+    {{competitionName}} - {{seasonName}}
+  </h1>
 
   <!-- Overall stats -->
   <div>
-    <app-overall-season-stats *ngIf="overallStats" [competition]="competition" [stats]="overallStats">
+    <app-overall-season-stats *ngIf="!!seasonModel" [competition]="competition" [stats]="seasonModel.overallStats">
     </app-overall-season-stats>
   </div>
 
   <!-- Goalscorers -->
   <h1 class="subtitle-format">Goalscorers</h1>
   <div class="grid xl:grid-cols-3 gap-4 grid-cols-1">
-    
+
     <div>
       <h1 class="groupStageHeaderFormat pl-15">Top scorers - Group stage</h1>
       <mat-card>
-        <app-goalscorers-the-newest-one *ngIf="topGoalscorersGroupStage" [data]="topGoalscorersGroupStage"
+        <app-goalscorers-the-newest-one *ngIf="!!seasonModel" [data]="seasonModel.totalGoalscorersGroupStage"
           [pageSize]="5"></app-goalscorers-the-newest-one>
       </mat-card>
     </div>
     <div>
       <h1 class="groupStageHeaderFormat pl-15">Top scorers - Play/off</h1>
       <mat-card>
-        <app-goalscorers-the-newest-one *ngIf="topGoalscorersPlayOffs" [data]="topGoalscorersPlayOffs" [pageSize]="5">
+        <app-goalscorers-the-newest-one *ngIf="!!seasonModel" [data]="seasonModel.totalGoalscorersPlayOffs"
+          [pageSize]="5">
         </app-goalscorers-the-newest-one>
       </mat-card>
     </div>
     <div>
       <h1 class="groupStageHeaderFormat pl-15">Top scorers - Total</h1>
       <mat-card>
-        <app-goalscorers-the-newest-one *ngIf="topGoalscorersTotal" [data]="topGoalscorersTotal" [pageSize]="5">
+        <app-goalscorers-the-newest-one *ngIf="!!seasonModel" [data]="seasonModel.totalGoalscorersAllPhases"
+          [pageSize]="5">
         </app-goalscorers-the-newest-one>
       </mat-card>
     </div>
   </div>
 
-
   <!-- Group stage -->
-  <h1 class="subtitle-format">Group stage</h1>
-  <div class="grid grid-cols-1 gap-4">
-   
-    <div *ngFor="let group of allGroups | keyvalue">
-      <h1 class="groupStageHeaderFormat pl-15">{{group.key}}</h1>
-      <mat-card>
+  <app-group-stage *ngIf="!!seasonModel" [allGroups]="seasonModel.groupStageTables" [playersStats]="seasonModel.statsByGroups"
+    [competition]="competition" [seasonName]="seasonName" [goalscorersPerGroup]="seasonModel.goalscorersPerGroup">
+  </app-group-stage>
 
-          <div class="flex flex-row space-x-4">
-          <!-- TODO add this to separate component -->
-          <div class="basis-3/5">
-            <table class="mt-20">
-              <tbody>
-                <tr>
-                  <th>#</th>
-                  <th>Team</th>
-                  <th></th>
-                  <th>M</th>
-                  <th>W</th>
-                  <th>D</th>
-                  <th>L</th>
-                  <th class="text-center">S</th>
-                  <th class="text-center">GD</th>
-                  <th class="text-center">P</th>
-                </tr>
-                <tr *ngFor="let team of allGroups[group.key]; let i=index;"
-                  [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': (i==2 && competition==='CL'), 'outOfCompetition': i==3 || (i==2 && competition==='EL')}">
-                  <td>{{i+1}}.</td>
-                  <td matTooltip="Team managed by {{team.ownedByPlayer}}" matTooltipPosition="after">
-                    <div class="flex space-x-1">
-                      <img src="assets/img/logos/{{team.teamname}}.jpg" alt="" class="iconSize mr-1 cursor-pointer"
-                      (click)="goToTeamView(team.teamname)">
-                      <span class="cursor-pointer" (click)="goToTeamView(team.teamname)">{{team.teamname}}</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge-success" *ngIf="i == 0 || i ==1">Q</span>
-                    <span class="badge-warning" *ngIf="i==2 && competition==='CL'">EL</span>
-                    <span class="badge-danger" *ngIf="i==3 || (i==2 && competition==='EL')">NQ</span>
-                  </td>
-                  <td>{{team.matches}}</td>
-                  <td>{{team.wins}}</td>
-                  <td>{{team.draws}}</td>
-                  <td>{{team.losses}}</td>
-                  <td class="text-center">{{team.goalsScored}} : {{team.goalsConceded}}</td>
-                  <td class="text-center">{{team.goalsScored - team.goalsConceded}}</td>
-                  <td class="text-center">{{team.points}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <p class="pt-4">
-              <span class="badge-success"> {{playersStats[group.key]["pavolJay"] }}</span> -
-              <span class="badge-warning"> {{playersStats[group.key]["draws"] }}</span> -
-              <span class="badge-danger"> {{playersStats[group.key]["kotlik"] }}</span>
-            </p>
-          </div>
-
-          <div class="basis-2/5">
-            <mat-card>
-              <app-goalscorers-the-newest-one [data]="goalscorersPerGroup[group.key]" [pageSize]="5">
-              </app-goalscorers-the-newest-one>
-            </mat-card>
-          </div>
-        </div>
-
-
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="displayCurrentGroupMatches(group.key)">Display
-            matches</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </div>
-
+  <!-- Play offs -->
   <app-play-off [season]="seasonName" [competition]="competition" [playOff]="playOffs"></app-play-off>
 </div>

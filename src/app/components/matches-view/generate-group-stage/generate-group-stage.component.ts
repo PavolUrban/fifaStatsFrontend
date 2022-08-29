@@ -36,15 +36,6 @@ export class GenerateGroupStageComponent implements OnInit {
 
   constructor(private teamsService: TeamsService, private _snackBar: MatSnackBar) { 
 
-    // todo - 4 pots - you can add 8 teams to each and groups can be filled from it
-    // for(let i=0;i<this.pots.length;i++) {
-    //   let singlePot = {
-    //     id: this.pots[i],
-    //     capacity: 8,
-        
-    //   }
-    // }
-
     for(let i=0; i<this.allGroupNames.length ; i++) {
       let singleGroup = {
         id: this.allGroupNames[i],
@@ -123,9 +114,12 @@ export class GenerateGroupStageComponent implements OnInit {
     var index = this.completeTeamList.indexOf(this.homeTeamControl.value);    
     if (index !== -1) {
         this.completeTeamList.splice(index, 1);
+        this.allTeamsForGroupStageObject.items.push({teamName: this.homeTeamControl.value, country: 'country todo'});
        // this.getTeamLogo(this.homeTeamControl.value);
      
     }    
+
+    this.homeTeamControl.setValue('');
 
     this._snackBar.openFromComponent(SnackBarComponent, {
       duration: 3000,

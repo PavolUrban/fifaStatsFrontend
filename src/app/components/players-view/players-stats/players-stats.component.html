@@ -2,34 +2,33 @@
 
   <h1 class="pageTitleFormat">Players stats</h1>
 
+  <div>
+    <h1 class="groupStageHeaderFormat">Overall stats</h1>
+    <table class="bg-white">
+      <tbody>
+        <tr>
+          <th>Matches played</th>
+          <td>
+            {{numberOfMatches}}
+          </td>
+        </tr>
+        <tr>
+          <th>Number of goals</th>
+          <td>
+            {{goalsTotal}}
+          </td>
+        </tr>
+        <tr>
+          <th>Avg goals per match</th>
+          <td>
+            {{goalsTotal/numberOfMatches || 0 | number:'1.1-2'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
-    <div>
-      <h1 class="groupStageHeaderFormat">Overall stats</h1>
-      <table class="bg-white">
-        <tbody>
-          <tr>
-            <th>Matches played</th>
-            <td>
-              {{numberOfMatches}}
-            </td>
-          </tr>
-          <tr>
-            <th>Number of goals</th>
-            <td>
-              {{goalsTotal}}
-            </td>
-          </tr>
-          <tr>
-            <th>Avg goals per match</th>
-            <td>
-              {{goalsTotal/numberOfMatches || 0 | number:'1.1-2'}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
     <!-- Players -->
     <div *ngFor="let player of playersStats | keyvalue">
       <h1 class="groupStageHeaderFormat">{{player.key}} stats</h1>

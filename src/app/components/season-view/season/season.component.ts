@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GeneralService } from '../../../shared/services/general.service';
 import { Subscription } from 'rxjs';
 import { MatchesService } from '../../../shared/services/matches.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-matches-dialog.component';
-import { OverallSeasonStats } from '../../../shared/models/overall-season-stats.model';
+import { SeasonModel } from 'src/app/shared/models/season.model';
+import { PlayOffsModel } from 'src/app/shared/models/play-offs.model';
+import { GeneralRouterService } from 'src/app/shared/services/general-router.service';
 
 @Component({
   selector: 'app-season',
@@ -18,25 +20,13 @@ export class SeasonComponent implements OnInit, OnDestroy {
   seasonName: string = "";
   competition: string = "";
   competitionName: string;
-  overallStats: OverallSeasonStats;
+  playOffs: PlayOffsModel;
 
-  goalscorersPerGroup: object = {};
-  playersStats: object = {};
-  allGroups: object = {};
-
-  topGoalscorersGroupStage;
-  topGoalscorersPlayOffs;
-  topGoalscorersTotal;
-  playOffs;
-
-  constructor(private activatedRoute: ActivatedRoute, private generalService: GeneralService, private router: Router,
-    private matchesService: MatchesService, private dialog: MatDialog) { }
+  seasonModel: SeasonModel;
+  constructor(private activatedRoute: ActivatedRoute, private generalService: GeneralService, public generalRouterService: GeneralRouterService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.topGoalscorersGroupStage = null;
-      this.topGoalscorersPlayOffs = null;
-      this.topGoalscorersTotal = null;
       this.seasonName = params['seasonname'];
       this.competition = params['competition'];
 
@@ -49,43 +39,15 @@ export class SeasonComponent implements OnInit, OnDestroy {
 
       // todo toto zjednotit
       this.subscription = this.generalService.getSeason(this.seasonName, this.competition).subscribe(data => {
-        console.log("season dataa");
-        console.log(data);
-        this.overallStats = data["overallStats"];
-        this.allGroups = data["Tables"];
-        this.playersStats = data["StatsByGroups"];
-        this.playOffs = data["PlayOffs"];
-        this.goalscorersPerGroup = data["GoalscorersPerGroup"];
-        this.topGoalscorersGroupStage = data["TotalGoalscorersGroupStage"];
-        this.topGoalscorersPlayOffs = data["TotalGoalscorersPlayOffs"];
-        this.topGoalscorersTotal = data["TotalGoalscorersAllPhases"];
+        this.seasonModel = data as SeasonModel;
+        this.playOffs = this.seasonModel.playOffs; //data["playOffs"] round of 32 will be missing todo
       });
     });
 
   }
 
   ngOnDestroy() {
-    console.log('destroy called');
     this.subscription.unsubscribe();
-  }
-
-  goToTeamView(teamname) {
-    // todo call service to get team info
-    this.router.navigate(['/teaminfo/' + teamname]);
-  }
-
-  displayCurrentGroupMatches(competitionPhase: string) {
-    this.subscription = this.matchesService.getCustomMatches(this.competition, this.seasonName, competitionPhase).subscribe(data => {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.autoFocus = true;
-      dialogConfig.minWidth = '900px';
-      dialogConfig.minHeight = '500px';
-      dialogConfig.data = {
-        matches: data,
-        groupName: competitionPhase
-      };
-      this.dialog.open(GroupMatchesDialogComponent, dialogConfig);
-    });
   }
 
 }

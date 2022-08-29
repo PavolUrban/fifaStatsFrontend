@@ -9,8 +9,8 @@
                aria-label="Number"
                matInput
                [formControl]="myControlFirstTeam"
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
+               [matAutocomplete]="auto1">
+        <mat-autocomplete #auto1="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptionsFirstTeam | async" [value]="option">
             {{option}}
           </mat-option>
@@ -23,9 +23,9 @@
                aria-label="Number"
                matInput
                [formControl]="myControlSecondTeam"
-               [matAutocomplete]="auto">
+               [matAutocomplete]="auto2">
 
-        <mat-autocomplete #auto="matAutocomplete">
+        <mat-autocomplete #auto2="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptionsSecondTeam | async" [value]="option">
             {{option}}
           </mat-option>

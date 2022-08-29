@@ -21,17 +21,17 @@
 
 <ng-container *ngIf="!!matchDetail">
   <!-- New format detail (with minutes) -->
-  <ng-container *ngIf="matchDetail.typeOfFormat === newFormat">
-    <app-records-detail title="First half" [events]="matchDetail.eventsFirstHalf" [match]="match"
+  <div *ngIf="matchDetail.typeOfFormat === newFormat" class="grid grid-cols-1 gap-2">
+    <app-records-detail title="1st half" [events]="matchDetail.eventsFirstHalf" [match]="match"
       [typeOfFormat]="newFormat">
     </app-records-detail>
-    <app-records-detail title="Second half" [events]="matchDetail.eventsSecondHalf" [match]="match"
+    <app-records-detail title="2nd half" [events]="matchDetail.eventsSecondHalf" [match]="match"
       [typeOfFormat]="newFormat">
     </app-records-detail>
     <app-records-detail *ngIf="matchDetail.eventsOverTime.length > 0" title="Overtime" [events]="matchDetail.eventsOverTime" [match]="match"
     [typeOfFormat]="newFormat">
   </app-records-detail>
-  </ng-container>
+  </div>
 
   <!-- Old format (without minutes) -->
   <ng-container *ngIf="matchDetail.typeOfFormat === oldFormat">

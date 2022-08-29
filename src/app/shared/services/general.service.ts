@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +8,11 @@ export class GeneralService {
 
   private baseUrl = 'http://localhost:8080/general/';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   getSeasonsList() {
     // todo dynamically
-    return this.http.get(`${this.baseUrl}` + "getSeasonsList/CL");
+    return this.http.get(`${this.baseUrl}getSeasonsList/CL`);
   }
 
   getSeason(seasonname: string, competition: string) {

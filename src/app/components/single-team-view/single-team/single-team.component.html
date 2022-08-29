@@ -228,13 +228,9 @@
 
   <div class="grid grid-cols-2 gap-4">
     <div>
-      <h1 class="groupStageHeaderFormat"> TODO Goalscoring time distribution</h1>
+      <h1 class="groupStageHeaderFormat">Goalscoring time distribution</h1>
       <mat-card>
-
-        <app-goal-distributon></app-goal-distributon>
-        <!-- <app-column-chart [testText]="'now i know only i can stop the rain'" [series]="goalsByMins"
-          [goalsRangesCounts]="goalsInRange" [unkownTimeGoals]="unknownTimeGoals"
-          [unknownTimeConcededGoals]="unknownTimeConcededGoals"></app-column-chart> -->
+        <app-goal-distributon [teamname]="team.teamName"></app-goal-distributon>
       </mat-card>
     </div>
 

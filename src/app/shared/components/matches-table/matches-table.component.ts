@@ -8,7 +8,6 @@ import { RecordInMatchComponent } from 'src/app/components/matches-view/record-i
 import { Matches } from '../../models/matches';
 import { DialogOpenerService } from '../../services/dialog-opener.service';
 import { GeneralRouterService } from '../../services/general-router.service';
-import { MatchDetailComponent } from '../match-detail/match-detail.component';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Component({

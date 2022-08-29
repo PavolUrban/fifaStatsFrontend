@@ -5,7 +5,7 @@ import { ALL, CHAMPIONS_LEAGUE, EUROPEAN_LEAGUE } from 'src/app/shared/constants
 import { FifaPlayerWithRecordModel } from 'src/app/shared/models/fifa-player-with-record.model';
 import { Matches } from 'src/app/shared/models/matches';
 import { DialogOpenerService } from 'src/app/shared/services/dialog-opener.service';
-import { FifaPlayerService } from 'src/app/shared/services/fifaPlayer.service';
+import { FifaPlayerService } from 'src/app/shared/services/fifa-player.service';
 import { GeneralRouterService } from 'src/app/shared/services/general-router.service';
 import { MatchesService } from 'src/app/shared/services/matches.service';
 

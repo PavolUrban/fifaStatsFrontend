@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <h1 class="groupStageHeaderFormat">{{playerName}}</h1>
     <mat-card>
-      <img [src]="imgSrc" alt="" class="playerFoto mr-1">
+      <img src="assets/img/players/{{playerName}}.jpg" alt="" class="playerFoto mr-1">
       <table>
         <tbody>
           <tr>
@@ -16,7 +16,7 @@
             <th class="text-end pt-8 pb-1"><span class="badge-warning" matTooltip="Yellow cards">Y</span></th>
             <th class="text-end pt-8 pb-1"><span class="badge-danger" matTooltip="Red cards">R</span></th>
           </tr>
-          <tr *ngFor="let season of statsPerSeason" class="hover:bg-gray-200">
+          <tr *ngFor="let season of statsPerSeason" class="hover:bg-slate-200">
             <td [ngClass]="{'font-bold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
             <td class="cursor-pointer" (click)="generalRouterService.goToTeamView(season.teamname)">
               <div class="flex items-center space-x-2">

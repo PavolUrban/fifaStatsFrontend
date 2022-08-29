@@ -1,6 +1,7 @@
 <div class="grid grid-cols-3 mb-12">
   <div class="flex flex-col justify-center items-center">
-    <img src="assets/img/logos/{{match.hometeam}}.jpg" (click)="generalRouterService.goToTeamView(match.hometeam)" alt="" class="iconSize">
+    <img src="assets/img/logos/{{match.hometeam}}.jpg" (click)="generalRouterService.goToTeamView(match.hometeam)"
+      alt="" class="iconSize">
     <strong (click)="generalRouterService.goToTeamView(match.hometeam)"> {{match.hometeam}}</strong>
     <span
       [ngClass]="{'badge-pavol-jay': match.playerH === 'Pavol Jay', 'badge-kotlik': match.playerH === 'Kotlik'}">{{match.playerH}}</span>
@@ -10,53 +11,32 @@
     <p class="result"> {{match.scorehome}} : {{match.scoreaway}}</p>
   </div>
   <div class="flex flex-col justify-center items-center">
-    <img src="assets/img/logos/{{match.awayteam}}.jpg" (click)="generalRouterService.goToTeamView(match.awayteam)" alt=""
-      class="iconSize mr-1">
+    <img src="assets/img/logos/{{match.awayteam}}.jpg" (click)="generalRouterService.goToTeamView(match.awayteam)"
+      alt="" class="iconSize mr-1">
     <strong (click)="generalRouterService.goToTeamView(match.awayteam)"> {{match.awayteam}}</strong>
     <span
       [ngClass]="{'badge-pavol-jay': match.playerA === 'Pavol Jay', 'badge-kotlik': match.playerA === 'Kotlik'}">{{match.playerA}}</span>
   </div>
 </div>
 
-<div class="grid grid-cols-3 gap-1" *ngFor="let event of events">
-  <div>
-    <ng-container *ngIf="event.teamName === match.hometeam">
-      <div class="flex items-center justify-start space-x-1">
-        <ng-container *ngIf="event.typeOfFormat === newFormat">
-          <span>{{event.minute}}'</span>
-          <span *ngIf="event.recordType==='G'" class="material-icons">sports_soccer</span>
-        </ng-container>
-        
-        <ng-container *ngIf="event.typeOfFormat === oldFormat && event.recordType==='G'">
-          <span *ngFor="let n of numSequence(event.recordCount)" class="material-icons">sports_soccer</span>
-        </ng-container>
-        
-        <span *ngIf="event.recordType.includes('OG')" class="material-icons " style="color: red;">sports_soccer</span>
-        <span *ngIf="event.recordType==='YC'" class="badge badge-warning" matTooltip="Yellow cards">Y</span>
-        <span *ngIf="event.recordType==='RC'" class="badge badge-danger" matTooltip="Red cards">R </span>
-        <span>{{event.playerName}}</span>
-      </div>
-    </ng-container>
-  </div>
-  <div>
-    <!-- divider here -->
-  </div>
-  <div>
-    <ng-container *ngIf="event.teamName === match.awayteam">
-      <div class="flex items-center justify-start space-x-1">
-        <ng-container *ngIf="event.typeOfFormat === newFormat">
-          <span>{{event.minute}}'</span>
-          <span *ngIf="event.recordType==='G'" class="material-icons">sports_soccer</span>
-        </ng-container>
-        
-        <ng-container *ngIf="event.typeOfFormat === oldFormat && event.recordType==='G'">
-          <span *ngFor="let n of numSequence(event.recordCount)" class="material-icons">sports_soccer</span>
-        </ng-container>
-        <span *ngIf="event.recordType.includes('OG')" class="material-icons " style="color: red;">sports_soccer</span>
-        <span *ngIf="event.recordType==='YC'" class="badge badge-warning" matTooltip="Yellow cards">Y</span>
-        <span *ngIf="event.recordType==='RC'" class="badge badge-danger" matTooltip="Red cards">R </span>
-        <span>{{event.playerName}}</span>
-      </div>
-    </ng-container>
-  </div>
-</div>
+<ng-container *ngIf="!!matchDetail">
+  <!-- New format detail (with minutes) -->
+  <ng-container *ngIf="matchDetail.typeOfFormat === newFormat">
+    <app-records-detail title="First half" [events]="matchDetail.eventsFirstHalf" [match]="match"
+      [typeOfFormat]="newFormat">
+    </app-records-detail>
+    <app-records-detail title="Second half" [events]="matchDetail.eventsSecondHalf" [match]="match"
+      [typeOfFormat]="newFormat">
+    </app-records-detail>
+    <app-records-detail *ngIf="matchDetail.eventsOverTime.length > 0" title="Overtime" [events]="matchDetail.eventsOverTime" [match]="match"
+    [typeOfFormat]="newFormat">
+  </app-records-detail>
+  </ng-container>
+
+  <!-- Old format (without minutes) -->
+  <ng-container *ngIf="matchDetail.typeOfFormat === oldFormat">
+    <app-records-detail title="Match events" [events]="matchDetail.eventsWithoutTime" [match]="match"
+      [typeOfFormat]="oldFormat">
+    </app-records-detail>
+  </ng-container>
+</ng-container>

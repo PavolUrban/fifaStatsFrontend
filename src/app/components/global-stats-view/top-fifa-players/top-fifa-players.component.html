@@ -118,7 +118,6 @@
           </td>
         </ng-container>
 
-
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> </th>
           <td class="w-[48px]" mat-cell *matCellDef="let element; let i = index;">
@@ -129,15 +128,11 @@
           </td>
         </ng-container>
 
-        <!--   -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="10"></mat-paginator>
-
-      Note: Currently this is working only for new fifa format!
-
     </mat-card>
   </div>
 

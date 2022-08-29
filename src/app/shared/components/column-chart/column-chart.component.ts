@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexStroke, ApexTooltip, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
+import { GoalDistributonModel } from '../../models/goal-distribution.model';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -20,56 +21,36 @@ export type ChartOptions = {
   styleUrls: ['./column-chart.component.scss']
 })
 export class ColumnChartComponent implements OnInit, OnChanges {
+ 
+  @Input() goalDistributionModel: GoalDistributonModel;
+  
   @ViewChild("chart") chart: ChartComponent;
-
-  @Input() testText: string;
-  @Input() series ; //: Array<number>
-
   displayChart = false;
-
-  goalsCount: Array<number> = new Array();
   public chartOptions: Partial<ChartOptions>;
-
-
-  @Input() goalsRangesCounts;
-  @Input() unkownTimeGoals: number;
-  @Input() unknownTimeConcededGoals: number;
 
   constructor() { }
 
   ngOnInit(){}
 
   ngOnChanges(){
-
-    if(this.goalsRangesCounts){
-      let labels = [];
-      let scoredGoalsSeries = [];
-      let concededGoalsSeries = [];
-
-      for (const [key, value] of Object.entries(this.goalsRangesCounts)) {
-       labels.push(value['label']);
-       scoredGoalsSeries.push(value['numberOfGoals']);
-       concededGoalsSeries.push(value['numberOfConcededGoals']);
-      }
-
-      this.createChart(labels, scoredGoalsSeries, concededGoalsSeries);
+    if(this.goalDistributionModel) {
+      this.createChart();
     }
-   
   }
 
-  createChart(customLabels, scoredGoalsSeries, concededGoalsSeries) {
+  createChart(): void {
 
-    let unknownTimeGoalsLabel = "This team has scored " + this.unkownTimeGoals + " and conceded " + this.unknownTimeConcededGoals + " goals(s) in unknown time." ;
+    let unknownTimeGoalsLabel = "This team has scored " + this.goalDistributionModel.scoredGoalsUnknownTime + " and conceded " + this.goalDistributionModel.concededGoalsUnknownTime + " goals(s) in unknown time." ;
    
      this.chartOptions = {
       series: [
         {
           name: "Conceded",
-          data: concededGoalsSeries
+          data: this.goalDistributionModel.concededGoalsList
         },
         {
           name: "Scored",
-          data: scoredGoalsSeries
+          data: this.goalDistributionModel.scoredGoalsList
         }
       ],
       chart: {
@@ -96,7 +77,7 @@ export class ColumnChartComponent implements OnInit, OnChanges {
         title: {
           text: unknownTimeGoalsLabel
         },
-        categories: customLabels
+        categories: this.goalDistributionModel.minutesAsLabels
       },
       yaxis: {
         title: {

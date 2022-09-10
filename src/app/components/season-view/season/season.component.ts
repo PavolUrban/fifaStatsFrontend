@@ -2,11 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GeneralService } from '../../../shared/services/general.service';
 import { Subscription } from 'rxjs';
-import { MatchesService } from '../../../shared/services/matches.service';
-import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
-import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-matches-dialog.component';
 import { SeasonModel } from 'src/app/shared/models/season.model';
-import { PlayOffsModel } from 'src/app/shared/models/play-offs.model';
 import { GeneralRouterService } from 'src/app/shared/services/general-router.service';
 
 @Component({
@@ -20,13 +16,17 @@ export class SeasonComponent implements OnInit, OnDestroy {
   seasonName: string = "";
   competition: string = "";
   competitionName: string;
-  playOffs: PlayOffsModel;
-
   seasonModel: SeasonModel;
+
+  nextSeason: string = null;
+  previousSeason: string = null;
+
   constructor(private activatedRoute: ActivatedRoute, private generalService: GeneralService, public generalRouterService: GeneralRouterService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
+      this.nextSeason = null;
+      this.previousSeason = null;
       this.seasonName = params['seasonname'];
       this.competition = params['competition'];
 
@@ -37,10 +37,21 @@ export class SeasonComponent implements OnInit, OnDestroy {
         this.competitionName = 'European league';
       }
 
-      // todo toto zjednotit
       this.subscription = this.generalService.getSeason(this.seasonName, this.competition).subscribe(data => {
-        this.seasonModel = data as SeasonModel;
-        this.playOffs = this.seasonModel.playOffs; //data["playOffs"] round of 32 will be missing todo
+        this.seasonModel = data as SeasonModel; //data["playOffs"] round of 32 will be missing todo
+      });
+
+      this.generalService.getSeasonsList().subscribe(seasons=>{
+        let seasonsList = seasons as Array<string>;
+        let currentSeasonIndex = seasonsList.indexOf(this.seasonName);
+        
+        if(currentSeasonIndex !== 0) {
+          this.previousSeason = seasonsList[currentSeasonIndex - 1] ;
+        }
+
+        if(currentSeasonIndex !== seasonsList.length - 1) {
+          this.nextSeason = seasonsList[currentSeasonIndex + 1];
+        }
       });
     });
 

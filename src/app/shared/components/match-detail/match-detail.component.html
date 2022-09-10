@@ -1,42 +1,45 @@
-<div class="grid grid-cols-3 mb-12">
-  <div class="flex flex-col justify-center items-center">
-    <img src="assets/img/logos/{{match.hometeam}}.jpg" (click)="generalRouterService.goToTeamView(match.hometeam)"
-      alt="" class="iconSize">
-    <strong (click)="generalRouterService.goToTeamView(match.hometeam)"> {{match.hometeam}}</strong>
-    <span
-      [ngClass]="{'badge-pavol-jay': match.playerH === 'Pavol Jay', 'badge-kotlik': match.playerH === 'Kotlik'}">{{match.playerH}}</span>
+<h1 class="groupStageHeaderFormat">{{match.season + " | " + match.competition + " | " + match.competitionPhase}}</h1>
+<mat-card>
+  <div class="grid grid-cols-3 mb-12">
+    <div class="flex flex-col justify-center items-center">
+      <img src="assets/img/logos/{{match.hometeam}}.jpg" (click)="generalRouterService.goToTeamView(match.hometeam)"
+        alt="" class="iconSize">
+      <strong (click)="generalRouterService.goToTeamView(match.hometeam)"> {{match.hometeam}}</strong>
+      <span
+        [ngClass]="{'badge-pavol-jay': match.playerH === 'Pavol Jay', 'badge-kotlik': match.playerH === 'Kotlik'}">{{match.playerH}}</span>
 
-  </div>
-  <div class="flex flex-col justify-center items-center">
-    <p class="result"> {{match.scorehome}} : {{match.scoreaway}}</p>
-  </div>
-  <div class="flex flex-col justify-center items-center">
-    <img src="assets/img/logos/{{match.awayteam}}.jpg" (click)="generalRouterService.goToTeamView(match.awayteam)"
-      alt="" class="iconSize mr-1">
-    <strong (click)="generalRouterService.goToTeamView(match.awayteam)"> {{match.awayteam}}</strong>
-    <span
-      [ngClass]="{'badge-pavol-jay': match.playerA === 'Pavol Jay', 'badge-kotlik': match.playerA === 'Kotlik'}">{{match.playerA}}</span>
-  </div>
-</div>
-
-<ng-container *ngIf="!!matchDetail">
-  <!-- New format detail (with minutes) -->
-  <div *ngIf="matchDetail.typeOfFormat === newFormat" class="grid grid-cols-1 gap-2">
-    <app-records-detail title="1st half" [events]="matchDetail.eventsFirstHalf" [match]="match"
-      [typeOfFormat]="newFormat">
-    </app-records-detail>
-    <app-records-detail title="2nd half" [events]="matchDetail.eventsSecondHalf" [match]="match"
-      [typeOfFormat]="newFormat">
-    </app-records-detail>
-    <app-records-detail *ngIf="matchDetail.eventsOverTime.length > 0" title="Overtime" [events]="matchDetail.eventsOverTime" [match]="match"
-    [typeOfFormat]="newFormat">
-  </app-records-detail>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+      <p class="result"> {{match.scorehome}} : {{match.scoreaway}}</p>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+      <img src="assets/img/logos/{{match.awayteam}}.jpg" (click)="generalRouterService.goToTeamView(match.awayteam)"
+        alt="" class="iconSize mr-1">
+      <strong (click)="generalRouterService.goToTeamView(match.awayteam)"> {{match.awayteam}}</strong>
+      <span
+        [ngClass]="{'badge-pavol-jay': match.playerA === 'Pavol Jay', 'badge-kotlik': match.playerA === 'Kotlik'}">{{match.playerA}}</span>
+    </div>
   </div>
 
-  <!-- Old format (without minutes) -->
-  <ng-container *ngIf="matchDetail.typeOfFormat === oldFormat">
-    <app-records-detail title="Match events" [events]="matchDetail.eventsWithoutTime" [match]="match"
-      [typeOfFormat]="oldFormat">
-    </app-records-detail>
+  <ng-container *ngIf="!!matchDetail">
+    <!-- New format detail (with minutes) -->
+    <div *ngIf="matchDetail.typeOfFormat === newFormat" class="grid grid-cols-1 gap-2">
+      <app-records-detail title="1st half" [events]="matchDetail.eventsFirstHalf" [match]="match"
+        [typeOfFormat]="newFormat">
+      </app-records-detail>
+      <app-records-detail title="2nd half" [events]="matchDetail.eventsSecondHalf" [match]="match"
+        [typeOfFormat]="newFormat">
+      </app-records-detail>
+      <app-records-detail *ngIf="matchDetail.eventsOverTime.length > 0" title="Overtime"
+        [events]="matchDetail.eventsOverTime" [match]="match" [typeOfFormat]="newFormat">
+      </app-records-detail>
+    </div>
+
+    <!-- Old format (without minutes) -->
+    <ng-container *ngIf="matchDetail.typeOfFormat === oldFormat">
+      <app-records-detail title="Match events" [events]="matchDetail.eventsWithoutTime" [match]="match"
+        [typeOfFormat]="oldFormat">
+      </app-records-detail>
+    </ng-container>
   </ng-container>
-</ng-container>
+</mat-card>

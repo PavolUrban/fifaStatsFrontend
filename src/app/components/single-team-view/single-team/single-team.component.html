@@ -5,15 +5,9 @@
       <h1>{{team.teamName}}</h1>
     </div>
   </div>
-  <!-- <div class="flex text-8xl justify-center items-center space-x-8 p-8 bg-gray-400 rounded">
-      <img src="assets/img/logos/{{team.teamName}}.jpg">
-      <h1>{{team.teamName}}</h1>
-      
-    </div> -->
 
-
-  <div class="grid grid-cols-1 gap-4 xl:flex xl:flex-row">
-    <div class="xl:basis-1/4">
+  <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+    <div>
       <h1 class="groupStageHeaderFormat">Overall stats</h1>
 
       <mat-card>
@@ -173,31 +167,32 @@
       </mat-card>
     </div>
 
-    <div class="basis-1/4">
+    <div>
       <h1 class="groupStageHeaderFormat">Trophy room
       </h1>
-
       <mat-card class="text-center">
         <span *ngIf="teamWithoutTrophy">This poor little team has never won anything.</span>
         <app-trophy-room [data]="trophyRoomData"></app-trophy-room>
       </mat-card>
     </div>
 
-    <div class="basis-1/2">
-      <h1 class="groupStageHeaderFormat">Latest form</h1>
-
+    <div>
+      <h1 class="groupStageHeaderFormat">Goalscorers</h1>
       <mat-card>
-        <app-matches-table *ngIf="!!teamMatches" [data]="teamMatches" [currentTeam]="team.teamName"></app-matches-table>
+        <app-goalscorers-wrapper [teamName]="team.teamName" [pageSize]="5"></app-goalscorers-wrapper>
       </mat-card>
     </div>
 
+    <div>
+      <h1 class="groupStageHeaderFormat">Cards</h1>
+      <mat-card>
+        <app-players-cards-wrapper [teamName]="team.teamName"></app-players-cards-wrapper>
+      </mat-card>
+    </div>
   </div>
 
-
-  <div class="grid grid-cols-1 gap-4 xl:flex xl:flex-row xl:space-x-4">
-
-
-    <div class="xl:basis-1/3">
+  <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+    <div>
       <h1 class="groupStageHeaderFormat">Win rate</h1>
       <mat-card>
         <mat-card-content>
@@ -205,35 +200,23 @@
           </app-pie-chart-stats>
         </mat-card-content>
       </mat-card>
-
     </div>
-
-    <div class="xl:basis-1/3">
-      <h1 class="groupStageHeaderFormat">Cards</h1>
-      <mat-card>
-        <app-players-cards-wrapper [teamName]="team.teamName"></app-players-cards-wrapper>
-      </mat-card>
-    </div>
-
-
-    <div class="xl:basis-1/3">
-      <h1 class="groupStageHeaderFormat">Goalscorers</h1>
-      <mat-card>
-        <app-goalscorers-wrapper [teamName]="team.teamName" [pageSize]="5"></app-goalscorers-wrapper>
-      </mat-card>
-    </div>
-
-  </div>
-
-
-  <div class="grid grid-cols-2 gap-4">
     <div>
       <h1 class="groupStageHeaderFormat">Goalscoring time distribution</h1>
       <mat-card>
         <app-goal-distributon [teamname]="team.teamName"></app-goal-distributon>
       </mat-card>
     </div>
+  </div>
 
+
+  <div class="grid grid-cols-1 gap-4">
+    <div>
+      <h1 class="groupStageHeaderFormat">Latest form</h1>
+      <mat-card>
+        <app-matches-table *ngIf="!!teamMatches" [data]="teamMatches" [currentTeam]="team.teamName"></app-matches-table>
+      </mat-card>
+    </div>
     <div>
       <h1 class="groupStageHeaderFormat"> Best matches</h1>
       <app-top-matches [specificTeam]="team.teamName"></app-top-matches>

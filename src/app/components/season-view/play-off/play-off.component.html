@@ -1,100 +1,42 @@
-
 <ng-container *ngIf="!!playOff">
-<ng-container  *ngFor="let item of playOff |keyvalue ">
-<div class="row justify-content-center" *ngIf="item.key!='Final'">
+  <!-- todo toto mozno prechadzat cez custom array klucov (roundof32, roundof16...) -->
+  <ng-container *ngFor="let item of playOff | keyvalue ">
+    <mat-card class="col-sm-11 mt-3">
+      <mat-card-header>
+        <mat-card-title>
+          {{item.key}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let doubleMatch of playOff[item.key]">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div class="flex items-center space-x-1">
+                  <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{doubleMatch.qualifiedTeam}}.jpg"
+                    matTooltip="{{doubleMatch.qualifiedTeam}}" alt="">
+                  <span class="font-bold">{{doubleMatch.qualifiedTeam}}</span>
+                  <span class="w-20 flex justify-center" [ngClass]="{
+                        'badge-pavol-jay': doubleMatch.qualifiedPlayer === 'Pavol Jay', 
+                        'badge-kotlik': doubleMatch.qualifiedPlayer === 'Kotlik'}">
+                    {{doubleMatch.qualifiedPlayer}}
+                  </span>
+                </div>
+              </mat-panel-title>
+              <mat-panel-description>
+                {{doubleMatch.qualifiedTeam}} {{doubleMatch.qualifiedTeamGoals}} : {{doubleMatch.nonQualifiedTeamGoals}}
+                {{doubleMatch.nonQualifiedTeam}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-  <mat-card class="col-sm-11 mt-3" >
-    <mat-card-header>
-      <mat-card-title>
-        {{item.key}}
-      </mat-card-title>
-      <mat-card-subtitle>Champions league</mat-card-subtitle>
-    </mat-card-header>
-<b> TODO FIX PLAY OFF MATCHES</b>
-    <!-- <mat-card-content>
-      <mat-accordion>
-        <mat-expansion-panel *ngFor="let doubleMatch of playOff[item.key]">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <span class="badge badge-success">{{doubleMatch.qualifiedTeam}}</span>
-            </mat-panel-title>
-            <mat-panel-description>
-              {{doubleMatch.qualifiedTeam}} {{doubleMatch.qualifiedTeamGoals}} :  {{doubleMatch.nonQualifiedTeamGoals}} {{doubleMatch.nonQualifiedTeam}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
+            <app-matches-table [data]="doubleMatch.matchesList" [currentTeam]="doubleMatch.qualifiedTeam"
+              [displayBadge]="false"></app-matches-table>
 
-          <table  class="table table-sm mt-3 table-hover">
-            <tbody>
-              <tr>
-                <th>Round</th>
-                <th>Hometeam</th>
-                <th>Result</th>
-                <th>Awayteam</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>{{doubleMatch.firstMatch.hometeam}}</td>
-                <td>{{doubleMatch.firstMatch.scorehome}} : {{doubleMatch.firstMatch.scoreaway}}</td>
-                <td>{{doubleMatch.firstMatch.awayteam}}</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>{{doubleMatch.secondMatch.hometeam}}</td>
-                <td>{{doubleMatch.secondMatch.scorehome}} : {{doubleMatch.secondMatch.scoreaway}}</td>
-                <td>{{doubleMatch.secondMatch.awayteam}}</td>
-              </tr>
-            </tbody>
-          </table>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-        </mat-expansion-panel>
-      </mat-accordion>
+      </mat-card-content>
 
-    </mat-card-content> -->
-
-  </mat-card>
-</div>
+    </mat-card>
+  </ng-container>
 </ng-container>
-</ng-container>
-
-
-<!--
-<div class="test">
-  <main style="opacity: 1;" class="">
-      <div class="static">
-
-          <p style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);" class="js-subheading">Experimental team line-up and football field using CSS 3D transforms.</p>
-          <div style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);" class="js-switcher switcher">
-              <a href="#" class="js-switch disabled switch-btn">HOME</a><a href="#" class="js-switch switch-btn">AWAY</a>
-          </div>
-      </div>
-      <div class="js-stage stage texture">
-          <div style="opacity: 1; transform: translateZ(-200px) translateY(0px);" class="js-world world">
-
-              <div class="terrain js-terrain">
-                  <div class="field field--alt"></div>
-                  <div class="field ground">
-                      <div class="field__texture field__texture--gradient"></div>
-                      <div class="field__texture field__texture--gradient-b"></div>
-                      <div class="field__texture field__texture--grass"></div>
-                      <div class="field__line field__line--goal">
-                        <div class="player player__card">Meno</div>
-                      </div>
-                      <div class="field__line field__line--goal field__line--goal--far"></div>
-                      <div class="field__line field__line--outline"></div>
-                      <div class="field__line field__line--penalty"></div>
-                      <div class="field__line field__line--penalty-arc"></div>
-                      <div class="field__line field__line--penalty-arc field__line--penalty-arc--far">meno</div>
-                      <div class="field__line field__line--mid"></div>
-                      <div class="field__line field__line--circle"></div>
-                      <div class="field__line field__line--penalty field__line--penalty--far"></div>
-                  </div>
-                  <div class="field__side field__side--front"></div>
-                  <div class="field__side field__side--left"></div>
-                  <div class="field__side field__side--right"></div>
-                  <div class="field__side field__side--back"></div>
-              </div>
-          </div>
-
-      </div>
-      </main>
-  </div> -->

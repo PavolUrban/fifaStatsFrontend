@@ -15,7 +15,6 @@ export class DialogOpenerService {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.autoFocus = true;
         dialogConfig.minWidth = '750px';
-        dialogConfig.minHeight = '600px';
         dialogConfig.data = {
             match: match
         };

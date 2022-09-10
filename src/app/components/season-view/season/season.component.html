@@ -1,9 +1,21 @@
 <div class="space-y-8">
 
-  <h1 class="pageTitleFormat">
+  <h1 class="pageTitleFormat flex">
     <!-- season next, prev TODO -->
-    {{competitionName}} - {{seasonName}}
+    <button mat-button [disabled]="previousSeason === null" class="mr-auto" (click)="generalRouterService.goToSeasonView(previousSeason, competition)">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      {{previousSeason !== null ? previousSeason : 'No previous season' }}
+    </button>
+
+    <span class="mx-auto">{{competitionName}} - {{seasonName}}</span>
+
+    <button mat-button [disabled]="nextSeason === null" class="ml-auto" (click)="generalRouterService.goToSeasonView(nextSeason, competition)">
+     
+      {{nextSeason !== null ? nextSeason : 'No next season' }}
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
   </h1>
+
 
   <!-- Overall stats -->
   <div>
@@ -41,10 +53,12 @@
   </div>
 
   <!-- Group stage -->
-  <app-group-stage *ngIf="!!seasonModel" [allGroups]="seasonModel.groupStageTables" [playersStats]="seasonModel.statsByGroups"
-    [competition]="competition" [seasonName]="seasonName" [goalscorersPerGroup]="seasonModel.goalscorersPerGroup">
+  <app-group-stage *ngIf="!!seasonModel" [allGroups]="seasonModel.groupStageTables"
+    [playersStats]="seasonModel.statsByGroups" [competition]="competition" [seasonName]="seasonName"
+    [goalscorersPerGroup]="seasonModel.goalscorersPerGroup">
   </app-group-stage>
 
   <!-- Play offs -->
-  <app-play-off [season]="seasonName" [competition]="competition" [playOff]="playOffs"></app-play-off>
+  <app-play-off *ngIf="!!seasonModel" [season]="seasonName" [competition]="competition"
+    [playOff]="seasonModel.playOffs"></app-play-off>
 </div>

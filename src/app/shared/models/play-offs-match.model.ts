@@ -5,6 +5,6 @@ export class PlayOffsMatchModel {
     nonQualifiedTeamGoals: number;
     qualifiedTeam: string;
     qualifiedTeamGoals: number;
-    firstMatch: Matches;
-    secondMatch: Matches;
+    qualifiedPlayer: string;
+    matchesList: Array<Matches>;
 }

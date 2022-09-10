@@ -76,7 +76,7 @@
   <ng-container matColumnDef="winnerBadge">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element" [ngSwitch]="element.winner">
-      <ng-container *ngIf="!!currentTeam">
+      <ng-container *ngIf="displayBadge">
         <span *ngSwitchCase="currentTeam" class="badge-success">W</span>
         <span *ngSwitchCase="'D'" class="badge-warning">D</span>
         <span *ngSwitchDefault class="badge-danger">L</span>

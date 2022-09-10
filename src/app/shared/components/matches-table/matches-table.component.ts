@@ -18,6 +18,7 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 export class MatchesTableComponent implements OnInit {
   
   @Input() currentTeam: string = null;
+  @Input() displayBadge: boolean = true;
   @Input() editAllowed: boolean = false;
   @Input() showCompetitionPhase: boolean = true;
   @Input() showCompetition: boolean = true;
@@ -41,7 +42,6 @@ export class MatchesTableComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
     dialogConfig.minWidth = '750px';
-    dialogConfig.minHeight = '600px';
     dialogConfig.data = {
       match: match
     };

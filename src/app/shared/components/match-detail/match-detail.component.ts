@@ -26,7 +26,7 @@ export class MatchDetailComponent {
     this.matchesService.getMatchDetailsNew(this.match.id, this.match.hometeam, this.match.awayteam).subscribe(data => {
       this.matchDetail = data as MatchDetailModel;
       console.log(this.matchDetail);
-
+      console.log(this.match);
     })
   }
 }

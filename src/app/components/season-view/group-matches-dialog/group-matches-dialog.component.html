@@ -4,7 +4,7 @@
     <mat-card-subtitle>All matches</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="pt-2">
-    <app-matches-table *ngIf="!!customMatches" [data]="customMatches" [pageSize]=12></app-matches-table>
+    <app-matches-table *ngIf="!!customMatches" [data]="customMatches" [pageSize]="12" [displayBadge]="false"></app-matches-table>
   </mat-card-content>
 </mat-card>
 

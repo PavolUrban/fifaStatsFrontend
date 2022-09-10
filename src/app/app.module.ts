@@ -74,6 +74,7 @@ import { GoalDistributonComponent } from './shared/components/goal-distributon/g
 import { RecordsDetailComponent } from './shared/components/match-detail/records-detail/records-detail.component';
 import { RecordCellComponent } from './shared/components/match-detail/records-detail/record-cell/record-cell.component';
 import { GroupStageComponent } from './components/season-view/group-stage/group-stage.component';
+import { OverallStatsSingleTeamComponent } from './components/single-team-view/overall-stats-single-team/overall-stats-single-team.component';
 
 
 
@@ -119,7 +120,8 @@ import { GroupStageComponent } from './components/season-view/group-stage/group-
     GoalDistributonComponent,
     RecordsDetailComponent,
     RecordCellComponent,
-    GroupStageComponent
+    GroupStageComponent,
+    OverallStatsSingleTeamComponent
   ],
   imports: [
     BrowserModule,

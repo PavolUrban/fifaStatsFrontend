@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { concatMap, Subscription } from 'rxjs';
+import { SingleTeamModel } from 'src/app/shared/models/single-team.model';
+import { TrophyRoomModel } from 'src/app/shared/models/trophy-room.model';
 import { Teams } from '../../../shared/models/teams';
 import { TeamsService } from '../../../shared/services/teams.service';
-
-
 
 @Component({
   selector: 'app-single-team',
@@ -11,79 +12,30 @@ import { TeamsService } from '../../../shared/services/teams.service';
   styleUrls: ['./single-team.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SingleTeamComponent implements OnInit {
+export class SingleTeamComponent implements OnInit, OnDestroy {
 
-  team: Teams = new Teams();
   subtitle: string = "All European competitions"
-  teamMatches;
-  totalBilance = [];
-
-  championsLeagueFinalMatches;
-  europeanLeagueFinalMatches;
-  totalFinalMatches;
-  trophyRoomData = new Object();
-  teamWithoutTrophy = false;
-
+  teamStats: SingleTeamModel;
+  trophyRoomData: TrophyRoomModel;
+  subscription = new Subscription();
 
   constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService) { }
 
 
   ngOnInit() {
-    
-    this.activatedRoute.params.subscribe(params => {
-      this.team.teamName = params["teamName"];
-      this.teamsService.getSingleTeamStats(this.team.teamName).subscribe(data => {
-        //todo titles count should be adjusted
-        this.championsLeagueFinalMatches = data['finalMatches']['CL'];
-        this.europeanLeagueFinalMatches = data['finalMatches']['EL'];
-        this.totalFinalMatches = data['finalMatches']['Total'];
-        this.trophyRoomData['titlesCountCL'] = data['finalMatches']['CL']['Won'].length;
-        this.trophyRoomData['titlesCountEL'] = data['finalMatches']['EL']['Won'].length;
-
-
-        if (this.trophyRoomData['titlesCountCL'] + this.trophyRoomData['titlesCountEL'] === 0) {
-          this.teamWithoutTrophy = true;
-        }
-
-
-        this.teamMatches = data["matches"];
-        let matchStats = data["matchesStats"];
-        this.team.winsCL = matchStats["CL"]["Wins"];
-        this.team.drawsCL = matchStats["CL"]["Draws"];
-        this.team.lossesCL = matchStats["CL"]["Losses"];
-
-        this.team.winsEL = matchStats["EL"]["Wins"];
-        this.team.drawsEL = matchStats["EL"]["Draws"];
-        this.team.lossesEL = matchStats["EL"]["Losses"];
-
-        this.team.winsTotal = this.team.winsCL + this.team.winsEL;
-        this.team.drawsTotal = this.team.drawsCL + this.team.drawsEL;
-        this.team.lossesTotal = this.team.lossesCL + this.team.lossesEL;
-
-        this.team.matchesEL = this.team.winsEL + this.team.drawsEL + this.team.lossesEL;
-        this.team.matchesCL = this.team.winsCL + this.team.drawsCL + this.team.lossesCL;
-        this.team.matchesTotal = this.team.matchesEL + this.team.matchesCL;
-
-        this.totalBilance = [this.team.winsTotal, this.team.drawsTotal, this.team.lossesTotal];
-
-        this.team.goalsConcededEL = matchStats["EL"]["GoalsConceded"];
-        this.team.goalsScoredEL = matchStats["EL"]["GoalsScored"];
-
-        this.team.goalsConcededCL = matchStats["CL"]["GoalsConceded"];
-        this.team.goalsScoredCL = matchStats["CL"]["GoalsScored"];
-
-        this.team.goalsConcededTotal = this.team.goalsConcededCL + this.team.goalsConcededEL;
-        this.team.goalsScoredTotal = this.team.goalsScoredCL + this.team.goalsScoredEL;
-
-        this.team.goalDiffTotal = this.team.goalsScoredTotal - this.team.goalsConcededTotal;
-        this.team.goalDiffCL = this.team.goalsScoredCL - this.team.goalsConcededCL;
-        this.team.goalDiffEL = this.team.goalsScoredEL - this.team.goalsConcededEL;
-
-        this.team.seasonsCL = matchStats["CL"]["Seasons"];
-        this.team.seasonsEL = matchStats["EL"]["Seasons"];
-        this.team.seasonsTotal = this.team.seasonsCL + this.team.seasonsEL;
-      });
+    this.subscription = this.activatedRoute.params.pipe(
+      concatMap(item => {
+        return this.teamsService.getSingleTeamStats(item['teamName']);
+      })
+    ).subscribe(data => {
+      console.log(data);
+      this.teamStats = data as SingleTeamModel;
+      this.trophyRoomData = new TrophyRoomModel(this.teamStats.teamStatsCL.titlesCount, this.teamStats.teamStatsEL.titlesCount);
     });
-
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 }

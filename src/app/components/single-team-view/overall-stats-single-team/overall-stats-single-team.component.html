@@ -1,0 +1,141 @@
+<mat-card>
+    <mat-card-content>
+        <table *ngIf="!!teamStats" class="table table-sm mt-3 table-hover">
+            <tbody>
+                <tr>
+                    <th> </th>
+                    <th> Total</th>
+                    <th> Champions League</th>
+                    <th> European league</th>
+                </tr>
+                <tr>
+                    <th>Seasons</th>
+                    <td>
+                        <span class="badge badge-secondary">{{teamStats.teamStatsTotal.seasonsList.length}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-secondary">{{teamStats.teamStatsCL.seasonsList.length}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-secondary">{{teamStats.teamStatsEL.seasonsList.length}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Matches</th>
+                    <td>
+                        <span class="badge badge-secondary">{{teamStats.teamStatsTotal.matchesCount}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-secondary">{{teamStats.teamStatsCL.matchesCount}}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-secondary">{{teamStats.teamStatsEL.matchesCount}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Wins todo percentage</th>
+                    <td>
+                        <span class="badge-success mr-1">{{teamStats.teamStatsTotal.wins}}</span>
+                    </td>
+                    <td>
+                        <span class="badge-success mr-1">{{teamStats.teamStatsCL.wins}}</span>
+                    </td>
+                    <td>
+                        <span class="badge-success mr-1">{{teamStats.teamStatsEL.wins}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Draws todo percentage</th>
+                    <td>
+                        <span class="badge-warning mr-1">{{teamStats.teamStatsTotal.draws}}</span>
+                    </td>
+                    <td>
+                        <span class="badge-warning mr-1">{{teamStats.teamStatsCL.draws}}</span>
+                    </td>
+                    <td>
+                        <span class="badge-warning mr-1">{{teamStats.teamStatsEL.draws}}</span>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Losses todo percentage</th>
+                    <td>
+                        <span class="badge-danger mr-1">{{teamStats.teamStatsTotal.losses}}</span>
+                    </td>
+                    <td>
+                        <span class="badge-danger mr-1">{{teamStats.teamStatsCL.losses}}</span>
+                    </td>
+                    <td>
+                        <span class="badge-danger mr-1">{{teamStats.teamStatsEL.losses}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Goals scored todo avg</th>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.goalsScored}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.goalsScored}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsEL.goalsScored}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Goals conceded todo avg</th>
+                    <td>
+                        <span>{{teamStats.teamStatsTotal.goalsConceded}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.goalsConceded}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsEL.goalsConceded}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Goal difference todo</th>
+                    <td>
+                        <span>{{teamStats.teamStatsTotal.goalDiff}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.goalDiff}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsEL.goalDiff}}</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Titles won</th>
+                    <td>
+                        <span>{{teamStats.teamStatsTotal.titlesCount}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.titlesCount}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsEL.titlesCount}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Runners-up</th>
+                    <td>
+                        <span>{{teamStats.teamStatsTotal.runnersUpCount}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.runnersUpCount}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsEL.runnersUpCount}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+</mat-card>

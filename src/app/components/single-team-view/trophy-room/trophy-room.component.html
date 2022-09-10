@@ -1,7 +1,7 @@
 <mat-card-content>
-    <img src='assets/img/{{data.playerName}}.jpg' alt="" class="trophyRoomPhoto">
-
-    <table class="customTable table table-sm mt-3 table-hover">
+    <img *ngIf="data?.playerName" src='assets/img/{{data.playerName}}.jpg' alt="" class="trophyRoomPhoto">
+    <span *ngIf="!data?.hasAnyTrophy && !data.playerName">This poor little team has never won anything.</span>
+    <table *ngIf="data?.hasAnyTrophy || data.playerName" class="customTable table table-sm mt-3 table-hover">
         <tbody>
             <tr>
                 <th> Champions league ({{data.titlesCountCL}}x) </th>

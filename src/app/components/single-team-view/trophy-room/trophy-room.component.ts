@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TrophyRoomModel } from 'src/app/shared/models/trophy-room.model';
 
 @Component({
   selector: 'app-trophy-room',
@@ -6,11 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./trophy-room.component.scss']
 })
 export class TrophyRoomComponent implements OnInit {
-  @Input() data;
-  constructor() { }
+  @Input() data: TrophyRoomModel;
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   numSequence(n: number): Array<number> {
     return Array(n);

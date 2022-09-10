@@ -16,7 +16,7 @@ export class PlayersCardsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator : MatPaginator;
   @ViewChild(MatSort, { static: true }) sort : MatSort;
 
-  @Input() data;
+  @Input() data; // todo urobit to iste ako v goalscorers
   @Input() displayedColumns: string[];
   dataSource;  
 

@@ -76,8 +76,6 @@ import { RecordCellComponent } from './shared/components/match-detail/records-de
 import { GroupStageComponent } from './components/season-view/group-stage/group-stage.component';
 import { OverallStatsSingleTeamComponent } from './components/single-team-view/overall-stats-single-team/overall-stats-single-team.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

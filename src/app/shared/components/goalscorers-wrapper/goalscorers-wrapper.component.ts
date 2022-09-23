@@ -18,14 +18,12 @@ export class GoalscorersWrapperComponent implements OnInit, OnChanges {
   
   constructor(private generalService: GeneralService) { }
   ngOnInit(): void {
-    console.log('volam on init goalscorers');
     this.getGoalscorersPerCompetition('CL');
     this.alreadyInitialized = true;
   }
   
   ngOnChanges(): void {
     if(this.teamName && this.alreadyInitialized){
-      console.log('nastavujem goalscorers cez on changes');
       this.getGoalscorersPerCompetition('CL');
     }
   }

@@ -8,6 +8,8 @@ import { SingleTeamModel } from 'src/app/shared/models/single-team.model';
 })
 export class OverallStatsSingleTeamComponent implements OnInit {
 
+  // todo posielat len data ktore potrebujem
+  // todo bilanciu ukazovat len v charte
   @Input()  teamStats: SingleTeamModel;
   
   constructor() { }

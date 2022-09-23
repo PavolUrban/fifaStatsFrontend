@@ -1,7 +1,9 @@
 export const PAVOL_JAY = 'Pavol Jay';
 export const KOTLIK = 'Kotlik';
 export const ALL = 'All';
+export const ALL_COMPETITIONS = 'All competitions';
 export const CHAMPIONS_LEAGUE = 'CL';
 export const EUROPEAN_LEAGUE = 'EL';
 export const OLD_FORMAT = 'Old format';
 export const NEW_FORMAT =  'New format';
+export const COMPETITIONS_ARRAY = [CHAMPIONS_LEAGUE, EUROPEAN_LEAGUE, ALL_COMPETITIONS];

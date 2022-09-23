@@ -4,76 +4,75 @@
             <tbody>
                 <tr>
                     <th> </th>
-                    <th> Total</th>
-                    <th> Champions League</th>
-                    <th> European league</th>
+                    <th class="text-right">Total</th>
+                    <th class="text-right">Champions League</th>
+                    <th class="text-right">European league</th>
                 </tr>
-                <tr>
+                <tr class="table-row hover:bg-slate-200 text-right">
                     <th>Seasons</th>
                     <td>
-                        <span class="badge badge-secondary">{{teamStats.teamStatsTotal.seasonsList.length}}</span>
+                        <span>{{teamStats.teamStatsTotal.seasonsList.length}}</span>
                     </td>
                     <td>
-                        <span class="badge badge-secondary">{{teamStats.teamStatsCL.seasonsList.length}}</span>
+                        <span>{{teamStats.teamStatsCL.seasonsList.length}}</span>
                     </td>
                     <td>
-                        <span class="badge badge-secondary">{{teamStats.teamStatsEL.seasonsList.length}}</span>
+                        <span>{{teamStats.teamStatsEL.seasonsList.length}}</span>
                     </td>
                 </tr>
-                <tr>
+                <tr class="table-row hover:bg-slate-200 text-right">
                     <th>Matches</th>
                     <td>
-                        <span class="badge badge-secondary">{{teamStats.teamStatsTotal.matchesCount}}</span>
+                        <span>{{teamStats.teamStatsTotal.matchesCount}}</span>
                     </td>
                     <td>
-                        <span class="badge badge-secondary">{{teamStats.teamStatsCL.matchesCount}}</span>
+                        <span>{{teamStats.teamStatsCL.matchesCount}}</span>
                     </td>
                     <td>
-                        <span class="badge badge-secondary">{{teamStats.teamStatsEL.matchesCount}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Wins todo percentage</th>
-                    <td>
-                        <span class="badge-success mr-1">{{teamStats.teamStatsTotal.wins}}</span>
-                    </td>
-                    <td>
-                        <span class="badge-success mr-1">{{teamStats.teamStatsCL.wins}}</span>
-                    </td>
-                    <td>
-                        <span class="badge-success mr-1">{{teamStats.teamStatsEL.wins}}</span>
+                        <span>{{teamStats.teamStatsEL.matchesCount}}</span>
                     </td>
                 </tr>
-
-                <tr>
-                    <th>Draws todo percentage</th>
+                <tr class="table-row hover:bg-slate-200 text-right">
+                    <th>Wins</th>
                     <td>
-                        <span class="badge-warning mr-1">{{teamStats.teamStatsTotal.draws}}</span>
+                        <span>{{teamStats.teamStatsTotal.wins}}</span>
                     </td>
                     <td>
-                        <span class="badge-warning mr-1">{{teamStats.teamStatsCL.draws}}</span>
+                        <span>{{teamStats.teamStatsCL.wins}}</span>
                     </td>
                     <td>
-                        <span class="badge-warning mr-1">{{teamStats.teamStatsEL.draws}}</span>
-
+                        <span>{{teamStats.teamStatsEL.wins}}</span>
                     </td>
                 </tr>
 
-                <tr>
-                    <th>Losses todo percentage</th>
+                <tr class="table-row hover:bg-slate-200 text-right">
+                    <th>Draws</th>
                     <td>
-                        <span class="badge-danger mr-1">{{teamStats.teamStatsTotal.losses}}</span>
+                        <span>{{teamStats.teamStatsTotal.draws}}</span>
                     </td>
                     <td>
-                        <span class="badge-danger mr-1">{{teamStats.teamStatsCL.losses}}</span>
+                        <span>{{teamStats.teamStatsCL.draws}}</span>
                     </td>
                     <td>
-                        <span class="badge-danger mr-1">{{teamStats.teamStatsEL.losses}}</span>
+                        <span>{{teamStats.teamStatsEL.draws}}</span>
                     </td>
                 </tr>
 
-                <tr>
-                    <th>Goals scored todo avg</th>
+                <tr class="table-row hover:bg-slate-200 text-right">
+                    <th>Losses</th>
+                    <td>
+                        <span>{{teamStats.teamStatsTotal.losses}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsCL.losses}}</span>
+                    </td>
+                    <td>
+                        <span>{{teamStats.teamStatsEL.losses}}</span>
+                    </td>
+                </tr>
+
+                <tr class="table-row hover:bg-slate-200 text-right">
+                    <th>Goals scored</th>
                     <td>
                         <span>{{teamStats.teamStatsCL.goalsScored}}</span>
                     </td>
@@ -85,8 +84,8 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <th>Goals conceded todo avg</th>
+                <tr class="table-row hover:bg-slate-200 text-right">
+                    <th>Goals conceded</th>
                     <td>
                         <span>{{teamStats.teamStatsTotal.goalsConceded}}</span>
                     </td>
@@ -98,8 +97,8 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <th>Goal difference todo</th>
+                <tr class="table-row hover:bg-slate-200 text-right">
+                    <th>Goal difference </th>
                     <td>
                         <span>{{teamStats.teamStatsTotal.goalDiff}}</span>
                     </td>
@@ -111,7 +110,7 @@
                     </td>
                 </tr>
 
-                <tr>
+                <tr class="table-row hover:bg-slate-200 text-right">
                     <th>Titles won</th>
                     <td>
                         <span>{{teamStats.teamStatsTotal.titlesCount}}</span>
@@ -123,7 +122,7 @@
                         <span>{{teamStats.teamStatsEL.titlesCount}}</span>
                     </td>
                 </tr>
-                <tr>
+                <tr class="table-row hover:bg-slate-200 text-right"> 
                     <th>Runners-up</th>
                     <td>
                         <span>{{teamStats.teamStatsTotal.runnersUpCount}}</span>

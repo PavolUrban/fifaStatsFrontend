@@ -15,7 +15,7 @@
       <th  mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element; let i = index"> 
         <div class="flex items-center space-x-2">
-          <img src="assets/img/logos/{{element.teamPlayerScoredFor}}.jpg" alt="" matTooltip="{{element.teamPlayerScoredFor}}" class="iconSize cursor-pointer" (click)="goToTeamView(element.teamPlayerScoredFor)">
+          <img src="assets/img/logos/{{element.teamPlayerScoredFor}}.jpg" alt="" matTooltip="{{element.teamPlayerScoredFor}}" class="iconSize cursor-pointer" (click)="generalRouterService.goToTeamView(element.teamPlayerScoredFor)">
           <span>{{element.name}}</span>
         </div>
 

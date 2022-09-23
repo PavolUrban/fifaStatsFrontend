@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { concatMap, Subscription } from 'rxjs';
 import { SingleTeamModel } from 'src/app/shared/models/single-team.model';
 import { TrophyRoomModel } from 'src/app/shared/models/trophy-room.model';
-import { Teams } from '../../../shared/models/teams';
 import { TeamsService } from '../../../shared/services/teams.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class SingleTeamComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
 
   constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamsService) { }
-
 
   ngOnInit() {
     this.subscription = this.activatedRoute.params.pipe(

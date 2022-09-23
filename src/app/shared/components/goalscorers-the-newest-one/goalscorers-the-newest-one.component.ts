@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { GoalscorersModel } from '../../models/goalscorers.model';
 import { DialogOpenerService } from '../../services/dialog-opener.service';
+import { GeneralRouterService } from '../../services/general-router.service';
 
 @Component({
   selector: 'app-goalscorers-the-newest-one',
@@ -17,7 +18,7 @@ export class GoalscorersTheNewestOneComponent {
   @Input() pageSize = 15;
   @Input() displayNumberOfTeamsPlayerScored = false;
 
-  dataSource;
+  dataSource: MatTableDataSource<GoalscorersModel>;
   displayedColumns: string[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -39,15 +40,10 @@ export class GoalscorersTheNewestOneComponent {
     }
   };
 
-  constructor(public dialogOpenerService: DialogOpenerService, private router: Router) { }
+  constructor(public dialogOpenerService: DialogOpenerService, public generalRouterService: GeneralRouterService) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
-
-  goToTeamView(teamname: string) {
-    this.router.navigate(['/teaminfo/' + teamname]);
-  }
-
 }

@@ -21,6 +21,23 @@
     </div>
 
     <div>
+      <h1 class="groupStageHeaderFormat">Win rate</h1>
+      <mat-card>
+        <mat-card-content>
+          <app-pie-chart-stats [series]="teamStats.bilance">
+          </app-pie-chart-stats>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    
+    <div>
+      <h1 class="groupStageHeaderFormat">Goalscoring time distribution</h1>
+      <mat-card>
+        <app-goal-distributon [teamname]="teamStats.teamName"></app-goal-distributon>
+      </mat-card>
+    </div>
+
+    <div>
       <h1 class="groupStageHeaderFormat">Goalscorers</h1>
       <mat-card>
         <app-goalscorers-wrapper [teamName]="teamStats.teamName" [pageSize]="5"></app-goalscorers-wrapper>
@@ -34,25 +51,6 @@
       </mat-card>
     </div>
   </div>
-
-  <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
-    <div>
-      <h1 class="groupStageHeaderFormat">Win rate</h1>
-      <mat-card>
-        <mat-card-content>
-          <app-pie-chart-stats [series]="teamStats.bilance">
-          </app-pie-chart-stats>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div>
-      <h1 class="groupStageHeaderFormat">Goalscoring time distribution</h1>
-      <mat-card>
-        <app-goal-distributon [teamname]="teamStats.teamName"></app-goal-distributon>
-      </mat-card>
-    </div>
-  </div>
-
 
   <div class="grid grid-cols-1 gap-4">
     <div>

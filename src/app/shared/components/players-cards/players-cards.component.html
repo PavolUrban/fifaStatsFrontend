@@ -41,8 +41,7 @@
   -->
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-row"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" class="table-row hover:bg-slate-200"
-    (click)="openPlayersDetail(row.name)"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"  class="table-row hover:bg-slate-200" (click)="dialogOpenerService.openPlayersDetail(row.name)"></tr>
 </table>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="5"></mat-paginator>

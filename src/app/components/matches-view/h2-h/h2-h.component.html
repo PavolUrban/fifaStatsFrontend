@@ -1,76 +1,48 @@
-<div class="mr-1 mt-5 row" >
+<div class="flex flex-col gap-4">
 
-  <div class="col-sm-4">
-    <mat-card >
-    <form class="example-form">
-      <mat-form-field class="example-full-width" id="formfield1">
-        <input type="text"
-               placeholder="Pick first team"
-               aria-label="Number"
-               matInput
-               [formControl]="myControlFirstTeam"
-               [matAutocomplete]="auto1">
-        <mat-autocomplete #auto1="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptionsFirstTeam | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width" id="formfield2">
-        <input type="text"
-               placeholder="Pick second team"
-               aria-label="Number"
-               matInput
-               [formControl]="myControlSecondTeam"
-               [matAutocomplete]="auto2">
-
-        <mat-autocomplete #auto2="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptionsSecondTeam | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-
-    <button  mat-raised-button color="primary" (click)="getH2HStats()">Get H2H</button>
+    <mat-card>
+      <form class="grid grid-cols-3 gap-4">
+        <mat-form-field class="example-full-width" id="formfield1">
+          <input type="text" placeholder="Pick first team" aria-label="Number" matInput
+            [formControl]="myControlFirstTeam" [matAutocomplete]="auto1">
+          <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptionsFirstTeam | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" id="formfield2">
+          <input type="text" placeholder="Pick second team" aria-label="Number" matInput
+            [formControl]="myControlSecondTeam" [matAutocomplete]="auto2">
+          <mat-autocomplete #auto2="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptionsSecondTeam | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="w-fit h-fit self-center justify-self-center" (click)="getH2HStats()">Get H2H</button>
+      </form>
     </mat-card>
+
+    <app-matches-table *ngIf="!!allMatches" [data]="allMatches" [currentTeam]="myControlFirstTeam.value" [pageSize]="20"></app-matches-table>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <h1 class="groupStageHeaderFormat">{{subtitle}}</h1>
+        <mat-card *ngIf="dataLoaded">
+          <mat-tab-group (selectedTabChange)="tabChanged($event)">
+            <mat-tab class="test" label="H2H Teams">
+            </mat-tab>
+            <mat-tab class="test" label="H2H Players">
+            </mat-tab>
+          </mat-tab-group>
+          <app-pie-chart-stats *ngIf="!!currentBilanceUsed" [series]="currentBilanceUsed">
+          </app-pie-chart-stats>
+        </mat-card>
+      </div>
+      <div class="col-sm-4" *ngIf="dataLoaded">
+        todo goalscorers
+      </div>
     </div>
-
-  <div class="col-sm-4" *ngIf="dataLoaded">
-    todo goalscorers
 </div>
-
-
-<mat-card class="col-sm-4" *ngIf="dataLoaded">
-  <mat-card-header>
-    <mat-card-title>H2H Stats</mat-card-title>
-    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-tab-group (selectedTabChange)="tabChanged($event)">
-    <mat-tab class="test" label="H2H Teams">
-
-    </mat-tab>
-    <mat-tab class="test" label="H2H Players">
-
-    </mat-tab>
-  </mat-tab-group>
-
-  <app-pie-chart-stats *ngIf="!!currentBilanceUsed"
-    [series]="currentBilanceUsed"
-    >
-    </app-pie-chart-stats>
- </mat-card>
-
-
-
-
-<!-- <mat-card-content> -->
-
-</div>
-
-<app-matches-table *ngIf="!!allMatches" [data]="allMatches" [pageSize]="20"></app-matches-table>
-
-
 

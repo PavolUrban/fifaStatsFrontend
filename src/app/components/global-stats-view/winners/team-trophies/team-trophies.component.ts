@@ -20,6 +20,7 @@ export class TeamTrophiesComponent implements OnInit {
   displayedColumns: string[] = ['index', 'teamName','winCountTotal', 'winCountCL', 'winCountEL', 'runnersUpTotal', 'runnersUpCL', 'runnersUpEL'];
   
   @Input() set data(teamTrophyList: TeamTrophyModel[]) {
+    console.log(teamTrophyList);
     this.dataSource = new MatTableDataSource<TeamTrophyModel>(teamTrophyList)
   };
 

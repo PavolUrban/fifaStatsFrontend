@@ -19,7 +19,7 @@ export class MatchesTableComponent implements OnInit {
   
   @Input() currentTeam: string = null;
   @Input() displayBadge: boolean = true;
-  @Input() editAllowed: boolean = false;
+  @Input() editAllowed: boolean = true; // todo just for testing -revert to false
   @Input() showCompetitionPhase: boolean = true;
   @Input() showCompetition: boolean = true;
   @Input() pageSize: number = 5;

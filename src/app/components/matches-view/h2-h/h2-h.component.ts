@@ -58,6 +58,12 @@ export class H2HComponent implements OnInit {
 
     });
 
+    // next 3 lines are here just for make tesing easier
+    this.myControlFirstTeam.setValue('Borussia Dortmund');
+    this.myControlSecondTeam.setValue('Liverpool FC');
+    this.getH2HStats();
+
+
 
   }
 

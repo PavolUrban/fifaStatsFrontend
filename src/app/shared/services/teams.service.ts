@@ -7,23 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class TeamsService {
 
+  private baseUrl = 'http://localhost:8080/teams';
+
   constructor(private http: HttpClient) { }
 
-
-  private baseUrl = 'http://localhost:8080/teams/';
-
-  getTeamNames()
-  {
-    return this.http.get(`${this.baseUrl}` + "getAllTeamNames");
+  getTeamNames(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/getAllTeamNames`);
   }
 
   getTeamsList(recalculate: boolean) {
-    return this.http.get(`${this.baseUrl}getAllTeamsWithLogo/ ${recalculate}`);
+    return this.http.get(`${this.baseUrl}/getAllTeamsWithLogo/ ${recalculate}`);
   }
 
-  getSingleTeamStats(teamName: string)
-  {
-    return this.http.get(`${this.baseUrl}` + "getTeamStats/"+teamName);
+  getSingleTeamStats(teamName: string) {
+    return this.http.get(`${this.baseUrl}/getTeamStats/${teamName}`);
   }
 
   createNewTeam(teamName: Object): Observable<Object> {
@@ -33,6 +30,5 @@ export class TeamsService {
   updateTeam(tName: string, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/update/${tName}`, value);
   }
-
-
+  
 }

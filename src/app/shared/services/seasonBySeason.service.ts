@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { OverallSeasonStats } from '../models/overall-season-stats.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class SeasonBySeasonService {
 
   constructor(private http: HttpClient) { }
 
-  getSeasonBySeasonStats() {
-    return this.http.get(`${this.baseUrl}/getStats`);
+  getSeasonBySeasonStats(): Observable<OverallSeasonStats> {
+    return this.http.get<OverallSeasonStats>(`${this.baseUrl}/getStats`);
   }
 }

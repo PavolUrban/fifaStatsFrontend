@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Matches } from '../models/matches';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class MatchesService {
 
   constructor(private http: HttpClient) { }
 
-  getMatchesList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}getMatches`);
+  getMatchesList$(): Observable<Matches[]> {
+    return this.http.get<Matches[]>(`${this.baseUrl}getMatches`);
   }
 
   createMatch(match: Object): Observable<Object> {

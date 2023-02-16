@@ -19,8 +19,7 @@ export class SeasonBySeasonComponent implements OnInit {
 
   ngOnInit(): void {
     this.seasonBySeasonService.getSeasonBySeasonStats().subscribe(data=> {
-      console.log(data['seasonBySeasonStats'] as Array<OverallSeasonStats>);
-      this.dataSource = new MatTableDataSource(data['seasonBySeasonStats'] as Array<OverallSeasonStats>);
+      this.dataSource = new MatTableDataSource(data['seasonBySeasonStats']);
       this.dataSource.sort = this.sort;
     })
   }

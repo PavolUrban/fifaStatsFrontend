@@ -4,6 +4,6 @@
     <mat-tab label="European league"></mat-tab>
   </mat-tab-group>
   <mat-card-content>
-    <app-matches-table *ngIf="!!dataToPass" [data]="dataToPass" [showCompetitionPhase]="false" [showCompetition]="false" [pageSize]=15></app-matches-table>
+    <app-matches-table *ngIf="!!dataToPass" [data]="dataToPass" [showCompetitionPhase]="false" [showCompetition]="false" [pageSize]=15 [displayBadge]="false"></app-matches-table>
   </mat-card-content>
 </mat-card>

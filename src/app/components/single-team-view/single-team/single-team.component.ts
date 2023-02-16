@@ -26,6 +26,7 @@ export class SingleTeamComponent implements OnInit, OnDestroy {
         return this.teamsService.getSingleTeamStats(item['teamName']);
       })
     ).subscribe(data => {
+      console.log('teamstats');
       console.log(data);
       this.teamStats = data as SingleTeamModel;
       this.trophyRoomData = new TrophyRoomModel(this.teamStats.teamStatsCL.titlesCount, this.teamStats.teamStatsEL.titlesCount);

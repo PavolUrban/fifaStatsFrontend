@@ -13,7 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { TeamsListsComponent } from './components/all-teams-view/teams-lists/teams-lists.component';
+import { TeamsListsComponent } from './components/all-teams-view/all-teams-view-component/all-teams-view.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -75,6 +75,7 @@ import { RecordsDetailComponent } from './shared/components/match-detail/records
 import { RecordCellComponent } from './shared/components/match-detail/records-detail/record-cell/record-cell.component';
 import { GroupStageComponent } from './components/season-view/group-stage/group-stage.component';
 import { OverallStatsSingleTeamComponent } from './components/single-team-view/overall-stats-single-team/overall-stats-single-team.component';
+import { TeamNameFilterComponent } from './shared/components/team-name-filter/team-name-filter.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { OverallStatsSingleTeamComponent } from './components/single-team-view/o
     RecordsDetailComponent,
     RecordCellComponent,
     GroupStageComponent,
-    OverallStatsSingleTeamComponent
+    OverallStatsSingleTeamComponent,
+    TeamNameFilterComponent
   ],
   imports: [
     BrowserModule,

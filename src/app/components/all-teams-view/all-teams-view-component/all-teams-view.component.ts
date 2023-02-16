@@ -10,8 +10,8 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-teams-lists',
-  templateUrl: './teams-lists.component.html',
-  styleUrls: ['./teams-lists.component.scss']
+  templateUrl: './all-teams-view.component.html',
+  styleUrls: ['./all-teams-view.component.scss']
 })
 export class TeamsListsComponent implements OnInit, OnDestroy {
 

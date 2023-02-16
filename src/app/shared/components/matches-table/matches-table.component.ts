@@ -18,6 +18,7 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 export class MatchesTableComponent implements OnInit {
   
   @Input() currentTeam: string = null;
+  @Input() currentTeamId: number;
   @Input() displayBadge: boolean = true;
   @Input() editAllowed: boolean = true; // todo just for testing -revert to false
   @Input() showCompetitionPhase: boolean = true;

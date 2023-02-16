@@ -44,7 +44,7 @@
     </th>
     <td mat-cell *matCellDef="let element" class="cursor-pointer !pr-4">
       <div class="flex items-center justify-end space-x-1">
-        <span (click)="generalRouterService.goToTeamView(element.hometeam)" class="cursor-pointer" [ngClass]="{'font-bold': element.winner === element.hometeam}">{{element.hometeam}}</span>
+        <span (click)="generalRouterService.goToTeamView(element.hometeam)" class="cursor-pointer" [ngClass]="{'font-bold': element.winnerId=== element.idHomeTeam}">{{element.hometeam}}</span>
         <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.hometeam}}.jpg"
           (click)="generalRouterService.goToTeamView(element.hometeam)" matTooltip="{{element.hometeam}}" alt="">
       </div>
@@ -68,18 +68,20 @@
       <div class="flex items-center space-x-1">
         <img (click)="generalRouterService.goToTeamView(element.awayteam)" class="max-h-[25px] cursor-pointer"
           src="assets/img/logos/{{element.awayteam}}.jpg" matTooltip="{{element.awayteam}}" alt="">
-        <span (click)="generalRouterService.goToTeamView(element.awayteam)" [ngClass]="{'font-bold': element.winner === element.awayteam}" class="cursor-pointer">{{element.awayteam}}</span>
+        <span (click)="generalRouterService.goToTeamView(element.awayteam)" [ngClass]="{'font-bold': element.idAwayTeam === element.winnerId}" class="cursor-pointer">{{element.awayteam}}</span>
       </div>
     </td>
   </ng-container>
 
   <ng-container matColumnDef="winnerBadge">
     <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element" [ngSwitch]="element.winner">
+    <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="displayBadge">
-        <span *ngSwitchCase="currentTeam" class="badge-success">W</span>
-        <span *ngSwitchCase="'D'" class="badge-warning">D</span>
-        <span *ngSwitchDefault class="badge-danger">L</span>
+        <ng-container [ngSwitch]="element.winnerId">
+          <span *ngSwitchCase="currentTeamId" class="badge-success">W</span>
+          <span *ngSwitchCase="-1" class="badge-warning">D</span>
+          <span *ngSwitchDefault class="badge-danger">L</span>
+        </ng-container>
       </ng-container>
     </td>
   </ng-container>
@@ -99,7 +101,7 @@
 
   <!--   -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" [ngClass]="{'bg-yellow-500': (row.competitionPhase==='Final' && currentTeam===row.winner)}" class="table-row hover:bg-slate-200"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" [ngClass]="{'bg-yellow-500': (row.competitionPhase==='Final' && currentTeamId===row.winnerId)}" class="table-row hover:bg-slate-200"></tr>
 </table>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [pageSize]="pageSize"></mat-paginator>

@@ -1,14 +1,14 @@
 <div class="w-full bg-gray-200 pl-2 rounded font-semibold">{{title}}</div>
 <div class="grid grid-cols-3 gap-1 mt-2" *ngFor="let event of events">
     <div>
-        <ng-container *ngIf="event.teamName === match.hometeam">
+        <ng-container *ngIf="event.teamRecordId === match.idHomeTeam">
             <app-record-cell [event]="event" [typeOfFormat]="typeOfFormat"></app-record-cell>
         </ng-container>
     </div>
     <div>
     </div>
     <div>
-        <ng-container *ngIf="event.teamName === match.awayteam">
+        <ng-container *ngIf="event.teamRecordId === match.idAwayTeam">
             <app-record-cell [event]="event" [typeOfFormat]="typeOfFormat"></app-record-cell>
         </ng-container>
     </div>

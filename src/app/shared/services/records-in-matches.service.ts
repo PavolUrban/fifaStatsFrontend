@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { RecordsInMatchesModel } from '../models/records-in-matches/records-in-matches.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,16 @@ export class RecordsInMatchesService {
 
   constructor(private http: HttpClient) { }
 
-  getGoalDistribution(teamName: string) {
-    return this.http.get(`${this.baseUrl}/getGoalDistribution/${teamName}`);
+  // todo add return type
+  getGoalDistribution(teamId: number) {
+    return this.http.get(`${this.baseUrl}/getGoalDistribution/${teamId}`);
   }
+
+  saveNewRecordInMatch(newRecordInMatch: RecordsInMatchesModel): Observable<void> {
+    console.log('toto chcem ulozit');
+    console.log(newRecordInMatch);
+   
+    return this.http.post<void>(`${this.baseUrl}/saveNewRecord`, newRecordInMatch);
+  }
+
 }

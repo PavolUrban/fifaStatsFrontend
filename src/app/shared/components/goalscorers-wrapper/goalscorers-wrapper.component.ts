@@ -8,7 +8,7 @@ import { GeneralService } from '../../services/general.service';
   styleUrls: ['./goalscorers-wrapper.component.scss']
 })
 export class GoalscorersWrapperComponent implements OnInit, OnChanges {
-  @Input() teamName: string = null;
+  @Input() teamId: number = null;
   @Input() displayNumberOfTeamsPlayerScored = false;
   @Input() pageSize = 5;
 
@@ -18,31 +18,31 @@ export class GoalscorersWrapperComponent implements OnInit, OnChanges {
   
   constructor(private generalService: GeneralService) { }
   ngOnInit(): void {
-    this.getGoalscorersPerCompetition('CL');
+    this.getGoalscorersPerCompetition('CL', 'CL');
     this.alreadyInitialized = true;
   }
   
   ngOnChanges(): void {
-    if(this.teamName && this.alreadyInitialized){
-      this.getGoalscorersPerCompetition('CL');
+    if(this.teamId && this.alreadyInitialized){
+      this.getGoalscorersPerCompetition('CL', 'CL');
     }
   }
 
   tabChanged(event: MatTabChangeEvent): void {
     if (event.index === 0){
-      this.getGoalscorersPerCompetition('CL');
+      this.getGoalscorersPerCompetition('CL', 'CL');
     } else if (event.index === 1) {
-      this.getGoalscorersPerCompetition('EL');
+      this.getGoalscorersPerCompetition('EL', 'EL');
     } else {
-      this.getGoalscorersPerCompetition('Total');
+      this.getGoalscorersPerCompetition(null, 'Total');
     }
   }
 
-  getGoalscorersPerCompetition(competition: string): void{
+  getGoalscorersPerCompetition(competition: string, viewName: string): void{
     
-    this.generalService.getGoalscorersTheNewestToRelocate(competition, this.teamName).subscribe(data=>{
+    this.generalService.getGoalscorersTheNewestToRelocate({competition: competition, teamId: this.teamId}).subscribe(data=>{
       this.currentlyDisplayed = data;
-      this.setProperView(competition);
+      this.setProperView(viewName);
     })
   }
 

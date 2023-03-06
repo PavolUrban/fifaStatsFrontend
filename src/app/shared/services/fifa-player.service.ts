@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { FifaPlayerModelDB } from '../models/fifa-player-db.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +16,11 @@ export class FifaPlayerService {
     return this.http.get(`${this.baseUrl}/getStats/${playerName}`);
   }
 
-  getAllPlayers(){
-    return this.http.get(`${this.baseUrl}/getPlayerNames`);
-  }
-
-  savePlayerStat(playerName: string, recordType: string, recordSignature: string, details: string, teamName: string, matchId: number) {
-    return this.http.post(`${this.baseUrl}/savePlayerRecord`, {playerName, recordType, recordSignature, details, teamName, matchId});
-  }
-
   getPlayersWithRecords(recordType: string, competition: string, competitionPhase: string) {
     return this.http.get(`${this.baseUrl}/getPlayersWithRecord/${recordType}/${competition}/${competitionPhase}`);
+  }
+
+  findPlayersByName(nameSubstring: string): Observable<FifaPlayerModelDB[]> {
+    return this.http.get<FifaPlayerModelDB[]>(`${this.baseUrl}/getPlayersByName/${nameSubstring}`);
   }
 }

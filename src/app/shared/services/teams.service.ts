@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Teams } from '../models/teams';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class TeamsService {
     return this.http.get<string[]>(`${this.baseUrl}/getAllTeamNames`);
   }
 
-  getTeamsList(recalculate: boolean) {
-    return this.http.get(`${this.baseUrl}/getAllTeamsWithLogo/ ${recalculate}`);
+  getTeamsList(recalculate: boolean): Observable<Teams[]> {
+    return this.http.get<Teams[]>(`${this.baseUrl}/getAllTeamsWithLogo/${recalculate}`);
   }
 
   getSingleTeamStats(teamName: string) {

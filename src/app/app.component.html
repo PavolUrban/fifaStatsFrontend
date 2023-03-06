@@ -17,11 +17,11 @@
         <button mat-menu-item [matMenuTriggerFor]="EL">European league</button>
       </mat-menu>
       <mat-menu #CL="matMenu">
-        <button mat-menu-item *ngFor="let seasonname of seasonsList"
+        <button mat-menu-item *ngFor="let seasonname of seasonsList$ | async"
           [routerLink]="'season/'+seasonname +'/CL'">{{seasonname}}</button>
       </mat-menu>
       <mat-menu #EL="matMenu">
-        <button mat-menu-item *ngFor="let seasonname of seasonsList"
+        <button mat-menu-item *ngFor="let seasonname of seasonsList$ | async"
           [routerLink]="'season/'+seasonname +'/EL'">{{seasonname}}</button>
       </mat-menu>
       <button mat-button routerLink="players">Players</button>

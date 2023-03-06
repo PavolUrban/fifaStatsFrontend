@@ -9,13 +9,13 @@ import { RecordsInMatchesService } from '../../services/records-in-matches.servi
 })
 export class GoalDistributonComponent implements OnInit {
 
-  @Input() teamname: string;
+  @Input() teamId: number;
   goalDistribution: GoalDistributonModel;
   
   constructor(private recordsInMatchesService: RecordsInMatchesService) { }
 
   ngOnInit(): void {
-    this.recordsInMatchesService.getGoalDistribution(this.teamname).subscribe(data=> {
+    this.recordsInMatchesService.getGoalDistribution(this.teamId).subscribe(data=> {
       this.goalDistribution = data as GoalDistributonModel;
     })
   }

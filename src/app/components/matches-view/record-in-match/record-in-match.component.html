@@ -1,88 +1,74 @@
-ADD Record
-
-<div class="d-flex justify-content-center">
-    <div class="col-sm-5 d-flex justify-content-center">
-      <img src="assets/img/logos/{{match.hometeam}}.jpg" alt="" class="iconSize">
+<h1 class="groupStageHeaderFormat">Add new record</h1>
+<mat-card class="!flex !flex-col !gap-2 mt-2">
+  
+  <!-- Result -->
+  <div class="grid grid-cols-3 gap-2">
+    <div class="flex justify-center items-center">
+      <img src="assets/img/logos/{{match.hometeam}}.jpg" class="h-20">
     </div>
-    <div class="col-sm-2 d-flex justify-content-center align-items-center">
-      <strong class="result">  {{match.scorehome}} : {{match.scoreaway}}</strong>
+    <div class="flex justify-center items-center"><strong class="result"> {{match.scorehome}} :
+        {{match.scoreaway}}</strong></div>
+    <div class="flex justify-center items-center">
+      <img src="assets/img/logos/{{match.awayteam}}.jpg" alt="" class="h-20">
     </div>
-    <div class="col-sm-5 d-flex justify-content-center">
-      <img src="assets/img/logos/{{match.awayteam}}.jpg" alt="" class="iconSize mr-1">
-
-    </div>
+    <div class="flex justify-center items-center"> <strong> {{match.hometeam}}</strong></div>
+    <div></div>
+    <div class="flex justify-center items-center"><strong> {{match.awayteam}}</strong></div>
   </div>
 
+  <!-- Form group -->
+  <form [formGroup]="newRecordForm" class="flex flex-col gap-4">
+    <div class="grid grid-cols-3 gap-2">
+      <!-- Player name -->
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Player Name</mat-label>
+        <input type="text" matInput formControlName="playerName" [matAutocomplete]="auto" (keyup)="onSearchQueryInput()"
+          required>
+        <mat-error>Incorrect player</mat-error>
+        <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete">
+          <mat-option *ngFor="let player of playerList" [value]="player.playerName">
+            {{player.playerName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-  <div class="d-flex justify-content-center mt-3 mb-5">
-    <div class="col-sm-5 d-flex justify-content-center">
-    <strong> {{match.hometeam}}</strong>
+      <!-- Team name -->
+      <mat-form-field class="ml-2" appearance="fill">
+        <mat-label>Team name</mat-label>
+        <mat-select formControlName="selectedTeamName" required>
+          <mat-option *ngFor="let team of teamNames" [value]="team">
+            {{team}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Record type -->
+      <mat-form-field class="ml-2" appearance="fill">
+        <mat-label>Record type</mat-label>
+        <mat-select formControlName="selectedRecordType" required>
+          <mat-option *ngFor="let recordType of recordTypes" [value]="recordType">
+            {{recordType}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="col-sm-2 d-flex justify-content-center"></div>
 
-    <div class="col-sm-5 d-flex justify-content-center">
-      <strong> {{match.awayteam}}</strong>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Player Name</mat-label>
-      <input type="text" required matInput
-        [formControl]="homeTeamControl" [matAutocomplete]="auto">
-      <mat-error>Home team is required.</mat-error>
-      <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete">
-        <mat-option *ngFor="let homeTeam of filteredOptionsHomeTeam | async" [value]="homeTeam">
-          {{homeTeam}}
-        </mat-option>
-      </mat-autocomplete>
-      <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear"
-        (click)="homeTeamControl.setValue('')">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-
-    <mat-form-field class="ml-2" appearance="fill">
-      <mat-label>Team name</mat-label>
-      <mat-select [(ngModel)]="teamName">
-        <mat-option *ngFor="let team of teamNames" [value]="team">
-          {{team}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    
-    <mat-form-field class="ml-2" appearance="fill">
-      <mat-label>Record type</mat-label>
-      <mat-select [(ngModel)]="selectedRecordType">
-        <mat-option *ngFor="let recordType of recordTypes" [value]="recordType">
-          {{recordType}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
- 
-  </div>
-
-  <div class="row">
-    <mat-radio-group   [(ngModel)]="signatureType" class="mt-1 ml-2" aria-label="Select an option">
-      <mat-radio-button value="minutes">Minutes separated with ','</mat-radio-button>
-      <mat-radio-button class="ml-2 " value="numberOfGoals">Number of goals</mat-radio-button>
+    <!-- Radio button - Format with minutes vs without minutes -->
+    <mat-radio-group class="flex gap-4" formControlName="formatType" aria-label="Select an option">
+      <mat-radio-button value="with_minutes">Format with minutes</mat-radio-button>
+      <mat-radio-button value="no_minutes">Format without minutes</mat-radio-button>
     </mat-radio-group>
-  </div>
 
-  <!-- todo add handling accordingly to singature type -->
-  <div class="row mt-1">
-    <mat-form-field appearance="fill">
-      <mat-label>Details</mat-label>
-      <input matInput [(ngModel)]="details">
+    <!-- Value - only if format with minutes -->
+    <mat-form-field *ngIf="newRecordForm.get('formatType').value ==='with_minutes'" class="mt-5" appearance="fill">
+      <mat-label>Minute of event</mat-label>
+      <input matInput type="number" formControlName="numericDetail" required>
+      <mat-error>Required field</mat-error>
     </mat-form-field>
-  </div>
 
-
-  <button class="mt-5" mat-raised-button color="primary" (click)="saveRecord()"
-  aria-label="Show an example snack-bar">
-  Save match
-</button>
-
+    <button class="mt-5 !ml-auto !h-fit" mat-raised-button color="primary" [disabled]="newRecordForm.invalid"
+      (click)="saveRecordV2()">
+      Save record
+    </button>
+  </form>
+</mat-card>

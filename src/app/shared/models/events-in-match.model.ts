@@ -4,6 +4,6 @@ export class EventsInMatchModel {
     teamName: string;
     minute: number;
     minuteLabel: string;
-    recordCount: number;
+    teamRecordId: number;
     typeOfFormat: string;
 }

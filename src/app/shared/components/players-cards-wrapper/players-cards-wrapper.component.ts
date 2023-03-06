@@ -9,7 +9,7 @@ import { GeneralService } from '../../services/general.service';
 })
 export class PlayersCardsWrapperComponent implements OnChanges {
 
-  @Input() teamName: string = null;
+  @Input() teamId: number = null;
   currentlyDisplayed;
   alreadyInitialized= false;
 
@@ -19,15 +19,15 @@ export class PlayersCardsWrapperComponent implements OnChanges {
 
   ngOnInit(): void {
     console.log('volam on init cards');
-    this.getCardsPerCompetition('Total');
+    this.getCardsPerCompetition(null, 'Total');
     this.alreadyInitialized = true;
   }
 
   ngOnChanges(): void {
   
-    if(this.teamName && this.alreadyInitialized){
+    if(this.teamId && this.alreadyInitialized){
       console.log('nastavujem carty cez onchanges');
-      this.getCardsPerCompetition('Total');
+      this.getCardsPerCompetition(null, 'Total');
     }
   }
 
@@ -35,22 +35,23 @@ export class PlayersCardsWrapperComponent implements OnChanges {
   
   
   tabChanged(event: MatTabChangeEvent): void {
+    // 0 =
     if (event.index === 0){
-      this.getCardsPerCompetition('Total');
+      this.getCardsPerCompetition(null, 'Total');
     } else if (event.index === 1) {
-      this.getCardsPerCompetition('CL');
+      this.getCardsPerCompetition('CL', 'CL');
     } else {
-      this.getCardsPerCompetition('EL');
+      this.getCardsPerCompetition('EL', 'EL');
     }
   }
 
-  getCardsPerCompetition(competition: string){
-    this.generalService.getCardsTheNewestToRelocate(competition, this.teamName).subscribe(data=>{
+  getCardsPerCompetition(competition: string, viewName: string){
+    this.generalService.getCardsTheNewestToRelocate({competition: competition, teamId: this.teamId}).subscribe(data=>{
 
       console.log('nove data');
       console.log(data);
       this.currentlyDisplayed = data;
-      this.setProperView(competition);
+      this.setProperView(viewName);
     });
   }
 

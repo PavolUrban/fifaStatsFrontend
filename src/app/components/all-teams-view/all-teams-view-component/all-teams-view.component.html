@@ -55,7 +55,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> Actions </th>
           <td mat-cell *matCellDef="let element; let i = index;">
-            <mat-icon class="iconAnimation" (click)="displaySingleTeamComponent(element.teamName)">search</mat-icon>
+            <mat-icon class="iconAnimation" (click)="generalRouterService.goToTeamView(element.teamName)">search</mat-icon>
             <mat-icon class="iconAnimation" (click)="openDialog(i)">edit</mat-icon>
           </td>
         </ng-container>

@@ -33,21 +33,21 @@
     <div>
       <h1 class="groupStageHeaderFormat">Goalscoring time distribution</h1>
       <mat-card>
-        <app-goal-distributon [teamname]="teamStats.teamName"></app-goal-distributon>
+        <app-goal-distributon [teamId]="teamStats.teamId"></app-goal-distributon>
       </mat-card>
     </div>
 
     <div>
       <h1 class="groupStageHeaderFormat">Goalscorers</h1>
       <mat-card>
-        <app-goalscorers-wrapper [teamName]="teamStats.teamName" [pageSize]="5"></app-goalscorers-wrapper>
+        <app-goalscorers-wrapper [teamId]="teamStats.teamId" [pageSize]="5"></app-goalscorers-wrapper>
       </mat-card>
     </div>
 
     <div>
       <h1 class="groupStageHeaderFormat">Cards</h1>
       <mat-card>
-        <app-players-cards-wrapper [teamName]="teamStats.teamName"></app-players-cards-wrapper>
+        <app-players-cards-wrapper [teamId]="teamStats.teamId"></app-players-cards-wrapper>
       </mat-card>
     </div>
   </div>

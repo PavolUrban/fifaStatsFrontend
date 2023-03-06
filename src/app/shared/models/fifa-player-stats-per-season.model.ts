@@ -6,5 +6,6 @@ export class FifaPlayerStatsPerSeasonModel {
     redCardsCount: number;
     seasonName: string;
     teamname: string;
+    teamId: number;
     yellowCardsCount: number;
 }

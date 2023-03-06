@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NEW_FORMAT, OLD_FORMAT } from 'src/app/shared/constants';
 import { EventsInMatchModel } from 'src/app/shared/models/events-in-match.model';
 
@@ -7,7 +7,7 @@ import { EventsInMatchModel } from 'src/app/shared/models/events-in-match.model'
   templateUrl: './record-cell.component.html',
   styleUrls: ['./record-cell.component.scss']
 })
-export class RecordCellComponent implements OnInit {
+export class RecordCellComponent {
 
   @Input() event: EventsInMatchModel;
   @Input() typeOfFormat: string;
@@ -16,12 +16,5 @@ export class RecordCellComponent implements OnInit {
   newFormat = NEW_FORMAT;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
     
-  numSequence(n: number): Array<number> {
-    return Array(n);
-  }
 }

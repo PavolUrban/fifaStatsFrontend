@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewTeamDialogComponent } from '../new-team-dialog/new-team-dialog.component';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { GeneralRouterService } from 'src/app/shared/services/general-router.service';
 
 @Component({
   selector: 'app-teams-lists',
@@ -22,36 +23,23 @@ export class TeamsListsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['index', 'teamName','country','firstSeasonEL', 'firstSeasonCL','actions'];
   dataSource = new MatTableDataSource();
 
-  constructor(private teamsService : TeamsService, private dialog: MatDialog, private router: Router) { }
-
-  ngOnInit() {
+  constructor(private teamsService : TeamsService, private dialog: MatDialog, public generalRouterService: GeneralRouterService) { }
+  
+  public ngOnInit(): void {
     this.reloadData(false);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
- 
 
-  reloadData(recalculate: boolean)
-  {
-   this.subscription =  this.teamsService.getTeamsList(recalculate).subscribe(data =>
-    {
-      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
-  applyFilter(event: Event) {
+  public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
-  openDialog(indexOfTeam) {
+  openDialog(indexOfTeam: number): void {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
@@ -73,8 +61,12 @@ export class TeamsListsComponent implements OnInit, OnDestroy {
 
   }
 
-  displaySingleTeamComponent(teamname: string): void {
-    this.router.navigate(['/teaminfo/'+teamname]);
-  }
+  public reloadData(recalculate: boolean): void {
+    this.subscription =  this.teamsService.getTeamsList(recalculate).subscribe(data => {
+       this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(data)));
+       this.dataSource.sort = this.sort;
+       this.dataSource.paginator = this.paginator;
+     });
+   }
 
 }

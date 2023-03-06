@@ -20,7 +20,7 @@
             <td [ngClass]="{'font-bold': season.seasonName === 'Total'}">{{season.seasonName}}</td>
             <td class="cursor-pointer" (click)="generalRouterService.goToTeamView(season.teamname)">
               <div class="flex items-center space-x-2">
-                <img *ngIf="season.teamname" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize">
+                <img *ngIf="season.teamId" src="assets/img/logos/{{season.teamname}}.jpg" class="iconSize">
                 <span class="ml-1" [ngClass]="{'font-bold pt-1': season.seasonName === 'Total'}">{{season.teamname}}
                 </span>
               </div>

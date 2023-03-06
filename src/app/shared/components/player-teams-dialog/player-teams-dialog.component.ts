@@ -18,7 +18,10 @@ export class PlayerTeamsDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) data, private readonly fifaPlayerService: FifaPlayerService, public generalRouterService: GeneralRouterService) {
     this.playerName = data['name'];    
     fifaPlayerService.getAllPlayerStats(this.playerName).subscribe(data => {
+     
       this.statsPerSeason = data['playerStatsPerSeason'];
+      console.log('toto su oni ');
+      console.log(this.statsPerSeason );
     })
   }
 

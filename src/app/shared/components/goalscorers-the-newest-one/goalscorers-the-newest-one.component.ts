@@ -35,6 +35,8 @@ export class GoalscorersTheNewestOneComponent {
       this.displayedColumns = ['index', 'name', 'totalGoalsCount'];
     }
 
+    console.log('new goalscorers');
+    console.log(goalscorers);
     this.dataSource.filterPredicate = (data, filterValue: string) => {
       return data.name.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().indexOf(filterValue) !== -1;
     }

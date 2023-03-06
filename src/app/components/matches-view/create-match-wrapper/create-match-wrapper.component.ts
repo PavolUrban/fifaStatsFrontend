@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateMatchComponent } from '../create-match/create-match.component';
 
@@ -7,25 +7,16 @@ import { CreateMatchComponent } from '../create-match/create-match.component';
   templateUrl: './create-match-wrapper.component.html',
   styleUrls: ['./create-match-wrapper.component.scss']
 })
-export class CreateMatchWrapperComponent implements OnInit {
+export class CreateMatchWrapperComponent {
 
   constructor(private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
-
-
-  openMatchDetail()
-  {
+  openMatchDetail(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
-    dialogConfig.minWidth = '750px';
+    dialogConfig.minWidth = '800px';
     dialogConfig.minHeight = '600px';
-    // dialogConfig.data = {
-    //   match: match
-    // };
-
-    this.dialog.open(CreateMatchComponent, dialogConfig);
+    this.dialog.open(CreateMatchComponent, dialogConfig); // todo revert to CreateMatchComponent
   }
 
 }

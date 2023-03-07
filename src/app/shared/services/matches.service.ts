@@ -8,25 +8,17 @@ import { Matches } from '../models/matches';
 })
 export class MatchesService {
 
-  private baseUrl = 'http://localhost:8080/matches/';
+  private baseUrl = 'http://localhost:8080/matchesV2';
 
   constructor(private http: HttpClient) { }
 
+  // checked
   getMatchesList$(): Observable<Matches[]> {
-    return this.http.get<Matches[]>(`${this.baseUrl}getMatches`);
-  }
-
-  createMatch(match: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `newmatch/create`, match);
-  }
-  
-  
-  updateMatch(match: Object): Observable<Object> {
-    return this.http.put(`${this.baseUrl}` + `/update/existingMatch`, match);
+    return this.http.get<Matches[]>(`${this.baseUrl}/getMatches`);
   }
 
   getCustomMatches(competition: string, season: string, competitionPhase: string){
-    return this.http.get(`${this.baseUrl}getCustomGroupMatches/${competition}/${season}/${competitionPhase}`);
+    return this.http.get(`${this.baseUrl}/getCustomGroupMatches/${competition}/${season}/${competitionPhase}`);
   }
 
   getH2HStatistics(firstTeam: string, secondTeam: string) {
@@ -45,16 +37,23 @@ export class MatchesService {
   getMatchesWithCustomFilters(season: string, competition: string, competitionPhase: string, teamName: string){
     return this.http.get(`${this.baseUrl}/getFilteredMatches/${season}/${competition}/${competitionPhase}/${teamName}`);
   }
-    //getFilteredMatches/{season}/{competition}/{competitionPhase}/{teamName}  }
 
-  getMatchDetailsNew(matchId: number, hometeam: string, awayteam: string){
-    return this.http.get(`${this.baseUrl}/getMatchDetails/${matchId}/${hometeam}/${awayteam}`);
+  getMatchDetailsNew(matchId: number){
+    return this.http.get(`${this.baseUrl}getMatchDetails/${matchId}`);
   }
 
   getMatchById(matchId: number){
     return this.http.get(`${this.baseUrl}/getMatchById/${matchId}`);
   }
 
+
+  createMatch(match: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}` + `newmatch/create`, match);
+  }
+  
+  updateMatch(match: Object): Observable<Object> {
+    return this.http.put(`${this.baseUrl}` + `/update/existingMatch`, match);
+  }
 
  //todo toto pojde soon prec
     insertAllRecordsToNewTable(){

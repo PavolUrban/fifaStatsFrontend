@@ -1,5 +1,5 @@
 export interface RecordsInMatchesRequestModel {
-    competition: string;
-    teamId: number | null;
-  }
+  competition: string;
+  teamId: number | null;
+}
   

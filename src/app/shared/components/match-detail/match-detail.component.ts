@@ -22,8 +22,11 @@ export class MatchDetailComponent {
   constructor(@Inject(MAT_DIALOG_DATA) data, public generalRouterService: GeneralRouterService,
     private matchesService: MatchesService) {
     this.match = data['match'];
-
-    this.matchesService.getMatchDetailsNew(this.match.id, this.match.hometeam, this.match.awayteam).subscribe(data => {
+      console.log('toto mi prislo ');
+      console.log(this.match);
+      console.log(this.match.id);
+    this.matchesService.getMatchDetailsNew(this.match.id).subscribe(data => {
+      
       this.matchDetail = data as MatchDetailModel;
       console.log(this.matchDetail);
       console.log(this.match);

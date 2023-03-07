@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ALL, CHAMPIONS_LEAGUE, EUROPEAN_LEAGUE } from 'src/app/shared/constants';
 import { FifaPlayerWithRecordModel } from 'src/app/shared/models/fifa-player-with-record.model';
+import { IndividualRecordsRequestModel } from 'src/app/shared/models/individual-records/individual-records-request.model';
 import { Matches } from 'src/app/shared/models/matches';
 import { DialogOpenerService } from 'src/app/shared/services/dialog-opener.service';
 import { FifaPlayerService } from 'src/app/shared/services/fifa-player.service';
@@ -42,15 +43,19 @@ export class TopFifaPlayersComponent implements OnInit {
   }
 
   updatePlayersWithRecords(){
-    console.log(this.selectedRecordType + " is used");
-    this.fifaPlayerService.getPlayersWithRecords(this.selectedRecordType, this.selectedCompetition, this.selectedPhase).subscribe(data=> {
+    const request: IndividualRecordsRequestModel = {
+      recordType: this.selectedRecordType,
+      competition: this.selectedCompetition,
+      competitionPhase: this.selectedPhase
+    };
+    this.fifaPlayerService.getPlayersWithRecords(request).subscribe((data: FifaPlayerWithRecordModel[])=> {
       console.log(data);
       if(this.selectedRecordType === this.mostGoalsInSingleMatch){
         this.competitionPhaseSelectionDisabled = true;
       } else {
         this.competitionPhaseSelectionDisabled = false;
       }
-      this.dataSource = new MatTableDataSource<FifaPlayerWithRecordModel>(data as Array<FifaPlayerWithRecordModel>);
+      this.dataSource = new MatTableDataSource<FifaPlayerWithRecordModel>(data);
       this.dataSource.paginator = this.paginator;
     })
   }

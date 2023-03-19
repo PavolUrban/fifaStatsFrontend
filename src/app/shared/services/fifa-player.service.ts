@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { FifaPlayerModelDB } from '../models/fifa-player-db.model';
 import { IndividualRecordsRequestModel } from '../models/individual-records/individual-records-request.model';
 import { FifaPlayerWithRecordModel } from '../models/fifa-player-with-record.model';
+import { FifaPlayerCoreDTOModel } from '../models/fifa-player/fifa-player-core-dto.model';
+import { FifaPlayerStatsPerSeasonWrapperModel } from '../models/fifa-player/fifa-player-stats-per-season-wrapper.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +16,15 @@ export class FifaPlayerService {
 
   constructor(private http: HttpClient) { }
 
-  // use id here
-  getAllPlayerStats(playerName: string) {
-    return this.http.get(`${this.baseUrl}/getStats/${playerName}`);
+  getStatsForPlayer(playerId: number): Observable<FifaPlayerStatsPerSeasonWrapperModel> {
+    return this.http.get<FifaPlayerStatsPerSeasonWrapperModel>(`${this.baseUrl}/getStatsForPlayer/${playerId}`);
   }
 
   getPlayersWithRecords(request: IndividualRecordsRequestModel): Observable<FifaPlayerWithRecordModel[]> {
     return this.http.post<FifaPlayerWithRecordModel[]>(`${this.baseUrl}/getPlayersWithRecord`, request);
   }
 
-  findPlayersByName(nameSubstring: string): Observable<FifaPlayerModelDB[]> {
-    return this.http.get<FifaPlayerModelDB[]>(`${this.baseUrl}/getPlayersByName/${nameSubstring}`);
+  findPlayersByName(nameSubstring: string): Observable<FifaPlayerCoreDTOModel[]> {
+    return this.http.get<FifaPlayerCoreDTOModel[]>(`${this.baseUrl}/getPlayersByName/${nameSubstring}`);
   }
 }

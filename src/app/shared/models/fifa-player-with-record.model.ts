@@ -4,7 +4,9 @@ export class FifaPlayerWithRecordModel {
     recordEventCount: number;
     matchId: number;
     homeTeam: string;
+    idHomeTeam: number;
     score: string;
     awayTeam: string;
+    idAwayTeam: number;
     teamName: string;
 }

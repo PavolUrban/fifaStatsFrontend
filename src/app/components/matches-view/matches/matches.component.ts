@@ -11,7 +11,7 @@ import { Matches } from 'src/app/shared/models/matches';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchesComponent {
-  allMatches: Observable<Matches[]> = this.matchesService.getMatchesList$();
+  allMatches: Observable<Matches[]> = this.matchesService.getFilteredMatches$({competition: null, competitionPhase: null, season: null, teamName: null});
 
-  constructor(private matchesService : MatchesService) { }
+  constructor(private matchesService : MatchesService) {}
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Teams } from '../models/teams';
+import { SingleTeamModel } from '../models/single-team.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +13,35 @@ export class TeamsService {
 
   constructor(private http: HttpClient) { }
 
+  // CHECKED
+  getSingleTeamStats(teamId: number): Observable<SingleTeamModel> {
+    return this.http.get<SingleTeamModel>(`${this.baseUrl}/getTeamStats/${teamId}`);
+  }
+
+  getTeamsList(recalculate: boolean): Observable<Teams[]> {
+    return this.http.get<Teams[]>(`${this.baseUrl}/getAllTeams/${recalculate}`);
+  }
+
   getTeamNames(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/getAllTeamNames`);
   }
 
-  getTeamsList(recalculate: boolean): Observable<Teams[]> {
-    return this.http.get<Teams[]>(`${this.baseUrl}/getAllTeamsWithLogo/${recalculate}`);
-  }
 
-  getSingleTeamStats(teamName: string) {
-    return this.http.get(`${this.baseUrl}/getTeamStats/${teamName}`);
-  }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // todo rework to send team OBJECT
   createNewTeam(teamName: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}` + `create`, teamName);
   }

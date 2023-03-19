@@ -14,13 +14,9 @@ export class GeneralService {
 
   constructor(private http: HttpClient) { }
   
-  // todo dynamically
+  // todo dynamically - this has to be in some kind of state
   getSeasonsList(): Observable<string[]> {
     return this.http.get<string[]>(`${this.baseUrl}/getSeasonsList/CL`);
-  }
-
-  getSeason(seasonname: string, competition: string) {
-    return this.http.get("http://localhost:8080/completeSeasons/getAllPhases/"+seasonname+"/"+competition);
   }
 
   // this will be moved to separate service - goalscorers service

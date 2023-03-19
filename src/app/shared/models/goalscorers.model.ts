@@ -1,4 +1,5 @@
 export class GoalscorersModel {
+    playerId: number;
     goalsByTeams; // todo check if needed
     name: string;
     numberOfTeamsPlayerScoredFor: number;

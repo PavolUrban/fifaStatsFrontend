@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'h2h', component: H2HComponent},
     { path: 'createMatch', component: CreateMatchWrapperComponent},
     { path: 'teams', component: TeamsListsComponent},
-    { path: 'teaminfo/:teamName', component: SingleTeamComponent},
+    { path: 'teaminfo/:teamId', component: SingleTeamComponent},
     { path: 'season/:seasonname/:competition', component: SeasonComponent},
     { path: 'players', component: PlayersStatsComponent},
     { path: 'allTimeStats',component: AllTimeStatsComponent},

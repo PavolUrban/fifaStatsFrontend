@@ -19,17 +19,13 @@ export class MatchDetailComponent {
   oldFormat = OLD_FORMAT;
   newFormat = NEW_FORMAT;
 
+
   constructor(@Inject(MAT_DIALOG_DATA) data, public generalRouterService: GeneralRouterService,
     private matchesService: MatchesService) {
+      console.log('match detail component entered');
     this.match = data['match'];
-      console.log('toto mi prislo ');
-      console.log(this.match);
-      console.log(this.match.id);
-    this.matchesService.getMatchDetailsNew(this.match.id).subscribe(data => {
-      
-      this.matchDetail = data as MatchDetailModel;
-      console.log(this.matchDetail);
-      console.log(this.match);
+    this.matchesService.getMatchDetails$(this.match.id).subscribe(data => {
+      this.matchDetail = data;
     })
   }
 }

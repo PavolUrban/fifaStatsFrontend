@@ -8,8 +8,8 @@ export class GeneralRouterService {
 
     constructor(private router: Router) { }
 
-    goToTeamView(teamName: string): void {
-        this.router.navigate(['/teaminfo/' + teamName])
+    goToTeamView(teamId: number): void {
+        this.router.navigate(['/teaminfo/' + teamId])
     }
 
     goToSeasonView(season: string, competition: string): void {

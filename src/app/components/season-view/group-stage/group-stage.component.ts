@@ -3,7 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { GoalscorersModel } from 'src/app/shared/models/goalscorers.model';
 import { H2HPlayers } from 'src/app/shared/models/H2HPlayers.model';
-import { TeamForTable } from 'src/app/shared/models/team-for-table.model';
+import { FilteredMatchesRequestModel } from 'src/app/shared/models/matches/custom-matches-request.model';
+import { SingleGroup } from 'src/app/shared/models/seasons/season-wrapper.model';
 import { GeneralRouterService } from 'src/app/shared/services/general-router.service';
 import { MatchesService } from 'src/app/shared/services/matches.service';
 import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-matches-dialog.component';
@@ -16,11 +17,9 @@ import { GroupMatchesDialogComponent } from '../group-matches-dialog/group-match
 })
 export class GroupStageComponent implements OnInit {
 
-  @Input() allGroups: Map<string, Array<TeamForTable>>;
-  @Input() playersStats: Map<string, Array<H2HPlayers>>;
+  @Input() allGroups: SingleGroup[];
   @Input() competition: string;
   @Input() seasonName: string;
-  @Input() goalscorersPerGroup: Map<string, Array<GoalscorersModel>>;
 
   subscription: Subscription = new Subscription();
 
@@ -30,7 +29,13 @@ export class GroupStageComponent implements OnInit {
 
   // todo maybe we dont need group matches dialog component and it could be done with matchetablecomponent?
   displayCurrentGroupMatches(competitionPhase: string) {
-    this.subscription = this.matchesService.getCustomMatches(this.competition, this.seasonName, competitionPhase).subscribe(data => {
+    const filteredMatchesRequest: FilteredMatchesRequestModel = {
+      competition: this.competition,
+      season: this.seasonName,
+      competitionPhase, 
+      teamName: null
+    }
+    this.subscription = this.matchesService.getFilteredMatches$(filteredMatchesRequest).subscribe(data => {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
       dialogConfig.minWidth = '900px';

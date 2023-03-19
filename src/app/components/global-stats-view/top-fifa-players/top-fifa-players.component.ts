@@ -62,6 +62,7 @@ export class TopFifaPlayersComponent implements OnInit {
 
   getMatchToOpen(element: FifaPlayerWithRecordModel){
     this.matchesService.getMatchById(element.matchId).subscribe(data=> {
+      console.log('volam');
       this.dialogOpenerService.openMatchDetail(data as Matches);
     })
    

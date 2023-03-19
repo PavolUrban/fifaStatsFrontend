@@ -39,7 +39,6 @@ export class GoalscorersWrapperComponent implements OnInit, OnChanges {
   }
 
   getGoalscorersPerCompetition(competition: string, viewName: string): void{
-    
     this.generalService.getGoalscorersTheNewestToRelocate({competition: competition, teamId: this.teamId}).subscribe(data=>{
       this.currentlyDisplayed = data;
       this.setProperView(viewName);

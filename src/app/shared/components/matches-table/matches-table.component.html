@@ -44,9 +44,9 @@
     </th>
     <td mat-cell *matCellDef="let element" class="cursor-pointer !pr-4">
       <div class="flex items-center justify-end space-x-1">
-        <span (click)="generalRouterService.goToTeamView(element.hometeam)" class="cursor-pointer" [ngClass]="{'font-bold': element.winnerId=== element.idHomeTeam}">{{element.hometeam}}</span>
-        <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.hometeam}}.jpg"
-          (click)="generalRouterService.goToTeamView(element.hometeam)" matTooltip="{{element.hometeam}}" alt="">
+        <span (click)="generalRouterService.goToTeamView(element.idHomeTeam)" class="cursor-pointer" [ngClass]="{'font-bold': element.winnerId=== element.idHomeTeam}">{{element.homeTeam}}</span>
+        <img class="max-h-[25px] cursor-pointer" src="assets/img/logos/{{element.homeTeam}}.jpg"
+          (click)="generalRouterService.goToTeamView(element.idHomeTeam)" matTooltip="{{element.homeTeam}}" alt="">
       </div>
     </td>
   </ng-container>
@@ -66,9 +66,9 @@
     <th mat-header-cell *matHeaderCellDef class="!pl-4"> Awayteam </th>
     <td mat-cell *matCellDef="let element" class="!pl-4">
       <div class="flex items-center space-x-1">
-        <img (click)="generalRouterService.goToTeamView(element.awayteam)" class="max-h-[25px] cursor-pointer"
-          src="assets/img/logos/{{element.awayteam}}.jpg" matTooltip="{{element.awayteam}}" alt="">
-        <span (click)="generalRouterService.goToTeamView(element.awayteam)" [ngClass]="{'font-bold': element.idAwayTeam === element.winnerId}" class="cursor-pointer">{{element.awayteam}}</span>
+        <img (click)="generalRouterService.goToTeamView(element.idAwayTeam)" class="max-h-[25px] cursor-pointer"
+          src="assets/img/logos/{{element.awayTeam}}.jpg" matTooltip="{{element.awayTeam}}" alt="">
+        <span (click)="generalRouterService.goToTeamView(element.idAwayTeam)" [ngClass]="{'font-bold': element.idAwayTeam === element.winnerId}" class="cursor-pointer">{{element.awayTeam}}</span>
       </div>
     </td>
   </ng-container>

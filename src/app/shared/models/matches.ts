@@ -1,8 +1,8 @@
 export class Matches {
-    id: number;
-    hometeam: string; // todo remove
+    id: number | null;
+    homeTeam: string; // todo remove
     idHomeTeam: number;
-    awayteam: string; // todo remove
+    awayTeam: string; // todo remove
     idAwayTeam: number;
     scorehome: number;
     scoreaway: number;

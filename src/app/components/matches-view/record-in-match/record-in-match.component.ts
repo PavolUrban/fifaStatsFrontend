@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { debounceTime, distinctUntilChanged, filter, Subject, switchMap } from 'rxjs';
-import { FifaPlayerModelDB } from 'src/app/shared/models/fifa-player-db.model';
+import { FifaPlayerCoreDTOModel } from 'src/app/shared/models/fifa-player/fifa-player-core-dto.model';
 import { RecordsInMatchesModel } from 'src/app/shared/models/records-in-matches/records-in-matches.model';
 import { RecordsInMatchesService } from 'src/app/shared/services/records-in-matches.service';
 import { Matches } from '../../../shared/models/matches';
@@ -19,18 +19,18 @@ export class RecordInMatchComponent implements OnInit {
   public match: Matches;
   public recordTypes = ['G','Penalty','YC', 'RC', 'OG'];
   public teamNames: string[];
-  public playerList: FifaPlayerModelDB[];
+  public playerList: FifaPlayerCoreDTOModel[];
   
   constructor(private playerService: FifaPlayerService, private recordsInMatchesService: RecordsInMatchesService, @Inject(MAT_DIALOG_DATA) data, private formBuilder: FormBuilder) {
     this.match = data['match'];
-    this.teamNames = [this.match.hometeam, this.match.awayteam];
+    this.teamNames = [this.match.homeTeam, this.match.awayTeam];
 
     this.newRecordForm = this.formBuilder.group({
       playerName: new FormControl('', [Validators.required, this.existingPlayerValidator()]),
-      selectedTeamName: new FormControl(this.match.hometeam, Validators.required),
+      selectedTeamName: new FormControl(this.match.homeTeam, Validators.required),
       selectedRecordType: new FormControl('G', Validators.required),
       numericDetail: new FormControl(1),
-      formatType: new FormControl('with_minutes', Validators.required)
+      formatType: new FormControl('no_minutes', Validators.required)
     });
   }
  // licenseNo: new FormControl('', condition ? Validators.required : [])
@@ -70,7 +70,7 @@ export class RecordInMatchComponent implements OnInit {
   }
 
   private getTeamIdByTeamName(teamName: string): number {
-    if (teamName === this.match.hometeam) {
+    if (teamName === this.match.homeTeam) {
       return this.match.idHomeTeam;
     } else {
       return this.match.idAwayTeam;

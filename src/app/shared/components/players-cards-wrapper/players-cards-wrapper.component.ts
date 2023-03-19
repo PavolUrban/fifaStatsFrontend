@@ -47,9 +47,6 @@ export class PlayersCardsWrapperComponent implements OnChanges {
 
   getCardsPerCompetition(competition: string, viewName: string){
     this.generalService.getCardsTheNewestToRelocate({competition: competition, teamId: this.teamId}).subscribe(data=>{
-
-      console.log('nove data');
-      console.log(data);
       this.currentlyDisplayed = data;
       this.setProperView(viewName);
     });

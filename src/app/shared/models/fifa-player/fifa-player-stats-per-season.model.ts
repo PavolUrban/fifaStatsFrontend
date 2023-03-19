@@ -1,4 +1,4 @@
-import { Matches } from "./matches";
+import { Matches } from "../matches";
 
 export class FifaPlayerStatsPerSeasonModel {
     allMatches: Array<Matches>;

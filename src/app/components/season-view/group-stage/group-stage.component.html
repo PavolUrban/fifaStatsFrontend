@@ -1,8 +1,8 @@
 <h1 class="subtitle-format my-8">Group stage</h1>
 <div class="grid grid-cols-1 gap-4">
 
-  <div *ngFor="let group of allGroups | keyvalue">
-    <h1 class="groupStageHeaderFormat pl-15">{{group.key}}</h1>
+  <div *ngFor="let group of allGroups">
+    <h1 class="groupStageHeaderFormat pl-15">{{group.groupName}}</h1>
     <mat-card>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
@@ -21,15 +21,15 @@
                 <th class="text-center hidden md:block">GD</th>
                 <th class="text-center">P</th>
               </tr>
-              <tr *ngFor="let team of allGroups[group.key]; let i=index;"
+              <tr *ngFor="let team of group.groupTable; let i=index;"
                 [ngClass]="{'qualifiedCL': (i==0 || i==1), 'qualifiedEL': (i==2 && competition==='CL'), 'outOfCompetition': i==3 || (i==2 && competition==='EL')}">
                 <td>{{i+1}}.</td>
                 <td matTooltip="Team managed by {{team.ownedByPlayer}}" matTooltipPosition="after">
                   <div class="flex space-x-1">
                     <img src="assets/img/logos/{{team.teamname}}.jpg" alt="" class="iconSize mr-1 cursor-pointer"
-                      (click)="generalRouterService.goToTeamView(team.teamname)">
+                      (click)="generalRouterService.goToTeamView(team.teamId)">
                     <span class="cursor-pointer"
-                      (click)="generalRouterService.goToTeamView(team.teamname)">{{team.teamname}}</span>
+                      (click)="generalRouterService.goToTeamView(team.teamId)">{{team.teamname}}</span>
                   </div>
                 </td>
                 <td>
@@ -48,15 +48,15 @@
             </tbody>
           </table>
           <p class="pt-4">
-            <span class="badge-success"> {{playersStats[group.key]["pavolJay"] }}</span> -
-            <span class="badge-warning"> {{playersStats[group.key]["draws"] }}</span> -
-            <span class="badge-danger"> {{playersStats[group.key]["kotlik"] }}</span>
+            <span class="badge-success"> {{group.h2hPlayers.pavolJay}}</span> -
+            <span class="badge-warning"> {{group.h2hPlayers.draws}}</span> -
+            <span class="badge-danger">  {{group.h2hPlayers.kotlik}}</span>
           </p>
         </div>
 
         <div>
           <mat-card>
-            <app-goalscorers-the-newest-one [data]="goalscorersPerGroup[group.key]" [pageSize]="5">
+            <app-goalscorers-the-newest-one [data]="group.goalscorersList" [pageSize]="3">
             </app-goalscorers-the-newest-one>
           </mat-card>
         </div>
@@ -64,7 +64,7 @@
 
 
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="displayCurrentGroupMatches(group.key)">Display matches</button>
+        <button mat-raised-button color="primary" (click)="displayCurrentGroupMatches(group.groupName)">Display matches</button>
       </mat-card-actions>
     </mat-card>
   </div>

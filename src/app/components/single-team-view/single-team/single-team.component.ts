@@ -23,12 +23,10 @@ export class SingleTeamComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.activatedRoute.params.pipe(
       concatMap(item => {
-        return this.teamsService.getSingleTeamStats(item['teamName']);
+        return this.teamsService.getSingleTeamStats(item['teamId']);
       })
     ).subscribe(data => {
-      console.log('teamstats');
-      console.log(data);
-      this.teamStats = data as SingleTeamModel;
+      this.teamStats = data;
       this.trophyRoomData = new TrophyRoomModel(this.teamStats.teamStatsCL.titlesCount, this.teamStats.teamStatsEL.titlesCount);
     });
   }

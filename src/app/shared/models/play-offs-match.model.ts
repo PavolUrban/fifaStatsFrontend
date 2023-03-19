@@ -6,5 +6,5 @@ export class PlayOffsMatchModel {
     qualifiedTeam: string;
     qualifiedTeamGoals: number;
     qualifiedPlayer: string;
-    matchesList: Array<Matches>;
+    homeAwayMatch: Matches[];
 }

@@ -1,6 +1,7 @@
 
 export class TeamTrophyModel {
     teamName: string;
+    teamId: number;
     winCountCL: number;
     winCountEL: number;
     winCountTotal: number;

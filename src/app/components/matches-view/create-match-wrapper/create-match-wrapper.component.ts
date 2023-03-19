@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateMatchComponent } from '../create-match/create-match.component';
+import { DialogOpenerService } from 'src/app/shared/services/dialog-opener.service';
 
 @Component({
   selector: 'app-create-match-wrapper',
@@ -9,14 +8,10 @@ import { CreateMatchComponent } from '../create-match/create-match.component';
 })
 export class CreateMatchWrapperComponent {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialogOpenerService: DialogOpenerService) {}
 
   openMatchDetail(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = false;
-    dialogConfig.minWidth = '800px';
-    dialogConfig.minHeight = '600px';
-    this.dialog.open(CreateMatchComponent, dialogConfig); // todo revert to CreateMatchComponent
+    this.dialogOpenerService.openCreateOrUpdateMatchDialog(null);
   }
 
 }

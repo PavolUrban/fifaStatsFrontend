@@ -41,9 +41,8 @@ import { PieChartStatsComponent } from './shared/components/pie-chart-stats/pie-
 import { SeasonComponent } from './components/season-view/season/season.component';
 import { PlayersStatsComponent } from './components/players-view/players-stats/players-stats.component';
 import { PlayOffComponent } from './components/season-view/play-off/play-off.component';
-import { PlayerTeamsDialogComponent } from './shared/components/player-teams-dialog/player-teams-dialog.component';
+import { PlayerDetailsDialogComponent } from './shared/components/player-details-dialog,component/player-details-dialog,component';
 import { GroupMatchesDialogComponent } from './components/season-view/group-matches-dialog/group-matches-dialog.component';
-import { CustomMatchesComponent } from './shared/components/custom-matches/custom-matches.component';
 import { OverallSeasonStatsComponent } from './components/season-view/overall-season-stats/overall-season-stats.component';
 import { FinalMatchComponent } from './components/matches-view/final-match/final-match.component';
 import { H2HComponent } from './components/matches-view/h2-h/h2-h.component';
@@ -91,9 +90,8 @@ import { TeamNameFilterComponent } from './shared/components/team-name-filter/te
     PlayOffComponent,
     AllTimeStatsComponent,
     AllTimeTeamStatsComponent,
-    PlayerTeamsDialogComponent,
+    PlayerDetailsDialogComponent,
     GroupMatchesDialogComponent,
-    CustomMatchesComponent,
     OverallSeasonStatsComponent,
     FinalMatchComponent,
     H2HComponent,
@@ -164,7 +162,7 @@ import { TeamNameFilterComponent } from './shared/components/team-name-filter/te
     NewTeamDialogComponent,
     MatchDetailComponent,
     RecordInMatchComponent,
-    PlayerTeamsDialogComponent,
+    PlayerDetailsDialogComponent,
     GroupMatchesDialogComponent
   ]
 })

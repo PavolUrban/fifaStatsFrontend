@@ -1,113 +1,114 @@
-<div class="flex flex-col gap-y-4">
-
-  <div class="grid grid-cols-3 gap-2 h-24">
-    <div class="flex justify-center items-center">
-      <img *ngIf="homeTeamControl.value" src="assets/img/logos/{{homeTeamControl.value}}.jpg" alt="" class="iconSize">
+<h1 class="groupStageHeaderFormat">{{cardTitle}}</h1>
+<mat-card>
+  <div class="flex flex-col gap-y-4">
+    <div class="grid grid-cols-3 gap-2 h-24">
+      <div class="flex justify-center items-center">
+        <img *ngIf="homeTeamControl.value" src="assets/img/logos/{{homeTeamControl.value}}.jpg" alt="" class="w-20 h-20">
+      </div>
+      <div></div>
+      <div class="flex justify-center items-center">
+        <img *ngIf="awayTeamControl.value" src="assets/img/logos/{{awayTeamControl.value}}.jpg" alt="" class="w-20 h-20">
+      </div>
     </div>
-    <div></div>
-    <div class="flex justify-center items-center">
-      <img *ngIf="awayTeamControl.value" src="assets/img/logos/{{awayTeamControl.value}}.jpg" alt="" class="iconSize">
+  
+    <div class="grid grid-cols-3 gap-2">
+        <mat-form-field class="flex justify-center items-center" appearance="fill">
+          <mat-label>Home team</mat-label>
+          <input type="text" required placeholder="Home team" aria-label="Home team" matInput
+            [formControl]="homeTeamControl" [matAutocomplete]="auto">
+          <mat-error>Home team is required.</mat-error>
+          <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete">
+            <mat-option *ngFor="let homeTeam of filteredOptionsHomeTeam | async" [value]="homeTeam">
+              {{homeTeam}}
+            </mat-option>
+          </mat-autocomplete>
+          <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="homeTeamControl.setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+  
+      <div class="flex justify-center space-x-2">
+        <mat-form-field class="score" matTooltip="Score home" appearance="fill">
+          <mat-label></mat-label>
+          <input matInput type="number" min="0" [(ngModel)]="match.scorehome">
+          <mat-error>
+            Lowest possible score is 0
+          </mat-error>
+        </mat-form-field>
+        <div class="flex justify-center items-center h-14">:</div>
+        <mat-form-field class="score" matTooltip="Score away" appearance="fill">
+          <mat-label></mat-label>
+          <input matInput type="number" min="0" name="scoreAway" ngDefaultControl [(ngModel)]="match.scoreaway">
+          <mat-error>
+            Lowest possible score is 0
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+        <mat-form-field class="flex justify-center items-center" appearance="fill">
+          <mat-label>Away team</mat-label>
+          <input type="text" required placeholder="Away team" aria-label="Away team" matInput
+            [formControl]="awayTeamControl" [matAutocomplete]="autoAway">
+          <mat-error>Away team is required.</mat-error>
+          <mat-autocomplete #autoAway="matAutocomplete">
+            <mat-option *ngFor="let awayteam of filteredOptionsAwayTeam | async" [value]="awayteam">
+              {{awayteam}}
+            </mat-option>
+          </mat-autocomplete>
+          <button *ngIf="awayTeamControl.value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="awayTeamControl.setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+  
     </div>
-  </div>
-
-  <div class="grid grid-cols-3 gap-2">
+  
+    <!-- Home player, away player -->
+    <div class="grid grid-cols-3 gap-2">
       <mat-form-field class="flex justify-center items-center" appearance="fill">
-        <mat-label>Home team</mat-label>
-        <input type="text" required placeholder="Home team" aria-label="Home team" matInput
-          [formControl]="homeTeamControl" [matAutocomplete]="auto">
-        <mat-error>Home team is required.</mat-error>
-        <mat-autocomplete id="homeTeamAutoComplete" #auto="matAutocomplete">
-          <mat-option *ngFor="let homeTeam of filteredOptionsHomeTeam | async" [value]="homeTeam">
-            {{homeTeam}}
+        <mat-label>Player home</mat-label>
+        <mat-select required [(ngModel)]="match.playerH" (selectionChange)="updateOtherPlayerControl($event,'homePlayer')">
+          <mat-option *ngFor="let homeplayer of dataToCreateMatch.playerNamesList" [value]="homeplayer">{{homeplayer}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div></div>
+      <mat-form-field class="flex justify-center items-center" appearance="fill">
+        <mat-label>Player away</mat-label>
+        <mat-select required [(ngModel)]="match.playerA" (selectionChange)="updateOtherPlayerControl($event,'awayPlayer')">
+          <mat-option *ngFor="let awayplayer of dataToCreateMatch.playerNamesList" [value]="awayplayer">{{awayplayer}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="flex justify-center items-center" appearance="fill">
+        <mat-label>Season</mat-label>
+        <mat-select required [(ngModel)]="match.season"
+          (selectionChange)="updateLocalStorage(localStorageKeySeason, match.season)">
+          <mat-option *ngFor="let season of dataToCreateMatch.seasonsList" [value]="season">{{season}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="flex justify-center items-center" appearance="fill">
+        <mat-label>Competition</mat-label>
+        <mat-select required [(ngModel)]="match.competition"
+          (selectionChange)="updateLocalStorage(localStorageKeyCompetition, match.competition)">
+          <mat-option *ngFor="let competition of dataToCreateMatch.competitionsList" [value]="competition">{{competition}}
           </mat-option>
-        </mat-autocomplete>
-        <button *ngIf="homeTeamControl.value" matSuffix mat-icon-button aria-label="Clear"
-          (click)="homeTeamControl.setValue('')">
-          <mat-icon>close</mat-icon>
-        </button>
+        </mat-select>
       </mat-form-field>
-
-    <div class="flex justify-center space-x-2">
-      <mat-form-field class="score" matTooltip="Score home" appearance="fill">
-        <mat-label></mat-label>
-        <input matInput type="number" min="0" [(ngModel)]="scoreHome">
-        <mat-error>
-          Lowest possible score is 0
-        </mat-error>
-      </mat-form-field>
-      <div class="flex justify-center items-center h-14">:</div>
-      <mat-form-field class="score" matTooltip="Score away" appearance="fill">
-        <mat-label></mat-label>
-        <input matInput type="number" min="0" name="scoreAway" ngDefaultControl [(ngModel)]="scoreAway">
-        <mat-error>
-          Lowest possible score is 0
-        </mat-error>
+  
+      <mat-form-field class="flex justify-center items-center" appearance="fill">
+        <mat-label>Competition phase</mat-label>
+        <mat-select required [(ngModel)]="match.competitionPhase"
+          (selectionChange)="updateLocalStorage(localStorageKeyCompetitionPhase, match.competitionPhase)">
+          <mat-option *ngFor="let competitionPhase of dataToCreateMatch.allCompetitionPhases"
+            [value]="competitionPhase">{{competitionPhase}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-
-      <mat-form-field class="flex justify-center items-center" appearance="fill">
-        <mat-label>Away team</mat-label>
-        <input type="text" required placeholder="Away team" aria-label="Away team" matInput
-          [formControl]="awayTeamControl" [matAutocomplete]="autoAway">
-        <mat-error>Away team is required.</mat-error>
-        <mat-autocomplete #autoAway="matAutocomplete">
-          <mat-option *ngFor="let awayteam of filteredOptionsAwayTeam | async" [value]="awayteam">
-            {{awayteam}}
-          </mat-option>
-        </mat-autocomplete>
-        <button *ngIf="awayTeamControl.value" matSuffix mat-icon-button aria-label="Clear"
-          (click)="awayTeamControl.setValue('')">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-
   </div>
-
-  <!-- Home player, away player -->
-  <div class="grid grid-cols-3 gap-2">
-    <mat-form-field class="flex justify-center items-center" appearance="fill">
-      <mat-label>Player home</mat-label>
-      <mat-select required [formControl]="homePlayersControl" (selectionChange)="playerChanged($event,'homePlayer')">
-        <mat-option *ngFor="let homeplayer of playersHome" [value]="homeplayer">{{homeplayer}}</mat-option>
-      </mat-select>
-      <mat-error>Home player is required.</mat-error>
-    </mat-form-field>
-    <div></div>
-    <mat-form-field class="flex justify-center items-center" appearance="fill">
-      <mat-label>Player away</mat-label>
-      <mat-select required [formControl]="awayPlayersControl" (selectionChange)="playerChanged($event,'awayPlayer')">
-        <mat-option *ngFor="let awayplayer of playersAway" [value]="awayplayer">{{awayplayer}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="flex justify-center items-center" appearance="fill">
-      <mat-label>Season</mat-label>
-      <mat-select required [(ngModel)]="selectedSeason"
-        (selectionChange)="updateLocalStorage(localStorageKeySeason, selectedSeason)">
-        <mat-option *ngFor="let season of seasonsList" [value]="season">{{season}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="flex justify-center items-center" appearance="fill">
-      <mat-label>Competition</mat-label>
-      <mat-select required [(ngModel)]="selectedCompetition"
-        (selectionChange)="resetCompetitionPhaseAndUpdateLocalStorage(localStorageKeyCompetition)">
-        <mat-option *ngFor="let competition of competitionsList" [value]="competition">{{competition}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="flex justify-center items-center" appearance="fill">
-      <mat-label>Competition phase</mat-label>
-      <mat-select required [(ngModel)]="competitionPhase"
-        (selectionChange)="updateLocalStorage(localStorageKeyCompetitionPhase, competitionPhase)">
-        <mat-option *ngFor="let competitionPhase of competitionsPhases.get(selectedCompetition)"
-          [value]="competitionPhase">{{competitionPhase}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-</div>
-
-<button class="!flex !h-fit !ml-auto mt-5" mat-raised-button color="primary" (click)="saveMatch()">
-  Save match
-</button>
+  
+  <button [disabled]="!this.homeTeamControl.valid || !this.awayTeamControl.valid" class="!flex !h-fit !ml-auto mt-5" mat-raised-button color="primary" (click)="saveMatch()">
+    Save match
+  </button>
+</mat-card>

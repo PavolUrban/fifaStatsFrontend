@@ -2,9 +2,9 @@
 <mat-card>
   <div class="grid grid-cols-3 mb-12">
     <div class="flex flex-col justify-center items-center">
-      <img src="assets/img/logos/{{match.hometeam}}.jpg" (click)="generalRouterService.goToTeamView(match.hometeam)"
+      <img src="assets/img/logos/{{match.homeTeam}}.jpg" (click)="generalRouterService.goToTeamView(match.idHomeTeam)"
         alt="" class="iconSize">
-      <strong (click)="generalRouterService.goToTeamView(match.hometeam)"> {{match.hometeam}}</strong>
+      <strong (click)="generalRouterService.goToTeamView(match.idHomeTeam)"> {{match.homeTeam}}</strong>
       <span
         [ngClass]="{'badge-pavol-jay': match.playerH === 'Pavol Jay', 'badge-kotlik': match.playerH === 'Kotlik'}">{{match.playerH}}</span>
 
@@ -13,9 +13,9 @@
       <p class="result"> {{match.scorehome}} : {{match.scoreaway}}</p>
     </div>
     <div class="flex flex-col justify-center items-center">
-      <img src="assets/img/logos/{{match.awayteam}}.jpg" (click)="generalRouterService.goToTeamView(match.awayteam)"
+      <img src="assets/img/logos/{{match.awayTeam}}.jpg" (click)="generalRouterService.goToTeamView(match.idAwayTeam)"
         alt="" class="iconSize mr-1">
-      <strong (click)="generalRouterService.goToTeamView(match.awayteam)"> {{match.awayteam}}</strong>
+      <strong (click)="generalRouterService.goToTeamView(match.idAwayTeam)"> {{match.awayTeam}}</strong>
       <span
         [ngClass]="{'badge-pavol-jay': match.playerA === 'Pavol Jay', 'badge-kotlik': match.playerA === 'Kotlik'}">{{match.playerA}}</span>
     </div>

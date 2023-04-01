@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateMatchComponent } from 'src/app/components/matches-view/create-match/create-match.component';
 import { MatchDetailComponent } from '../components/match-detail/match-detail.component';
-import { PlayerDetailsDialogComponent } from '../components/player-details-dialog,component/player-details-dialog,component';
+import { PlayerDetailsDialogComponent } from '../components/player-details-dialog/player-details-dialog.component';
 import { SnackBarComponent } from '../components/snack-bar/snack-bar.component';
 import { Matches } from '../models/matches';
 import { DataToCreateMatchModel } from '../models/matches/data-to-create-match.model';

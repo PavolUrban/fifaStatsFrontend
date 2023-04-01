@@ -6,8 +6,8 @@ import { GeneralRouterService } from '../../services/general-router.service';
 
 @Component({
   selector: 'app-player-teams-dialog',
-  templateUrl: './player-details-dialog,component.html',
-  styleUrls: ['./player-details-dialog,component.scss']
+  templateUrl: './player-details-dialog.component.html',
+  styleUrls: ['./player-details-dialog.component.scss']
 })
 export class PlayerDetailsDialogComponent {
 

@@ -30,7 +30,7 @@ export class RecordInMatchComponent implements OnInit {
       selectedTeamName: new FormControl(this.match.homeTeam, Validators.required),
       selectedRecordType: new FormControl('G', Validators.required),
       numericDetail: new FormControl(1),
-      formatType: new FormControl('with_minutes', Validators.required)
+      formatType: new FormControl('no_minutes', Validators.required)
     });
   }
  // licenseNo: new FormControl('', condition ? Validators.required : [])

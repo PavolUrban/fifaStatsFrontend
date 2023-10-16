@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexLegend, ApexPlotOptions, ApexStroke, ApexTooltip, ApexXAxis, ApexYAxis, ChartComponent } from 'ng-apexcharts';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+
 import { GoalDistributonModel } from '../../models/goal-distribution.model';
 
 export type ChartOptions = {
@@ -62,7 +63,7 @@ export class ColumnChartComponent implements OnInit, OnChanges {
         bar: {
           horizontal: false,
           columnWidth: "55%",
-          endingShape: "rounded"
+          //endingShape: "rounded"
         }
       },
       dataLabels: {

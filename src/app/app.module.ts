@@ -1,80 +1,77 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { AllTimeStatsComponent } from './components/global-stats-view/all-time-stats/all-time-stats.component';
+import { AllTimeTeamStatsComponent } from './components/global-stats-view/all-time-team-stats/all-time-team-stats.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { MatchesComponent } from './components/matches-view/matches/matches.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-import { TeamsListsComponent } from './components/all-teams-view/all-teams-view-component/all-teams-view.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ColumnChartComponent } from './shared/components/column-chart/column-chart.component';
+import { CreateMatchComponent } from './components/matches-view/create-match/create-match.component';
+import { CreateMatchWrapperComponent } from './components/matches-view/create-match-wrapper/create-match-wrapper.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FinalMatchComponent } from './components/matches-view/final-match/final-match.component';
+import { FormsModule } from '@angular/forms';
+import { GenerateGroupStageComponent } from './components/matches-view/generate-group-stage/generate-group-stage.component';
+import { GoalDistributonComponent } from './shared/components/goal-distributon/goal-distributon.component';
+import { GoalscorersTheNewestOneComponent } from './shared/components/goalscorers-the-newest-one/goalscorers-the-newest-one.component';
+import { GoalscorersWrapperComponent } from './shared/components/goalscorers-wrapper/goalscorers-wrapper.component';
+import { GroupMatchesDialogComponent } from './components/season-view/group-matches-dialog/group-matches-dialog.component';
+import { GroupStageComponent } from './components/season-view/group-stage/group-stage.component';
+import { H2HComponent } from './components/matches-view/h2-h/h2-h.component';
+import { H2hSeasonBySeasonComponent } from './components/global-stats-view/h2h-season-by-season/h2h-season-by-season.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import {MatBadgeModule} from '@angular/material/badge';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { NgApexchartsModule } from "ng-apexcharts";
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatSelectModule } from "@angular/material/select";
-import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from "@angular/material/select";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-import { NewTeamDialogComponent } from './components/all-teams-view/new-team-dialog/new-team-dialog.component';
-import { SingleTeamComponent } from './components/single-team-view/single-team/single-team.component';
-import { MatCardModule } from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatchDetailComponent } from './shared/components/match-detail/match-detail.component';
+import { MatchesComponent } from './components/matches-view/matches/matches.component';
+import { MatchesTableComponent } from './shared/components/matches-table/matches-table.component';
+import { NewTeamDialogComponent } from './components/all-teams-view/new-team-dialog/new-team-dialog.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { NgModule } from '@angular/core';
+import { OverallSeasonStatsComponent } from './components/season-view/overall-season-stats/overall-season-stats.component';
+import { OverallStatsSingleTeamComponent } from './components/single-team-view/overall-stats-single-team/overall-stats-single-team.component';
 import { PieChartStatsComponent } from './shared/components/pie-chart-stats/pie-chart-stats.component';
-import { SeasonComponent } from './components/season-view/season/season.component';
-import { PlayersStatsComponent } from './components/players-view/players-stats/players-stats.component';
 import { PlayOffComponent } from './components/season-view/play-off/play-off.component';
 import { PlayerDetailsDialogComponent } from './shared/components/player-details-dialog/player-details-dialog.component';
-import { GroupMatchesDialogComponent } from './components/season-view/group-matches-dialog/group-matches-dialog.component';
-import { OverallSeasonStatsComponent } from './components/season-view/overall-season-stats/overall-season-stats.component';
-import { FinalMatchComponent } from './components/matches-view/final-match/final-match.component';
-import { H2HComponent } from './components/matches-view/h2-h/h2-h.component';
-import { WinnersListComponent } from './components/global-stats-view/winners/winners-list/winners-list.component';
-import { TrophyRoomComponent } from './components/single-team-view/trophy-room/trophy-room.component';
-import { ColumnChartComponent } from './shared/components/column-chart/column-chart.component';
-import { PlayersCardsWrapperComponent } from './shared/components/players-cards-wrapper/players-cards-wrapper.component';
 import { PlayersCardsComponent } from './shared/components/players-cards/players-cards.component';
-import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
-import { GenerateGroupStageComponent } from './components/matches-view/generate-group-stage/generate-group-stage.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CreateMatchWrapperComponent } from './components/matches-view/create-match-wrapper/create-match-wrapper.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GoalscorersWrapperComponent } from './shared/components/goalscorers-wrapper/goalscorers-wrapper.component';
-import { GoalscorersTheNewestOneComponent } from './shared/components/goalscorers-the-newest-one/goalscorers-the-newest-one.component';
-import { RecordInMatchComponent } from './components/matches-view/record-in-match/record-in-match.component';
-import { SeasonBySeasonComponent } from './components/global-stats-view/season-by-season/season-by-season.component';
-import { H2hSeasonBySeasonComponent } from './components/global-stats-view/h2h-season-by-season/h2h-season-by-season.component';
-import { AllTimeTeamStatsComponent } from './components/global-stats-view/all-time-team-stats/all-time-team-stats.component';
-import { AllTimeStatsComponent } from './components/global-stats-view/all-time-stats/all-time-stats.component';
-import { CreateMatchComponent } from './components/matches-view/create-match/create-match.component';
-import { WinnersWrapperComponent } from './components/global-stats-view/winners/winners-wrapper/winners-wrapper.component';
-import { MatchesTableComponent } from './shared/components/matches-table/matches-table.component';
-import { TeamTrophiesComponent } from './components/global-stats-view/winners/team-trophies/team-trophies.component';
-import { TopMatchesComponent } from './components/global-stats-view/top-records-matches/top-matches/top-matches.component';
-import { TopFifaPlayersComponent } from './components/global-stats-view/top-fifa-players/top-fifa-players.component';
-import { GoalDistributonComponent } from './shared/components/goal-distributon/goal-distributon.component';
-import { RecordsDetailComponent } from './shared/components/match-detail/records-detail/records-detail.component';
+import { PlayersCardsWrapperComponent } from './shared/components/players-cards-wrapper/players-cards-wrapper.component';
+import { PlayersStatsComponent } from './components/players-view/players-stats/players-stats.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RecordCellComponent } from './shared/components/match-detail/records-detail/record-cell/record-cell.component';
-import { GroupStageComponent } from './components/season-view/group-stage/group-stage.component';
-import { OverallStatsSingleTeamComponent } from './components/single-team-view/overall-stats-single-team/overall-stats-single-team.component';
+import { RecordInMatchComponent } from './components/matches-view/record-in-match/record-in-match.component';
+import { RecordsDetailComponent } from './shared/components/match-detail/records-detail/records-detail.component';
+import { SeasonBySeasonComponent } from './components/global-stats-view/season-by-season/season-by-season.component';
+import { SeasonComponent } from './components/season-view/season/season.component';
+import { SingleTeamComponent } from './components/single-team-view/single-team/single-team.component';
+import { SnackBarComponent } from './shared/components/snack-bar/snack-bar.component';
 import { TeamNameFilterComponent } from './shared/components/team-name-filter/team-name-filter.component';
+import { TeamTrophiesComponent } from './components/global-stats-view/winners/team-trophies/team-trophies.component';
+import { TeamsListsComponent } from './components/all-teams-view/all-teams-view-component/all-teams-view.component';
+import { TopFifaPlayersComponent } from './components/global-stats-view/top-fifa-players/top-fifa-players.component';
+import { TopMatchesComponent } from './components/global-stats-view/top-records-matches/top-matches/top-matches.component';
+import { TrophyRoomComponent } from './components/single-team-view/trophy-room/trophy-room.component';
+import { WinnersListComponent } from './components/global-stats-view/winners/winners-list/winners-list.component';
+import { WinnersWrapperComponent } from './components/global-stats-view/winners/winners-wrapper/winners-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -157,13 +154,13 @@ import { TeamNameFilterComponent } from './shared/components/team-name-filter/te
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [
-    CreateMatchComponent,
-    NewTeamDialogComponent,
-    MatchDetailComponent,
-    RecordInMatchComponent,
-    PlayerDetailsDialogComponent,
-    GroupMatchesDialogComponent
-  ]
+  // entryComponents: [
+  //   CreateMatchComponent,
+  //   NewTeamDialogComponent,
+  //   MatchDetailComponent,
+  //   RecordInMatchComponent,
+  //   PlayerDetailsDialogComponent,
+  //   GroupMatchesDialogComponent
+  // ]
 })
 export class AppModule { }

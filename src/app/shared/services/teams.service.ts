@@ -43,11 +43,11 @@ export class TeamsService {
 
   // todo rework to send team OBJECT
   createNewTeam(teamName: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `create`, teamName);
+    return this.http.post(`${this.baseUrl}` + `/create`, teamName);
   }
 
   updateTeam(tName: string, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/update/${tName}`, value);
   }
-  
+
 }

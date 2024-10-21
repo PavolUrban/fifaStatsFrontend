@@ -1,14 +1,13 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Matches } from 'src/app/shared/models/matches';
+import { Component, OnInit, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Matches } from "src/app/shared/models/matches";
 
 @Component({
-  selector: 'app-group-matches-dialog',
-  templateUrl: './group-matches-dialog.component.html',
-  styleUrls: ['./group-matches-dialog.component.scss']
+  selector: "app-group-matches-dialog",
+  templateUrl: "./group-matches-dialog.component.html",
+  styleUrls: ["./group-matches-dialog.component.scss"],
 })
 export class GroupMatchesDialogComponent implements OnInit {
-
   groupName = "";
   customMatches: Array<Matches>;
 
@@ -17,6 +16,5 @@ export class GroupMatchesDialogComponent implements OnInit {
     this.groupName = data["groupName"];
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

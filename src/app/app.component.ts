@@ -9,6 +9,6 @@ import { GeneralService } from './shared/services/general.service';
 })
 export class AppComponent {
   seasonsList$: Observable<string[]> = this.generalService.getSeasonsList();
-  
-  constructor(private generalService : GeneralService) { }
+
+  constructor(private generalService: GeneralService) { }
 }
